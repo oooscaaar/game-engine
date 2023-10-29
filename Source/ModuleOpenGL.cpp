@@ -15,8 +15,6 @@ ModuleOpenGL::ModuleOpenGL()
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24); // we want to have a depth buffer with 24 bits
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8); // we want to have a stencil buffer with 8 bits
 
-	SDL_Window* window = SDL_CreateWindow("OpenGL Window", 200, 200, 256, 224, SDL_WINDOW_OPENGL);
-	this->context = SDL_GL_CreateContext(window);
 }
 
 // Destructor
@@ -29,6 +27,8 @@ ModuleOpenGL::~ModuleOpenGL()
 bool ModuleOpenGL::Init()
 {
 	LOG("Creating Renderer context");
+
+	this->context = SDL_GL_CreateContext(App->GetWindow()->window);
 
 	GLenum err = glewInit();
 
@@ -47,27 +47,34 @@ bool ModuleOpenGL::Init()
 
 update_status ModuleOpenGL::PreUpdate()
 {
+	int windowCurrentW;
+	int windowCurrentH;
+	SDL_GetWindowSize(App->GetWindow()->window, &windowCurrentW, &windowCurrentH);
+	glViewport(0, 0, windowCurrentW, windowCurrentH);
+	glClearColor(1.f, 0.1f, 0.1f, 1.0f); // Paint in RED :D
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	return UPDATE_CONTINUE;
 }
 
 // Called every draw update
 update_status ModuleOpenGL::Update()
 {
-
 	return UPDATE_CONTINUE;
 }
 
 update_status ModuleOpenGL::PostUpdate()
 {
+	SDL_GL_SwapWindow(App->GetWindow()->window);
 	return UPDATE_CONTINUE;
 }
 
 // Called before quitting
 bool ModuleOpenGL::CleanUp()
 {
-	LOG("Destroying renderer");
+	LOG("Destroying renderer\n");
 
 	//Destroy window
+	SDL_GL_DeleteContext(this->context);
 
 	return true;
 }
