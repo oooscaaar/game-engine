@@ -6,6 +6,7 @@
 
 class ModuleOpenGL;
 class ModuleWindow;
+class ModuleEditor;
 class ModuleTextures;
 class ModuleInput;
 class ModuleRenderExercise;
@@ -24,11 +25,13 @@ public:
     ModuleOpenGL* GetOpenGL() { return render; }
     ModuleWindow* GetWindow() { return window; }
     ModuleInput*  GetInput() { return input; }
+    ModuleEditor* GetEditor() { return editor; }
 
 private:
 
     ModuleOpenGL* render = nullptr;
     ModuleWindow* window = nullptr;
+    ModuleEditor* editor = nullptr;
     ModuleInput* input = nullptr;
 
     std::list<Module*> modules;

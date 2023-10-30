@@ -3,6 +3,7 @@
 #include "ModuleWindow.h"
 #include "ModuleOpenGL.h"
 #include "ModuleInput.h"
+#include "ModuleEditor.h"
 
 using namespace std;
 
@@ -11,6 +12,7 @@ Application::Application()
 	// Order matters: they will Init/start/update in this order
 	modules.push_back(window = new ModuleWindow());
 	modules.push_back(render = new ModuleOpenGL());
+	modules.push_back(editor = new ModuleEditor());
 	modules.push_back(input = new ModuleInput());
 }
 
