@@ -51,7 +51,7 @@ update_status ModuleOpenGL::PreUpdate()
 	int windowCurrentH;
 	SDL_GetWindowSize(App->GetWindow()->window, &windowCurrentW, &windowCurrentH);
 	glViewport(0, 0, windowCurrentW, windowCurrentH);
-	glClearColor(1.f, 0.1f, 0.1f, 1.0f); // Paint in RED :D
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // Paint in RED :D
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	return UPDATE_CONTINUE;
 }
@@ -59,13 +59,12 @@ update_status ModuleOpenGL::PreUpdate()
 // Called every draw update
 update_status ModuleOpenGL::Update()
 {
-	SDL_GL_SwapWindow(App->GetWindow()->window);
 	return UPDATE_CONTINUE;
 }
 
 update_status ModuleOpenGL::PostUpdate()
 {
-
+	SDL_GL_SwapWindow(App->GetWindow()->window);
 	return UPDATE_CONTINUE;
 }
 

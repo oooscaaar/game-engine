@@ -45,7 +45,7 @@ bool ModuleEditor::Init()
 
     // Setup Platform/Renderer backends
     ImGui_ImplSDL2_InitForOpenGL(App->GetWindow()->window, App->GetOpenGL()->GetContext());
-    ImGui_ImplOpenGL3_Init((const char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
+    ImGui_ImplOpenGL3_Init("#version 460");
 
 
     return ret;
@@ -57,12 +57,7 @@ update_status ModuleEditor::PreUpdate()
 	ImGui_ImplSDL2_NewFrame(App->GetWindow()->window);
     ImGui::NewFrame();
 
-    bool show_demo_window = true;
-    ImGui::ShowDemoWindow(&show_demo_window);
-
-    ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
-    ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-    ImGui::End();
+    
 
     
 	return UPDATE_CONTINUE;
@@ -72,6 +67,12 @@ update_status ModuleEditor::PreUpdate()
 update_status ModuleEditor::Update()
 {
    //TODO: Add ImGui Update
+    bool show_demo_window = true;
+    ImGui::ShowDemoWindow(&show_demo_window);
+
+    ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+    ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
+    ImGui::End();
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
