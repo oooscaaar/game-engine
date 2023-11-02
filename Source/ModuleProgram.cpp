@@ -1,6 +1,8 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleProgram.h"
+//#include "SDL.h"
+#include "glew.h"
 
 ModuleProgram::ModuleProgram()
 {}
@@ -18,6 +20,9 @@ bool ModuleProgram::Init()
     {
         ret = false;
     }
+
+    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    GLchar* shaderCode = LoadShader("shaders/simple.vert");
 
     return ret;
 }

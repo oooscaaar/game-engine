@@ -78,10 +78,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="vertex_shader_source_render_exercise">
+    <None Include="render_exercise.vert">
       <Filter>shaders</Filter>
     </None>
-    <None Include="fragment_shader_source_render_exercise">
+    <None Include="render_exercise.frag">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>
