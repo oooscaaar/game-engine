@@ -28,6 +28,8 @@
     <ClCompile Include="ImGui\imgui_widgets.cpp">
       <Filter>ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleEditor.cpp" />
+    <ClCompile Include="ModuleProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -64,10 +66,23 @@
     <ClInclude Include="ImGui\imstb_truetype.h">
       <Filter>ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleEditor.h" />
+    <ClInclude Include="ModuleProgram.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
       <UniqueIdentifier>{2f3e47cd-ca47-4351-b568-1d169d628ad2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{87896e0d-38d8-4c79-923e-8874729bcbdf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vertex_shader_source_render_exercise">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="fragment_shader_source_render_exercise">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

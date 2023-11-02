@@ -42,6 +42,9 @@ bool ModuleOpenGL::Init()
 	glEnable(GL_CULL_FACE); // Enable cull backward faces
 	glFrontFace(GL_CCW); // Front faces will be counter clockwise
 
+	glDisable(GL_SCISSOR_TEST); // Disable scissor test
+	glDisable(GL_STENCIL_TEST); // Disable stencil test
+
 	return true;
 }
 
