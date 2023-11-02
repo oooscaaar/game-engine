@@ -30,6 +30,7 @@
     </ClCompile>
     <ClCompile Include="ModuleEditor.cpp" />
     <ClCompile Include="ModuleProgram.cpp" />
+    <ClCompile Include="ModuleRenderExercise.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -68,6 +69,7 @@
     </ClInclude>
     <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="ModuleProgram.h" />
+    <ClInclude Include="ModuleRenderExercise.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">

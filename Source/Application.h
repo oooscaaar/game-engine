@@ -34,6 +34,7 @@ private:
     ModuleOpenGL* render = nullptr;
     ModuleWindow* window = nullptr;
     ModuleProgram* program = nullptr;
+    ModuleRenderExercise* render_exercise = nullptr;
     ModuleEditor* editor = nullptr;
     ModuleInput* input = nullptr;
 
