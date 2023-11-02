@@ -1,5 +1,6 @@
 #include "Globals.h"
 #include "Application.h"
+#include "ModuleProgram.h"
 #include "ModuleOpenGL.h"
 #include "ModuleWindow.h"
 #include "SDL.h"
@@ -45,6 +46,17 @@ bool ModuleOpenGL::Init()
 	glDisable(GL_SCISSOR_TEST); // Disable scissor test
 	glDisable(GL_STENCIL_TEST); // Disable stencil test
 
+	// TODO: Extract this logic
+	//CreateTriangleVBO
+	float vtx_data[] = { -1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
+	glGenBuffers(1, &vbo);
+	
+	// Create program
+	const char* vtx_path = "hello_world.vert";
+	unsigned vtx_shader = App->GetProgram()->CompileShader(GL_VERTEX_SHADER, App->GetProgram()->ReadShader(vtx_path));
+	unsigned frg_shader = App->GetProgram()->CompileShader(GL_FRAGMENT_SHADER, App->GetProgram()->ReadShader("hello_world.frag"));
+	program = App->GetProgram()->CreateProgram(vtx_shader, frg_shader);
+
 	return true;
 }
 
@@ -54,8 +66,17 @@ update_status ModuleOpenGL::PreUpdate()
 	int windowCurrentH;
 	SDL_GetWindowSize(App->GetWindow()->window, &windowCurrentW, &windowCurrentH);
 	glViewport(0, 0, windowCurrentW, windowCurrentH);
-	glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // Paint in RED :D
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // Paint in RED :D
+	// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// TODO: Extract this logic
+	// Render VBO Logic
+	glBindBuffer(GL_ARRAY_BUFFER, vbo); // set vbo active 
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // size = 3 float per vertex | stride = 0 is equivalent to stride = sizeof(float)*3 
+	glUseProgram(program);
+	glDrawArrays(GL_TRIANGLES, 0, 3);
+
 	return UPDATE_CONTINUE;
 }
 
@@ -75,6 +96,9 @@ update_status ModuleOpenGL::PostUpdate()
 bool ModuleOpenGL::CleanUp()
 {
 	LOG("Destroying renderer\n");
+
+	// Delete VBO
+	glDeleteBuffers(1, &vbo);
 
 	//Destroy window
 	SDL_GL_DeleteContext(this->context);

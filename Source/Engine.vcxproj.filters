@@ -73,16 +73,9 @@
     <Filter Include="ImGui">
       <UniqueIdentifier>{2f3e47cd-ca47-4351-b568-1d169d628ad2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="shaders">
-      <UniqueIdentifier>{87896e0d-38d8-4c79-923e-8874729bcbdf}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="render_exercise.vert">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="render_exercise.frag">
-      <Filter>shaders</Filter>
-    </None>
+    <None Include="hello_world.frag" />
+    <None Include="hello_world.vert" />
   </ItemGroup>
 </Project>

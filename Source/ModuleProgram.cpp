@@ -4,6 +4,8 @@
 #include "glew.h"
 #include <fstream>
 #include <vector>
+#include <stdio.h>
+
 
 ModuleProgram::ModuleProgram()
 {}
@@ -22,9 +24,6 @@ bool ModuleProgram::Init()
         ret = false;
     }
 
-    //GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    //GLchar* shaderCode = LoadShader("shaders/simple.vert");
-
     return ret;
 }
 
@@ -40,7 +39,7 @@ char* ModuleProgram::ReadShader(const char* filename)
     char* data = nullptr;
     FILE* file = nullptr;
     fopen_s(&file, filename, "rb");
-
+    
     if (file)
     {
         fseek(file, 0, SEEK_END);
@@ -53,10 +52,10 @@ char* ModuleProgram::ReadShader(const char* filename)
         fclose(file);
     }
 
-    return data;
+   return data;
 }
 
-unsigned ModuleProgram::CompileShader(unsigned shaderType, const char* source, const char* shaderName)
+unsigned ModuleProgram::CompileShader(unsigned shaderType, const char* source)
 {
 
     unsigned shader_id = glCreateShader(shaderType);

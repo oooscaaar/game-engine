@@ -244,8 +244,8 @@
     <ClInclude Include="ModuleWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="render_exercise.frag" />
-    <None Include="render_exercise.vert" />
+    <None Include="hello_world.frag" />
+    <None Include="hello_world.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
