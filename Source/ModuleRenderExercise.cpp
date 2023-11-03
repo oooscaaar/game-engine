@@ -16,32 +16,22 @@ bool ModuleRenderExercise::Init()
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo); // set vbo active
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vtx_data), vtx_data, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // size = 3 float per vertex | stride = 0 is equivalent to stride = sizeof(float)*3 
 
 	// Create program
 	unsigned vtx_shader = App->GetProgram()->CompileShader(GL_VERTEX_SHADER, App->GetProgram()->ReadShader("../Source/shaders/hello_world.vert"));
 	unsigned frg_shader = App->GetProgram()->CompileShader(GL_FRAGMENT_SHADER, App->GetProgram()->ReadShader("../Source/shaders/hello_world.frag"));
 	program = App->GetProgram()->CreateProgram(vtx_shader, frg_shader);
+	glUseProgram(program);
+
 	return true;
 }
 
 update_status ModuleRenderExercise::PreUpdate()
 {
-	return UPDATE_CONTINUE;
-}
-
-update_status ModuleRenderExercise::Update()
-{
-	// Render VBO Logic
-	glBindBuffer(GL_ARRAY_BUFFER, vbo); // set vbo active 
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // size = 3 float per vertex | stride = 0 is equivalent to stride = sizeof(float)*3 
-	glUseProgram(program);
+	// Draw triangle
 	glDrawArrays(GL_TRIANGLES, 0, 3);
-	return UPDATE_CONTINUE;
-}
-
-update_status ModuleRenderExercise::PostUpdate()
-{
 	return UPDATE_CONTINUE;
 }
 
