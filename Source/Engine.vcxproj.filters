@@ -31,6 +31,7 @@
     <ClCompile Include="ModuleEditor.cpp" />
     <ClCompile Include="ModuleProgram.cpp" />
     <ClCompile Include="ModuleRenderExercise.cpp" />
+    <ClCompile Include="ModuleRenderTransformation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -70,6 +71,7 @@
     <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="ModuleProgram.h" />
     <ClInclude Include="ModuleRenderExercise.h" />
+    <ClInclude Include="ModuleRenderTransformation.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
