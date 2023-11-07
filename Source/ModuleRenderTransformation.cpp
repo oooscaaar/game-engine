@@ -38,14 +38,9 @@ bool ModuleRenderTransformation::Init()
 
 	// Define the model, view and projection matrix
 	float4x4 proj = frustum.ProjectionMatrix();
-<<<<<<< HEAD
 	float4x4 model = float4x4::FromTRS(float3(0.0f, 0.0f, -4.0f), float3x3::RotateY(pi * 0.f), float3(1.0f, 1.0f, 2.0f)); // 1. Translation, 2. Rotation, 3. Scale
-=======
-	float4x4 model = float4x4::FromTRS(float3(0.0f, 0.0f, -4.0f), float3x3::RotateY(pi / 4.f), float3(1.0f, 1.0f, 1.0f));
-	//TODO: Use custom LookAt function ->  LookAt(float3(0.0f, 4.0f, 8.0f), float3(0.0f, 0.0f, 0.0f), float3::unitY);
->>>>>>> dd05e249bd667fff7c4314ed901fd660f2558a41
-	float4x4 view = frustum.ViewMatrix();
 	//float4x4 view = float4x4::LookAt(float3(0.f, 0.0f, -1.0f), float3(0.0f, 0.0f, -1.0f), float3(0.0f, 1.0f, 0.0f), float3(0.0f, 1.0f, 0.0f));
+	float4x4 view = frustum.ViewMatrix();
 
 	// Bind the VBO
 	glUniformMatrix4fv(0, 1, GL_TRUE, &model[0][0]);
