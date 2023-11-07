@@ -2,8 +2,7 @@
   C++ 3D Game Engine
 </h1>
 
-WIP: C++ 3D engine Developed for the Master's Degree in Advanced Programming for AAA Video Games.
-
+C++ 3D engine Developed for the Master's Degree in Advanced Programming for AAA Video Games.
 
 ## Libraries used (Until today)
 
@@ -11,7 +10,6 @@ WIP: C++ 3D engine Developed for the Master's Degree in Advanced Programming for
 - Glew (https://github.com/nigels-com/glew)
 - MatGeoLib (https://github.com/juj/MathGeoLib)
 - Dear ImGui (https://github.com/ocornut/imgui)
-
 
 ## License
 
