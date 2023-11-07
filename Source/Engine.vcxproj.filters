@@ -128,7 +128,6 @@
     <ClCompile Include="MathGeoLib\include\Time\Clock.cpp">
       <Filter>MathGeoLib</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleDebugDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -169,6 +168,8 @@
     <ClInclude Include="ModuleProgram.h" />
     <ClInclude Include="ModuleRenderExercise.h" />
     <ClInclude Include="ModuleRenderTransformation.h" />
+    <ClInclude Include="debug_draw.hpp" />
+    <ClInclude Include="debugdraw.h" />
     <ClInclude Include="MathGeoLib\include\Algorithm\Random\LCG.h">
       <Filter>MathGeoLib</Filter>
     </ClInclude>
@@ -337,9 +338,6 @@
     <ClInclude Include="MathGeoLib\include\Math\TransformOps.h">
       <Filter>MathGeoLib</Filter>
     </ClInclude>
-    <ClInclude Include="MathGeoLib\include\Time\Clock.h">
-      <Filter>MathGeoLib</Filter>
-    </ClInclude>
     <ClInclude Include="MathGeoLib\include\MathBuildConfig.h">
       <Filter>MathGeoLib</Filter>
     </ClInclude>
@@ -349,9 +347,9 @@
     <ClInclude Include="MathGeoLib\include\MathGeoLibFwd.h">
       <Filter>MathGeoLib</Filter>
     </ClInclude>
-    <ClInclude Include="debug_draw.hpp" />
-    <ClInclude Include="debugdraw.h" />
-    <ClInclude Include="ModuleDebugDraw.h" />
+    <ClInclude Include="MathGeoLib\include\Time\Clock.h">
+      <Filter>MathGeoLib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
@@ -361,7 +359,7 @@
       <UniqueIdentifier>{a3dc98e0-5fef-4c75-9a5c-cd8f03819f34}</UniqueIdentifier>
     </Filter>
     <Filter Include="MathGeoLib">
-      <UniqueIdentifier>{ccb60aba-c346-4619-82a5-2e8d3eaec435}</UniqueIdentifier>
+      <UniqueIdentifier>{a7b6417c-8d54-47fd-8d51-fa572129c200}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -369,6 +367,9 @@
       <Filter>shaders</Filter>
     </None>
     <None Include="shaders\hello_world.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="transformation.vert">
       <Filter>shaders</Filter>
     </None>
     <None Include="MathGeoLib\include\Geometry\KDTree.inl">
@@ -388,9 +389,6 @@
     </None>
     <None Include="MathGeoLib\include\Math\Matrix.inl">
       <Filter>MathGeoLib</Filter>
-    </None>
-    <None Include="transformation.vert">
-      <Filter>shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

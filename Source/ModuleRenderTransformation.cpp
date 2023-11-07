@@ -2,12 +2,9 @@
 #include "Application.h"
 #include "ModuleProgram.h"
 #include "glew.h"
-#include "MathGeoLib.h"
 #include "Globals.h"
-#include "debugdraw/debugdraw.h"
-#include "ModuleDebugDraw.h"
+#include "MathGeoLib.h"
 
-class ModuleDebugDraw;
 
 ModuleRenderTransformation::ModuleRenderTransformation()
 {}
@@ -35,13 +32,13 @@ bool ModuleRenderTransformation::Init()
 	frustum.up = float3::unitY;
 	frustum.nearPlaneDistance = 0.1f;
 	frustum.farPlaneDistance = 100.0f;
-	frustum.verticalFov = math::pi / 4.0f;
+	frustum.verticalFov = pi / 4.0f;
 	//TODO: Is the last parameter aspect ratio?
-	frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov * 0.5f)) * SCREEN_WIDTH / SCREEN_HEIGHT;
+	frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov * 0.5f) * (SCREEN_WIDTH/SCREEN_HEIGHT));
 
 	// Define the model, view and projection matrix
 	float4x4 proj = frustum.ProjectionMatrix();
-	float4x4 model = float4x4::FromTRS(float3(2.0f, 0.0f, 0.0f), float4x4::RotateZ(pi / 4.0f), float3(2.0f, 1.0f, 1.0f));
+	float4x4 model = float4x4::FromTRS(float3(0.0f, 0.0f, -4.0f), float3x3::RotateY((float)pi / 4.0f), float3(1.0f, 1.0f, 1.0f));
 	//TODO: Use custom LookAt function ->  LookAt(float3(0.0f, 4.0f, 8.0f), float3(0.0f, 0.0f, 0.0f), float3::unitY);
 	float4x4 view = frustum.ViewMatrix();
 
@@ -56,9 +53,8 @@ bool ModuleRenderTransformation::Init()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // size = 3 float per vertex | stride = 0 is equivalent to stride = sizeof(float)*3
 
 	// Debug Draw
-	dd::axisTriad(float4x4::identity, 0.1f, 1.0f);
-	dd::xzSquareGrid(-10, 10, 0.0f, 1.0f, dd::colors::Gray);
-	App->GetDebugDraw()->Draw(proj, view, SCREEN_WIDTH, SCREEN_HEIGHT);
+	//dd::axisTriad(float4x4::identity, 0.1f, 1.0f);
+	//dd::xzSquareGrid(-10, 10, 0.0f, 1.0f, dd::colors::Gray);
 
 	return true;
 }

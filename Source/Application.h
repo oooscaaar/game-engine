@@ -12,7 +12,6 @@ class ModuleTextures;
 class ModuleInput;
 class ModuleRenderExercise;
 class ModuleRenderTransformation;
-class ModuleDebugDraw;
 
 class Application
 {
@@ -30,7 +29,6 @@ public:
     ModuleProgram* GetProgram() { return program; }
     ModuleInput*  GetInput() { return input; }
     ModuleEditor* GetEditor() { return editor; }
-    ModuleDebugDraw* GetDebugDraw() { return debug_draw; }
 
 private:
 
@@ -39,7 +37,6 @@ private:
     ModuleProgram* program = nullptr;
     ModuleRenderExercise* render_exercise = nullptr;
     ModuleRenderTransformation* render_transformation = nullptr;
-    ModuleDebugDraw* debug_draw = nullptr;
     ModuleEditor* editor = nullptr;
     ModuleInput* input = nullptr;
 
