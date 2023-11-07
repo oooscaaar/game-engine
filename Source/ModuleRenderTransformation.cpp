@@ -4,6 +4,7 @@
 #include "glew.h"
 #include "Globals.h"
 #include "MathGeoLib.h"
+#include "ModuleDebugDraw.h"
 
 
 ModuleRenderTransformation::ModuleRenderTransformation()
@@ -37,10 +38,10 @@ bool ModuleRenderTransformation::Init()
 	frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov * 0.5f) * (SCREEN_WIDTH/SCREEN_HEIGHT));
 
 	// Define the model, view and projection matrix
-	float4x4 proj = frustum.ProjectionMatrix();
-	float4x4 model = float4x4::FromTRS(float3(0.0f, 0.0f, -4.0f), float3x3::RotateY(pi * 0.f), float3(1.0f, 1.0f, 2.0f)); // 1. Translation, 2. Rotation, 3. Scale
-	//float4x4 view = float4x4::LookAt(float3(0.f, 0.0f, -1.0f), float3(0.0f, 0.0f, -1.0f), float3(0.0f, 1.0f, 0.0f), float3(0.0f, 1.0f, 0.0f));
-	float4x4 view = frustum.ViewMatrix();
+	proj = frustum.ProjectionMatrix();
+	model = float4x4::FromTRS(float3(0.0f, 0.0f, -4.0f), float3x3::RotateY(pi * 0.f), float3(1.0f, 1.0f, 2.0f)); // 1. Translation, 2. Rotation, 3. Scale
+	//view = float4x4::LookAt(float3(0.f, 0.0f, -1.0f), float3(0.0f, 0.0f, -1.0f), float3(0.0f, 1.0f, 0.0f), float3(0.0f, 1.0f, 0.0f));
+	view = frustum.ViewMatrix();
 
 	// Bind the VBO
 	glUniformMatrix4fv(0, 1, GL_TRUE, &model[0][0]);
@@ -52,17 +53,21 @@ bool ModuleRenderTransformation::Init()
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // size = 3 float per vertex | stride = 0 is equivalent to stride = sizeof(float)*3
 
-	// Debug Draw
-	//dd::axisTriad(float4x4::identity, 0.1f, 1.0f);
-	//dd::xzSquareGrid(-10, 10, 0.0f, 1.0f, dd::colors::Gray);
-
 	return true;
 }
 
 update_status ModuleRenderTransformation::PreUpdate()
 {
+	
 	// Draw triangle
 	glDrawArrays(GL_TRIANGLES, 0, 3);
+	return UPDATE_CONTINUE;
+}
+
+update_status ModuleRenderTransformation::Update()
+{
+	// Draw debug
+	App->GetDebugDraw()->Draw(view, proj, SCREEN_WIDTH, SCREEN_HEIGHT);
 	return UPDATE_CONTINUE;
 }
 

@@ -5,6 +5,7 @@
 #include "Module.h"
 
 class ModuleOpenGL;
+class ModuleDebugDraw;
 class ModuleWindow;
 class ModuleProgram;
 class ModuleEditor;
@@ -29,10 +30,13 @@ public:
     ModuleProgram* GetProgram() { return program; }
     ModuleInput*  GetInput() { return input; }
     ModuleEditor* GetEditor() { return editor; }
+    ModuleDebugDraw* GetDebugDraw() { return debugDraw; }
+    
 
 private:
 
     ModuleOpenGL* render = nullptr;
+    ModuleDebugDraw* debugDraw = nullptr;
     ModuleWindow* window = nullptr;
     ModuleProgram* program = nullptr;
     ModuleRenderExercise* render_exercise = nullptr;

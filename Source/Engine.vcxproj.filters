@@ -128,6 +128,7 @@
     <ClCompile Include="MathGeoLib\include\Time\Clock.cpp">
       <Filter>MathGeoLib</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleDebugDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -168,8 +169,6 @@
     <ClInclude Include="ModuleProgram.h" />
     <ClInclude Include="ModuleRenderExercise.h" />
     <ClInclude Include="ModuleRenderTransformation.h" />
-    <ClInclude Include="debug_draw.hpp" />
-    <ClInclude Include="debugdraw.h" />
     <ClInclude Include="MathGeoLib\include\Algorithm\Random\LCG.h">
       <Filter>MathGeoLib</Filter>
     </ClInclude>
@@ -350,6 +349,9 @@
     <ClInclude Include="MathGeoLib\include\Time\Clock.h">
       <Filter>MathGeoLib</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleDebugDraw.h" />
+    <ClInclude Include="..\..\..\iCloudDrive\Master Videogames\Cpp\D13 02-11-23\debug_draw\debugdraw.h" />
+    <ClInclude Include="..\..\..\iCloudDrive\Master Videogames\Cpp\D13 02-11-23\debug_draw\debug_draw.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
