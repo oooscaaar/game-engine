@@ -1,13 +1,10 @@
-#include "Globals.h"
 #include "Application.h"
 #include "ModuleEditor.h"
 #include "ModuleOpenGL.h"
 #include "ModuleWindow.h"
-#include "SDL.h"
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
 #include "imgui_impl_opengl3.h"
-#include "glew.h"
 
 
 ModuleEditor::ModuleEditor()
