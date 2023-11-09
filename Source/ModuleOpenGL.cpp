@@ -5,6 +5,7 @@
 #include "ModuleWindow.h"
 #include "SDL.h"
 #include "glew.h"
+#include "ModuleDebugDraw.h"
 
 ModuleOpenGL::ModuleOpenGL()
 {
@@ -59,6 +60,7 @@ update_status ModuleOpenGL::PreUpdate()
 	SDL_GetWindowSize(App->GetWindow()->window, &windowCurrentW, &windowCurrentH);
 	glViewport(0, 0, windowCurrentW, windowCurrentH);
 	//glClearColor(0.1f, 1.f, 0.1f, 1.0f); // Paint in RED :D
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	return UPDATE_CONTINUE;

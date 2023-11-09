@@ -615,6 +615,7 @@ void ModuleDebugDraw::Draw(const float4x4& view, const float4x4& proj, unsigned 
 {
     dd::axisTriad(float4x4::identity, 0.5f, 0.5f);
     dd::xzSquareGrid(-10, 10, -1.f, 0.5f, dd::colors::Gray);
+    dd::aabb(float3(-100, 0, -100), float3(100, 0, 100), float3(1.0f, 0.5f, 0.5f));
     implementation->width     = width;
     implementation->height    = height;
     implementation->mvpMatrix = proj * view;
