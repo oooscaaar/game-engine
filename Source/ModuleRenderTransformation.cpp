@@ -39,7 +39,7 @@ bool ModuleRenderTransformation::Init()
 
 	// Define the model, view and projection matrix
 	proj = frustum.ProjectionMatrix();
-	model = float4x4::FromTRS(float3(0.0f, 0.0f, -4.0f), float3x3::RotateY(pi * 0.f), float3(1.0f, 1.0f, 2.0f)); // 1. Translation, 2. Rotation, 3. Scale
+	model = float4x4::FromTRS(float3(0.0f, 0.0f, -1.0f), float3x3::RotateZ(pi / 4.f), float3(2.0f, 1.0f, 1.0f)); // 1. Translation, 2. Rotation, 3. Scale
 	//view = float4x4::LookAt(float3(0.f, 0.0f, -1.0f), float3(0.0f, 0.0f, -1.0f), float3(0.0f, 1.0f, 0.0f), float3(0.0f, 1.0f, 0.0f));
 	view = frustum.ViewMatrix();
 
