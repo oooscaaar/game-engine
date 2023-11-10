@@ -34,14 +34,12 @@ bool ModuleRenderTransformation::Init()
 	frustum.nearPlaneDistance = 0.1f;
 	frustum.farPlaneDistance = 100.0f;
 	frustum.verticalFov = pi / 4.0f;
-	//TODO: Is the last parameter aspect ratio?
 	frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov * 0.5f) * (SCREEN_WIDTH/SCREEN_HEIGHT));
 
 	// Define the model, view and projection matrix
 	proj = frustum.ProjectionMatrix();
-	model = float4x4::FromTRS(float3(0.0f, 0.0f, -1.0f), float3x3::RotateZ(pi / 4.f), float3(2.0f, 1.0f, 1.0f)); // 1. Translation, 2. Rotation, 3. Scale
-	//view = float4x4::LookAt(float3(0.f, 0.0f, -1.0f), float3(0.0f, 0.0f, -1.0f), float3(0.0f, 1.0f, 0.0f), float3(0.0f, 1.0f, 0.0f));
-	view = frustum.ViewMatrix();
+	model = float4x4::FromTRS(float3(0.0f, 0.0f, -5.0f), float3x3::RotateZ(0), float3(1.0f, 1.0f, 1.0f)); // 1. Translation, 2. Rotation, 3. Scale
+	view = float4x4::LookAt(float3(0.f, 0.0f, -1.0f), float3(0.0f, 0.0f, -0.5f), float3::unitY, float3::unitY);
 
 	// Bind the VBO
 	glUniformMatrix4fv(0, 1, GL_TRUE, &model[0][0]);
@@ -67,7 +65,7 @@ update_status ModuleRenderTransformation::PreUpdate()
 update_status ModuleRenderTransformation::Update()
 {
 	// Draw debug
-	App->GetDebugDraw()->Draw(view, proj, SCREEN_WIDTH, SCREEN_HEIGHT);
+	//App->GetDebugDraw()->Draw(view, proj, SCREEN_WIDTH, SCREEN_HEIGHT);
 	return UPDATE_CONTINUE;
 }
 
