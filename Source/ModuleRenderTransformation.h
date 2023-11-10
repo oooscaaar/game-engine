@@ -23,6 +23,6 @@ private:
 	unsigned program;
 	float4x4 proj;
 	float4x4 model;
-	//float4x4 view = float4x4::LookAt(float3(0.f, 0.0f, -1.0f), float3(0.0f, 0.0f, -1.0f), float3(0.0f, 1.0f, 0.0f), float3(0.0f, 1.0f, 0.0f));
 	float4x4 view;
+	Frustum frustum;
 };

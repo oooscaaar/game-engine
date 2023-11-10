@@ -5,6 +5,8 @@
 #include "Globals.h"
 #include "MathGeoLib.h"
 #include "ModuleDebugDraw.h"
+#include "debug_draw.hpp"
+
 
 
 ModuleRenderTransformation::ModuleRenderTransformation()
@@ -25,8 +27,7 @@ bool ModuleRenderTransformation::Init()
 	//CreateTriangleVBO
 	float vtx_data[] = { -1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
 
-	// Define the frustum
-	Frustum frustum;
+	// Set Frustum
 	frustum.type = FrustumType::PerspectiveFrustum;
 	frustum.pos = float3::zero;
 	frustum.front = -float3::unitZ;
@@ -56,16 +57,15 @@ bool ModuleRenderTransformation::Init()
 
 update_status ModuleRenderTransformation::PreUpdate()
 {
-	
+
 	// Draw triangle
 	glDrawArrays(GL_TRIANGLES, 0, 3);
+
 	return UPDATE_CONTINUE;
 }
 
 update_status ModuleRenderTransformation::Update()
 {
-	// Draw debug
-	//App->GetDebugDraw()->Draw(view, proj, SCREEN_WIDTH, SCREEN_HEIGHT);
 	return UPDATE_CONTINUE;
 }
 
