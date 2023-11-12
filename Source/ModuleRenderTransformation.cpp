@@ -3,9 +3,10 @@
 #include "ModuleProgram.h"
 #include "glew.h"
 #include "Globals.h"
-#include "MathGeoLib.h"
-#include "ModuleDebugDraw.h"
-#include "debug_draw.hpp"
+#include <Math/float3.h>
+#include <Math/float4x4.h>
+#include <Geometry/Frustum.h>
+#include "ModuleOpenGL.h"
 
 
 
@@ -35,7 +36,7 @@ bool ModuleRenderTransformation::Init()
 	frustum.nearPlaneDistance = 0.1f;
 	frustum.farPlaneDistance = 100.0f;
 	frustum.verticalFov = pi / 4.0f;
-	frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov * 0.5f) * (SCREEN_WIDTH/SCREEN_HEIGHT));
+	frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov * 0.5f) * (float)(App->GetOpenGL()->GetWindowWidth() / App->GetOpenGL()->GetWindowHeight()));
 
 	// Define the model, view and projection matrix
 	proj = frustum.ProjectionMatrix();
@@ -57,9 +58,13 @@ bool ModuleRenderTransformation::Init()
 
 update_status ModuleRenderTransformation::PreUpdate()
 {
+	frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov * 0.5f)) * (App->GetOpenGL()->GetWindowWidth() / App->GetOpenGL()->GetWindowHeight());
+	proj = frustum.ProjectionMatrix();
 
 	// Draw triangle
 	glDrawArrays(GL_TRIANGLES, 0, 3);
+
+
 
 	return UPDATE_CONTINUE;
 }

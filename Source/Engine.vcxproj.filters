@@ -129,6 +129,7 @@
       <Filter>MathGeoLib</Filter>
     </ClCompile>
     <ClCompile Include="ModuleDebugDraw.cpp" />
+    <ClCompile Include="ModuleCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -352,6 +353,7 @@
     <ClInclude Include="ModuleDebugDraw.h" />
     <ClInclude Include="..\..\..\iCloudDrive\Master Videogames\Cpp\D13 02-11-23\debug_draw\debugdraw.h" />
     <ClInclude Include="..\..\..\iCloudDrive\Master Videogames\Cpp\D13 02-11-23\debug_draw\debug_draw.hpp" />
+    <ClInclude Include="ModuleCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">

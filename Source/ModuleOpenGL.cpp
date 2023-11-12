@@ -28,6 +28,7 @@ bool ModuleOpenGL::Init()
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24); // we want to have a depth buffer with 24 bits
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8); // we want to have a stencil buffer with 8 bits
 	this->context = SDL_GL_CreateContext(App->GetWindow()->window);
+	SDL_GetWindowSize(App->GetWindow()->window, &windowWidth, &windowHeight);
 
 	GLenum err = glewInit();
 	if (GLEW_OK != err)
@@ -53,12 +54,12 @@ bool ModuleOpenGL::Init()
 
 update_status ModuleOpenGL::PreUpdate()
 {
-	int windowCurrentW;
-	int windowCurrentH;
-	SDL_GetWindowSize(App->GetWindow()->window, &windowCurrentW, &windowCurrentH);
-	glViewport(0, 0, windowCurrentW, windowCurrentH);
+	SDL_GetWindowSize(App->GetWindow()->window, &windowWidth, &windowHeight);
+	glViewport(0, 0, windowWidth, windowHeight);
 	glClearColor(0.5f, 0.f, 0.5f, 1.0f); // Paint in RED :D
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	if(SDL_WINDOWEVENT_SIZE_CHANGED)
 
 	return UPDATE_CONTINUE;
 }
