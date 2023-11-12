@@ -1,7 +1,9 @@
 #pragma once
 #include "Module.h"
 #include "Globals.h"
-#include "MathGeoLib.h"
+#include <Geometry/Frustum.h>
+#include <Math/float4x4.h>
+
 
 typedef unsigned __int8 Uint8;
 

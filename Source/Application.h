@@ -13,6 +13,7 @@ class ModuleTextures;
 class ModuleInput;
 class ModuleRenderExercise;
 class ModuleRenderTransformation;
+class ModuleCamera;
 
 class Application
 {
@@ -43,7 +44,7 @@ private:
     ModuleRenderTransformation* render_transformation = nullptr;
     ModuleEditor* editor = nullptr;
     ModuleInput* input = nullptr;
-
+	ModuleCamera* camera = nullptr;
     std::list<Module*> modules;
 
 };

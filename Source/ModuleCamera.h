@@ -1,7 +1,8 @@
 #pragma once
 #include "Module.h"
-#include <Math/float3.h>
 #include <Math/float4x4.h>
+#include "MathGeoLib.h"
+
 
 
 class ModuleCamera :
@@ -22,5 +23,9 @@ class ModuleCamera :
 		void LookAt(float3 target);
 		float4x4 GetProjectionMatrix();
 		float4x4 GetViewMatrix();
+
+	private:
+		Frustum* frustum;
+
 };
 

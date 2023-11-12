@@ -1,12 +1,9 @@
-#include "ModuleRenderTransformation.h"
 #include "Application.h"
-#include "ModuleProgram.h"
-#include "glew.h"
-#include "Globals.h"
-#include <Math/float3.h>
-#include <Math/float4x4.h>
-#include <Geometry/Frustum.h>
 #include "ModuleOpenGL.h"
+#include "ModuleProgram.h"
+#include "ModuleRenderTransformation.h"
+#include "glew.h"
+#include <Math/MathConstants.h>
 
 
 
@@ -63,8 +60,6 @@ update_status ModuleRenderTransformation::PreUpdate()
 
 	// Draw triangle
 	glDrawArrays(GL_TRIANGLES, 0, 3);
-
-
 
 	return UPDATE_CONTINUE;
 }
