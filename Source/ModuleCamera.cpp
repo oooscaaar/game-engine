@@ -16,7 +16,7 @@ bool ModuleCamera::Init()
 {
 	bool ret = true;
 
-	//frustum->(FrustumSpaceGL, FrustumRightHanded);
+	//frustum->SetKind(FrustumSpaceGL, FrustumRightHanded);
 	//frustum.SetViewPlaneDistances(0.1f, 200.0f);
 	//frustum.SetHorizontalFovAndAspectRatio(DEGTORAD * 90.0f, 1.3f);
 
