@@ -29,39 +29,25 @@ bool ModuleRenderTransformation::Init()
 	Frustum frustum;
 	frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
 	frustum.SetViewPlaneDistances(0.1f, 200.0f);
-	//frustum.SetHorizontalFovAndAspectRatio(DEGTORAD * 90.0f, 1.3f);
-	frustum.SetHorizontalFovAndAspectRatio(45.f, (float)(4 /3));
-	frustum.SetVerticalFovAndAspectRatio(pi / 3.0f, (float)(App->GetOpenGL()->GetWindowWidth() / App->GetOpenGL()->GetWindowHeight()));
+	frustum.SetHorizontalFovAndAspectRatio(75.f, (float)(App->GetOpenGL()->GetWindowWidth() / App->GetOpenGL()->GetWindowHeight()));
 	frustum.SetPos(float3(0.0f, 1.0f, -2.0f));
 	frustum.SetFront(float3::unitZ);
 	frustum.SetUp(float3::unitY);
 
-	proj = frustum.ProjectionMatrix();
-	model = float4x4::FromTRS(float3(0.0f, 0.0f, 5.0f), float3x3::RotateZ(0), float3(1.0f, 1.0f, 1.0f)); // 1. Translation, 2. Rotation, 3. Scale
-	view = float4x4::LookAt(float3(0.f, 0.0f, -1.0f), float3(0.0f, 0.0f, -0.5f), float3::unitY, float3::unitY);
-	//view = frustum.ViewMatrix();
 
-	LOG("Maths: %f\n\n", (45.f*(4.f/3.f)));
+	proj = float4x4::identity; //TODO: Investigate why -> either frustum.ProjectionMatrix() nor frustum.ProjectionMatrix().Transposed() are not generating the correct matrix.
 	
 
+	model = float4x4::identity;
+	//model = float4x4::FromTRS(float3(0.0f, 0.0f, 5.0f), float3x3::RotateZ(0), float3(1.0f, 1.0f, 1.0f)); // 1. Translation, 2. Rotation, 3. Scale
 
-	//frustum.type = FrustumType::PerspectiveFrustum;
-	//frustum.pos = float3::zero;
-	//frustum.front = -float3::unitZ;
-	//frustum.up = float3::unitY;
-	//frustum.nearPlaneDistance = 0.1f;
-	//frustum.farPlaneDistance = 100.0f;
-	//frustum.verticalFov = pi / 4.0f;
-	//frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov * 0.5f) * (float)(App->GetOpenGL()->GetWindowWidth() / App->GetOpenGL()->GetWindowHeight()));
+	view = float4x4::LookAt(float3(0.f, 0.0f, -1.0f), float3(0.0f, 0.0f, -0.5f), float3::unitY, float3::unitY);
+	//view = float4x4::identity;//frustum.ViewMatrix();
 
-	// Define the model, view and projection matrix
-	//proj = frustum.ProjectionMatrix();
-	//model = float4x4::FromTRS(float3(0.0f, 0.0f, -5.0f), float3x3::RotateZ(0), float3(1.0f, 1.0f, 1.0f)); // 1. Translation, 2. Rotation, 3. Scale
-	//view = float4x4::LookAt(float3(0.f, 0.0f, -1.0f), float3(0.0f, 0.0f, -0.5f), float3::unitY, float3::unitY);
 
 	// Bind the VBO
-	glUniformMatrix4fv(0, 1, GL_FALSE, &model[0][0]);
-	glUniformMatrix4fv(1, 1, GL_FALSE, &view[0][0]);
+	glUniformMatrix4fv(0, 1, GL_TRUE, &model[0][0]);
+	glUniformMatrix4fv(1, 1, GL_TRUE, &view[0][0]);
 	glUniformMatrix4fv(2, 1, GL_TRUE, &proj[0][0]);
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo); // set vbo active
