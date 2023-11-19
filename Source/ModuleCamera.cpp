@@ -3,7 +3,6 @@
 #include "ModuleWindow.h"
 #include "ModuleDebugDraw.h"
 #include "ModuleCamera.h"
-
 #include <Geometry/Frustum.h>
 #include "glew.h"
 #include "debugdraw.h"

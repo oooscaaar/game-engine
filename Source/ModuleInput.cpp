@@ -2,7 +2,8 @@
 #include "Application.h"
 #include "ModuleInput.h"
 #include "ModuleOpenGL.h"
-#include "SDL/include/SDL.h"
+#include "ModuleWindow.h"
+#include "SDL.h"
 #include "imgui_impl_sdl2.h"
 
 ModuleInput::ModuleInput()
@@ -31,23 +32,23 @@ bool ModuleInput::Init()
 // Called every draw update
 update_status ModuleInput::Update()
 {
-    //SDL_Event sdlEvent;
+    SDL_Event sdlEvent;
 
-    //while (SDL_PollEvent(&sdlEvent) != 0)
-    //{
-    //    ImGui_ImplSDL2_ProcessEvent(&sdlEvent);
-    //    switch (sdlEvent.type)
-    //    {
-    //        case SDL_QUIT:
-    //            return UPDATE_STOP;
-    //        case SDL_WINDOWEVENT:
-    //            if (sdlEvent.window.event == SDL_WINDOWEVENT_RESIZED || sdlEvent.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
-    //                App->GetOpenGL()->WindowResized(sdlEvent.window.data1, sdlEvent.window.data2);
-    //            break;
-    //    }
-    //}
+    while (SDL_PollEvent(&sdlEvent) != 0)
+    {
+        ImGui_ImplSDL2_ProcessEvent(&sdlEvent);
+        switch (sdlEvent.type)
+        {
+            case SDL_QUIT:
+                return UPDATE_STOP;
+            case SDL_WINDOWEVENT:
+                if (sdlEvent.window.event == SDL_WINDOWEVENT_RESIZED || sdlEvent.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
+                    App->render->WindowResized(sdlEvent.window.data1, sdlEvent.window.data2);
+                break;
+        }
+    }
 
-    //keyboard = SDL_GetKeyboardState(NULL);
+    keyboard = SDL_GetKeyboardState(NULL);
 
     return UPDATE_CONTINUE;
 }
