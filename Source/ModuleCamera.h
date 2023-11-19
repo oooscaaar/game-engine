@@ -13,8 +13,6 @@ class ModuleCamera :
 		~ModuleCamera();
 
 		bool Init();
-		update_status PreUpdate();
-		update_status Update();
 		bool CleanUp();
 
 		void SetFOV(unsigned int fov);
@@ -23,6 +21,7 @@ class ModuleCamera :
 		void SetPosition(float3 position);
 		void SetOrientation(float3x3 orientation);
 		void LookAt(float3 target);
+
 		float4x4 GetProjectionMatrix();
 		float4x4 GetViewMatrix();
 

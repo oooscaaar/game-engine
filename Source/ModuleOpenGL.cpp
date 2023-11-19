@@ -2,6 +2,8 @@
 #include "Application.h"
 #include "ModuleOpenGL.h"
 #include "ModuleWindow.h"
+#include "ModuleDebugDraw.h"
+#include "ModuleCamera.h"
 #include "SDL.h"
 #include "glew.h"
 
@@ -29,8 +31,6 @@ bool ModuleOpenGL::Init()
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24); // we want to have a depth buffer with 24 bits
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8); // we want to have a stencil buffer with 8 bits
 
-
-	
 	// Set OpenGL Context
 	this->context = SDL_GL_CreateContext(App->window->GetWindow());
 	glEnable(GL_DEPTH_TEST); // Enable depth test
@@ -57,13 +57,11 @@ bool ModuleOpenGL::Init()
 
 update_status ModuleOpenGL::PreUpdate()
 {
-	//SDL_GetWindowSize(App->window->GetWindow(), &windowWidth, &windowHeight);
-	glClearColor(0.5f, 0.f, 0.5f, 1.0f); // Paint in Purple :D
+	//SDL_GetWindowSize(App->window->GetWindow(), nullptr, nullptr);
+	glClearColor(0.5f, 0.f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	
 
-	//if(SDL_WINDOWEVENT_SIZE_CHANGED)
 
 	return UPDATE_CONTINUE;
 }
@@ -71,6 +69,15 @@ update_status ModuleOpenGL::PreUpdate()
 // Called every draw update
 update_status ModuleOpenGL::Update()
 {
+
+	
+	//Temporary draw triangle from ModuleRenderExercise so we can verify DebugDraw
+	//glDrawArrays(GL_TRIANGLES, 0, 3);
+
+	int windowWidth, windowHeight;
+	SDL_GetWindowSize(App->window->GetWindow(), &windowWidth, &windowHeight);
+	App->debugDraw->Draw(App->camera->GetViewMatrix(), App->camera->GetProjectionMatrix(), windowWidth, windowHeight);
+	
 	return UPDATE_CONTINUE;
 }
 
@@ -86,8 +93,7 @@ bool ModuleOpenGL::CleanUp()
 {
 	LOG("Destroying renderer\n");
 
-	//Destroy window
-	SDL_GL_DeleteContext(this->context);
+	SDL_GL_DeleteContext(context);
 
 	return true;
 }
