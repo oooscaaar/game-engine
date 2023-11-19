@@ -615,9 +615,6 @@ update_status  ModuleDebugDraw::Update()
 void ModuleDebugDraw::Draw(const float4x4& view, const float4x4& proj, unsigned width, unsigned height)
 {
 
-    dd::xzSquareGrid(-10, 10, 0.0f, 0.5f, dd::colors::Gray);
-    dd::axisTriad(float4x4::identity, 0.05f, 0.5f);
-
     implementation->width     = width;
     implementation->height    = height;
     implementation->mvpMatrix = proj * view;

@@ -27,6 +27,7 @@ bool ModuleWindow::Init()
 
 		Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
 
+
 		if(FULLSCREEN == true)
 		{
 			flags |= SDL_WINDOW_FULLSCREEN;
@@ -69,14 +70,14 @@ SDL_Window* ModuleWindow::GetWindow() const
 
 int ModuleWindow::GetWidth() const
 {
-	int width = 0;
+	int width = 640;
 	SDL_GetWindowSize(window, &width, nullptr);
 	return width;
 }
 
 int ModuleWindow::GetHeight() const
 {
-	int height = 0;
+	int height = 480;
 	SDL_GetWindowSize(window, nullptr, &height);
 	return height;
 }

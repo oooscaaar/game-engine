@@ -8,7 +8,7 @@ class ModuleOpenGL;
 class ModuleDebugDraw;
 class ModuleWindow;
 class ModuleProgram;
-//class ModuleEditor;
+class ModuleEditor;
 class ModuleTextures;
 class ModuleInput;
 class ModuleRenderExercise;
@@ -35,7 +35,7 @@ public:
     ModuleInput* input = nullptr;
     ModuleRenderExercise* render_exercise = nullptr;
     ModuleRenderTransformation* render_transformation = nullptr;
-    //ModuleEditor* editor = nullptr;
+    ModuleEditor* editor = nullptr;
     ModuleCamera* camera = nullptr;
     
 
