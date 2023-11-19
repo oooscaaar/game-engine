@@ -7,7 +7,8 @@
 #include "ModuleRenderExercise.h"
 #include "ModuleRenderTransformation.h"
 #include "ModuleInput.h"
-#include "ModuleEditor.h"
+//#include "ModuleEditor.h"
+#include "ModuleCamera.h"
 
 using namespace std;
 
@@ -17,10 +18,16 @@ Application::Application()
 	modules.push_back(window = new ModuleWindow());
 	modules.push_back(program = new ModuleProgram());
 	modules.push_back(render = new ModuleOpenGL());
-	modules.push_back(debugDraw = new ModuleDebugDraw());
-	modules.push_back(render_transformation = new ModuleRenderTransformation());
+	//modules.push_back(debugDraw = new ModuleDebugDraw());
+	//modules.push_back(render_transformation = new ModuleRenderTransformation());
+	modules.push_back(render_exercise = new ModuleRenderExercise());
+	modules.push_back(camera = new ModuleCamera());
+
+
+
+
 	//modules.push_back(render_exercise = new ModuleRenderExercise());
-	modules.push_back(editor = new ModuleEditor());
+	//modules.push_back(editor = new ModuleEditor());
 	modules.push_back(input = new ModuleInput());
 }
 

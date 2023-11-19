@@ -20,6 +20,7 @@ ModuleOpenGL::~ModuleOpenGL()
 bool ModuleOpenGL::Init()
 {
 	LOG("Creating Renderer context");
+
 	// Initiliaze OpenGL
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4); // desired version
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
@@ -27,8 +28,16 @@ bool ModuleOpenGL::Init()
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1); // we want a double buffer
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24); // we want to have a depth buffer with 24 bits
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8); // we want to have a stencil buffer with 8 bits
-	this->context = SDL_GL_CreateContext(App->GetWindow()->window);
-	SDL_GetWindowSize(App->GetWindow()->window, &windowWidth, &windowHeight);
+
+
+	
+	// Set OpenGL Context
+	this->context = SDL_GL_CreateContext(App->window->GetWindow());
+	glEnable(GL_DEPTH_TEST); // Enable depth test
+	glEnable(GL_CULL_FACE); // Enable cull backward faces
+	glFrontFace(GL_CCW); // Front faces will be counter clockwise
+	glDisable(GL_SCISSOR_TEST); // Disable scissor test
+	glDisable(GL_STENCIL_TEST); // Disable stencil test
 
 	GLenum err = glewInit();
 	if (GLEW_OK != err)
@@ -43,23 +52,18 @@ bool ModuleOpenGL::Init()
 	LOG("OpenGL version supported %s", glGetString(GL_VERSION));
 	LOG("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
-	glEnable(GL_DEPTH_TEST); // Enable depth test
-	glEnable(GL_CULL_FACE); // Enable cull backward faces
-	glFrontFace(GL_CCW); // Front faces will be counter clockwise
-	glDisable(GL_SCISSOR_TEST); // Disable scissor test
-	glDisable(GL_STENCIL_TEST); // Disable stencil test
-
 	return true;
 }
 
 update_status ModuleOpenGL::PreUpdate()
 {
-	SDL_GetWindowSize(App->GetWindow()->window, &windowWidth, &windowHeight);
-	glViewport(0, 0, windowWidth, windowHeight);
-	glClearColor(0.5f, 0.f, 0.5f, 1.0f); // Paint in RED :D
+	//SDL_GetWindowSize(App->window->GetWindow(), &windowWidth, &windowHeight);
+	glClearColor(0.5f, 0.f, 0.5f, 1.0f); // Paint in Purple :D
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	if(SDL_WINDOWEVENT_SIZE_CHANGED)
+	
+
+	//if(SDL_WINDOWEVENT_SIZE_CHANGED)
 
 	return UPDATE_CONTINUE;
 }
@@ -72,7 +76,7 @@ update_status ModuleOpenGL::Update()
 
 update_status ModuleOpenGL::PostUpdate()
 {
-	SDL_GL_SwapWindow(App->GetWindow()->window);
+	SDL_GL_SwapWindow(App->window->GetWindow());
 
 	return UPDATE_CONTINUE;
 }

@@ -7,6 +7,9 @@
 #include "imgui_impl_opengl3.h"
 
 
+
+#ifndef DISABLE_IMGUI
+
 ModuleEditor::ModuleEditor()
 {
     
@@ -90,3 +93,5 @@ bool ModuleEditor::CleanUp()
 
     return true;
 }
+
+#endif

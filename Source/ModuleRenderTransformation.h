@@ -1,8 +1,6 @@
 #pragma once
 #include "Module.h"
 #include "Globals.h"
-#include <Geometry/Frustum.h>
-#include <Math/float4x4.h>
 
 
 typedef unsigned __int8 Uint8;
@@ -23,8 +21,4 @@ public:
 private:
 	unsigned vbo;
 	unsigned program;
-	float4x4 proj;
-	float4x4 model;
-	float4x4 view;
-	Frustum frustum;
 };

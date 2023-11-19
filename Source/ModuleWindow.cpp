@@ -6,12 +6,10 @@ ModuleWindow::ModuleWindow()
 {
 }
 
-// Destructor
 ModuleWindow::~ModuleWindow()
 {
 }
 
-// Called before render is available
 bool ModuleWindow::Init()
 {
 	LOG("Init SDL window & surface");
@@ -24,7 +22,6 @@ bool ModuleWindow::Init()
 	}
 	else
 	{
-		//Create window
 		int defaultWidth = SCREEN_WIDTH;
 		int defaultHeight = SCREEN_HEIGHT;
 
@@ -52,19 +49,34 @@ bool ModuleWindow::Init()
 	return ret;
 }
 
-// Called before quitting
 bool ModuleWindow::CleanUp()
 {
 	LOG("Destroying SDL window and quitting all SDL systems");
 
-	//Destroy window
 	if(window != NULL)
 	{
 		SDL_DestroyWindow(window);
 	}
 
-	//Quit SDL subsystems
 	SDL_Quit();
 	return true;
 }
 
+SDL_Window* ModuleWindow::GetWindow() const
+{
+	return window;
+}
+
+int ModuleWindow::GetWidth() const
+{
+	int width = 0;
+	SDL_GetWindowSize(window, &width, nullptr);
+	return width;
+}
+
+int ModuleWindow::GetHeight() const
+{
+	int height = 0;
+	SDL_GetWindowSize(window, nullptr, &height);
+	return height;
+}

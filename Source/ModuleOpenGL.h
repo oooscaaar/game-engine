@@ -19,12 +19,8 @@ public:
 	bool CleanUp();
 	void WindowResized(unsigned width, unsigned height);
 	void* GetContext() { return context; }
-	int GetWindowHeight() { return windowHeight; }
-	int GetWindowWidth() { return windowWidth; }
 	
 private:
 	void* context;
 	unsigned program;
-	int windowWidth;
-	int windowHeight;
 };

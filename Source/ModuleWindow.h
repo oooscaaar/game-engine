@@ -12,21 +12,23 @@ public:
 
 	ModuleWindow();
 
-	// Destructor
 	virtual ~ModuleWindow();
 
-	// Called before quitting
 	bool Init();
 
-	// Called before quitting
 	bool CleanUp();
 
-public:
-	//The window we'll be rendering to
-	SDL_Window* window = NULL;
+	SDL_Window* GetWindow() const;
+	SDL_Surface* GetWindowSurface() const;
+	int GetWidth() const;
+	int GetHeight() const;
 
-	//The surface contained by the window
+
+private:
+
+	SDL_Window* window = NULL;
 	SDL_Surface* screen_surface = NULL;
+
 };
 
 #endif // __ModuleWindow_H__

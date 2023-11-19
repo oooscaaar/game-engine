@@ -8,12 +8,14 @@ class ModuleOpenGL;
 class ModuleDebugDraw;
 class ModuleWindow;
 class ModuleProgram;
-class ModuleEditor;
+//class ModuleEditor;
 class ModuleTextures;
 class ModuleInput;
 class ModuleRenderExercise;
 class ModuleRenderTransformation;
 class ModuleCamera;
+
+#define DISABLE_IMGUI
 
 class Application
 {
@@ -26,25 +28,19 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-    ModuleOpenGL* GetOpenGL() { return render; }
-    ModuleWindow* GetWindow() { return window; }
-    ModuleProgram* GetProgram() { return program; }
-    ModuleInput*  GetInput() { return input; }
-    ModuleEditor* GetEditor() { return editor; }
-    ModuleDebugDraw* GetDebugDraw() { return debugDraw; }
-    
-
-private:
-
     ModuleOpenGL* render = nullptr;
     ModuleDebugDraw* debugDraw = nullptr;
     ModuleWindow* window = nullptr;
     ModuleProgram* program = nullptr;
+    ModuleInput* input = nullptr;
     ModuleRenderExercise* render_exercise = nullptr;
     ModuleRenderTransformation* render_transformation = nullptr;
-    ModuleEditor* editor = nullptr;
-    ModuleInput* input = nullptr;
-	ModuleCamera* camera = nullptr;
+    //ModuleEditor* editor = nullptr;
+    ModuleCamera* camera = nullptr;
+    
+
+private:
+
     std::list<Module*> modules;
 
 };

@@ -2,6 +2,8 @@
 #include "Module.h"
 #include "Globals.h"
 
+#ifndef DISABLE_IMGUI
+
 typedef unsigned __int8 Uint8;
 
 class ModuleEditor : public Module
@@ -20,3 +22,5 @@ public:
 private:
 	//TODO: Add private variables
 };
+
+#endif

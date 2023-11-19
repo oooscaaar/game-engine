@@ -13,6 +13,8 @@ class ModuleCamera :
 		~ModuleCamera();
 
 		bool Init();
+		update_status PreUpdate();
+		update_status Update();
 		bool CleanUp();
 
 		void SetFOV(unsigned int fov);
@@ -25,7 +27,9 @@ class ModuleCamera :
 		float4x4 GetViewMatrix();
 
 	private:
-		Frustum* frustum;
-
+		Frustum frustum;
+		float4x4 proj;
+		float4x4 model;
+		float4x4 view;
 };
 
