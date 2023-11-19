@@ -15,8 +15,6 @@ class ModuleRenderExercise;
 class ModuleRenderTransformation;
 class ModuleCamera;
 
-#define DISABLE_IMGUI
-
 class Application
 {
 public:

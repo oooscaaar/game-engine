@@ -30,6 +30,7 @@ bool ModuleRenderExercise::Init()
 
 update_status ModuleRenderExercise::PreUpdate()
 {
+	glDrawArrays(GL_TRIANGLES, 0, 3);
 	return UPDATE_CONTINUE;
 }
 
