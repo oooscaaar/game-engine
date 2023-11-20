@@ -90,23 +90,20 @@ update_status ModuleOpenGL::PreUpdate()
 	glClearColor(0.5f, 0.f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	int windowWidth, windowHeight;
+	SDL_GetWindowSize(App->window->GetWindow(), &windowWidth, &windowHeight);
+	
+	// Draw debug
+	dd::xzSquareGrid(-10, 10, 0.0f, 0.5f, dd::colors::Gray);
+	dd::axisTriad(float4x4::identity, 0.05f, 0.5f);
+	App->debugDraw->Draw(App->camera->GetViewMatrix(), App->camera->GetProjectionMatrix(), windowWidth, windowHeight);
+
 	return UPDATE_CONTINUE;
 }
 
 // Called every draw update
 update_status ModuleOpenGL::Update()
 {
-	int windowWidth, windowHeight;
-	SDL_GetWindowSize(App->window->GetWindow(), &windowWidth, &windowHeight);
-
-	// Draw triangle
-	glDrawArrays(GL_TRIANGLES, 0, 3);
-
-	// Draw debug
-	dd::xzSquareGrid(-10, 10, 0.0f, 0.5f, dd::colors::Gray);
-	dd::axisTriad(float4x4::identity, 0.05f, 0.5f);
-	App->debugDraw->Draw(App->camera->GetViewMatrix(), App->camera->GetProjectionMatrix(), windowWidth, windowHeight);
-
 	return UPDATE_CONTINUE;
 }
 

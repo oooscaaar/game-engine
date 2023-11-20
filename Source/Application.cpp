@@ -20,9 +20,10 @@ Application::Application()
 	modules.push_back(input = new ModuleInput());
 	modules.push_back(camera = new ModuleCamera());
 	modules.push_back(program = new ModuleProgram());
+	modules.push_back(debugDraw = new ModuleDebugDraw());
 	modules.push_back(render_transformation = new ModuleRenderTransformation());
 	//modules.push_back(render_exercise = new ModuleRenderExercise());
-	modules.push_back(debugDraw = new ModuleDebugDraw());
+
 }
 
 Application::~Application()
