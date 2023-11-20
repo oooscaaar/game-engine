@@ -31,16 +31,13 @@ bool ModuleRenderTransformation::Init()
 	unsigned frg_shader = App->program->CompileShader(GL_FRAGMENT_SHADER, App->program->ReadShader("../Source/shaders/hello_world.frag"));
 	program = App->program->CreateProgram(vtx_shader, frg_shader);
 
-	// TODO: Add the following line here to get an error in order to have a reference implementing the debugger
-	// glUniformMatrix4fv(0, 1, GL_TRUE, &model[0][0]);
-
 	return true;
 }
 
 update_status ModuleRenderTransformation::PreUpdate()
 {
 	proj = App->camera->GetProjectionMatrix();
-	model = float4x4::FromTRS(float3(0.0f, -1.0f, 2.5f), float3x3::RotateZ(0), float3(1.0f, 1.0f, 1.0f)); // 1. Translation, 2. Rotation, 3. Scale
+	model = float4x4::FromTRS(float3(0.0f, 0.0f, -0.5f), float3x3::RotateZ(0), float3(1.0f, 1.0f, 1.0f)); // 1. Translation, 2. Rotation, 3. Scale
 	//view = float4x4::LookAt(float3(0.f, 0.0f, -1.0f), float3(0.0f, 0.0f, -0.5f), float3::unitY, float3::unitY);
 	view = App->camera->GetViewMatrix();
 

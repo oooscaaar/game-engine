@@ -18,11 +18,11 @@ ModuleCamera::~ModuleCamera()
 
 bool ModuleCamera::Init()
 {
-	frustum.SetKind(FrustumSpaceGL, FrustumLeftHanded);
+	frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
 	frustum.SetViewPlaneDistances(0.1f, 100.0f);
 	frustum.SetHorizontalFovAndAspectRatio(pi/180 * 90.0f, (float)(App->window->GetWidth() / App->window->GetHeight()));
- 	frustum.SetPos(float3(0.f, 1.5f, -2.5f));
-	frustum.SetFront(float3(0.0f, 0.0f, 1.f));
+ 	frustum.SetPos(float3(0.f, 1.5f, 2.5f));
+	frustum.SetFront(float3(0.0f, 0.0f, -1.f));
 	frustum.SetUp(float3::unitY);
 
 	return true;
