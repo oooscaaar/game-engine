@@ -9,11 +9,9 @@
 ModuleInput::ModuleInput()
 {}
 
-// Destructor
 ModuleInput::~ModuleInput()
 {}
 
-// Called before render is available
 bool ModuleInput::Init()
 {
 	LOG("Init SDL input event system");
@@ -29,7 +27,6 @@ bool ModuleInput::Init()
 	return ret;
 }
 
-// Called every draw update
 update_status ModuleInput::Update()
 {
     SDL_Event sdlEvent;
@@ -42,9 +39,9 @@ update_status ModuleInput::Update()
             case SDL_QUIT:
                 return UPDATE_STOP;
             case SDL_WINDOWEVENT:
-                if (sdlEvent.window.event == SDL_WINDOWEVENT_RESIZED || sdlEvent.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
-                    App->render->WindowResized(sdlEvent.window.data1, sdlEvent.window.data2);
-                break;
+                if (sdlEvent.window.event == SDL_WINDOWEVENT_RESIZED)
+                    App->window->SetSize(sdlEvent.window.data1, sdlEvent.window.data2);
+                    break;
         }
     }
 
@@ -53,7 +50,6 @@ update_status ModuleInput::Update()
     return UPDATE_CONTINUE;
 }
 
-// Called before quitting
 bool ModuleInput::CleanUp()
 {
 	LOG("Quitting SDL input event subsystem");

@@ -50,6 +50,11 @@ bool ModuleWindow::Init()
 	return ret;
 }
 
+update_status ModuleWindow::PreUpdate()
+{
+ 	return UPDATE_CONTINUE;
+}
+
 bool ModuleWindow::CleanUp()
 {
 	LOG("Destroying SDL window and quitting all SDL systems");
@@ -80,4 +85,9 @@ int ModuleWindow::GetHeight() const
 	int height = 480;
 	SDL_GetWindowSize(window, nullptr, &height);
 	return height;
+}
+
+void ModuleWindow::SetSize(int width, int height)
+{
+	SDL_SetWindowSize(window, width, height);
 }

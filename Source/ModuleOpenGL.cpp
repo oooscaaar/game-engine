@@ -13,7 +13,6 @@ ModuleOpenGL::ModuleOpenGL()
 
 }
 
-// Destructor
 ModuleOpenGL::~ModuleOpenGL()
 {
 
@@ -63,12 +62,9 @@ void APIENTRY OpenGLCallbackFunction(
 	}
 }
 
-// Called before render is available
 bool ModuleOpenGL::Init()
 {
 	LOG("Creating Renderer context");
-
-	
 
 	// Initiliaze OpenGL
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4); // desired version
@@ -112,12 +108,12 @@ bool ModuleOpenGL::Init()
 
 update_status ModuleOpenGL::PreUpdate()
 {
-
-	glClearColor(0.5f, 0.f, 0.5f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	int windowWidth, windowHeight;
 	SDL_GetWindowSize(App->window->GetWindow(), &windowWidth, &windowHeight);
+
+	glViewport(0, 0, windowWidth, windowHeight);
+	glClearColor(0.5f, 0.f, 0.5f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	// Draw debug
 	dd::xzSquareGrid(-10, 10, 0.0f, 0.5f, dd::colors::Gray);
@@ -140,7 +136,6 @@ update_status ModuleOpenGL::PostUpdate()
 	return UPDATE_CONTINUE;
 }
 
-// Called before quitting
 bool ModuleOpenGL::CleanUp()
 {
 	LOG("Destroying renderer\n");
@@ -148,9 +143,5 @@ bool ModuleOpenGL::CleanUp()
 	SDL_GL_DeleteContext(context);
 
 	return true;
-}
-
-void ModuleOpenGL::WindowResized(unsigned width, unsigned height)
-{
 }
 

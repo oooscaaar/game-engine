@@ -12,7 +12,6 @@ ModuleEditor::ModuleEditor()
     
 }
 
-// Destructor
 ModuleEditor::~ModuleEditor()
 {}
 
@@ -56,7 +55,6 @@ update_status ModuleEditor::PreUpdate()
 	return UPDATE_CONTINUE;
 }
 
-// Called every draw update
 update_status ModuleEditor::Update()
 {
     //Disable demo window

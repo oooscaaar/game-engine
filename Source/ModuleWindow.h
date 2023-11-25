@@ -15,7 +15,7 @@ public:
 	virtual ~ModuleWindow();
 
 	bool Init();
-
+	update_status PreUpdate();
 	bool CleanUp();
 
 	SDL_Window* GetWindow() const;
@@ -23,6 +23,7 @@ public:
 	int GetWidth() const;
 	int GetHeight() const;
 
+	void SetSize(int width, int height);
 
 private:
 
