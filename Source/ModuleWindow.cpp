@@ -42,7 +42,6 @@ bool ModuleWindow::Init()
 		}
 		else
 		{
-			//Get window surface
 			screen_surface = SDL_GetWindowSurface(window);
 		}
 	}
@@ -90,4 +89,14 @@ int ModuleWindow::GetHeight() const
 void ModuleWindow::SetSize(int width, int height)
 {
 	SDL_SetWindowSize(window, width, height);
+}
+
+void ModuleWindow::Show()
+{
+	SDL_ShowWindow(window);
+}
+
+void ModuleWindow::Hide()
+{
+	SDL_HideWindow(window);
 }

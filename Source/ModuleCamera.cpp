@@ -3,9 +3,11 @@
 #include "ModuleWindow.h"
 #include "ModuleDebugDraw.h"
 #include "ModuleCamera.h"
-#include <Geometry/Frustum.h>
+#include "ModuleInput.h"
 #include "glew.h"
+#include "SDL.h"
 #include "debugdraw.h"
+#include <Geometry/Frustum.h>
 
 
 ModuleCamera::ModuleCamera()
@@ -26,6 +28,29 @@ bool ModuleCamera::Init()
 	frustum.SetUp(float3::unitY);
 
 	return true;
+}
+
+update_status ModuleCamera::PreUpdate() {
+
+	const float speed = 0.001f;
+
+
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT) {
+
+		frustum.SetPos(float3(frustum.Pos().x + speed, frustum.Pos().y, frustum.Pos().z));
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT) {
+		frustum.SetPos(float3(frustum.Pos().x - speed, frustum.Pos().y, frustum.Pos().z));
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT) {
+		frustum.SetPos(float3(frustum.Pos().x, frustum.Pos().y, frustum.Pos().z - speed));
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT) {
+		frustum.SetPos(float3(frustum.Pos().x, frustum.Pos().y, frustum.Pos().z + speed));
+	}
+	
+
+	return UPDATE_CONTINUE;
 }
 
 bool ModuleCamera::CleanUp()

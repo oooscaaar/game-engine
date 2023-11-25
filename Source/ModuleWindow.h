@@ -24,6 +24,8 @@ public:
 	int GetHeight() const;
 
 	void SetSize(int width, int height);
+	void Show();
+	void Hide();
 
 private:
 

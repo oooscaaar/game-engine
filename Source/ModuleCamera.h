@@ -13,6 +13,7 @@ class ModuleCamera :
 		~ModuleCamera();
 
 		bool Init();
+		update_status PreUpdate();
 		bool CleanUp();
 
 		float4x4 GetProjectionMatrix();
