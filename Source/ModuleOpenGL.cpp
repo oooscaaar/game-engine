@@ -90,18 +90,19 @@ bool ModuleOpenGL::Init()
 	LOG("Renderer: %s", glGetString(GL_RENDERER));
 	LOG("OpenGL version supported %s", glGetString(GL_VERSION));
 	LOG("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+	
+	// Set OpenGL flags
+	glEnable(GL_DEPTH_TEST); 
+	glEnable(GL_CULL_FACE); 
+	glDisable(GL_SCISSOR_TEST);
+	glDisable(GL_STENCIL_TEST); 
+	glFrontFace(GL_CCW); 
 
-	glEnable(GL_DEPTH_TEST); // Enable depth test
-	glEnable(GL_CULL_FACE); // Enable cull backward faces
-	glFrontFace(GL_CCW); // Front faces will be counter clockwise
-	glDisable(GL_SCISSOR_TEST); // Disable scissor test
-	glDisable(GL_STENCIL_TEST); // Disable stencil test
-
-	// Enable debugging
-	glEnable(GL_DEBUG_OUTPUT); // Enable Output Callbacks
-	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS); // Output Callbacks
-	glDebugMessageCallback(&OpenGLCallbackFunction, 0); // Set Callback Function
-	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, true); //Filter notifications
+	// Debugging
+	glEnable(GL_DEBUG_OUTPUT);
+	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+	glDebugMessageCallback(&OpenGLCallbackFunction, 0);
+	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, true);
 
 	return true;
 }
@@ -115,7 +116,7 @@ update_status ModuleOpenGL::PreUpdate()
 	glClearColor(0.5f, 0.f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
-	// Draw debug
+	// DebugDraw
 	dd::xzSquareGrid(-10, 10, 0.0f, 0.5f, dd::colors::Gray);
 	dd::axisTriad(float4x4::identity, 0.05f, 0.5f);
 	App->debugDraw->Draw(App->camera->GetViewMatrix(), App->camera->GetProjectionMatrix(), windowWidth, windowHeight);
@@ -123,7 +124,6 @@ update_status ModuleOpenGL::PreUpdate()
 	return UPDATE_CONTINUE;
 }
 
-// Called every draw update
 update_status ModuleOpenGL::Update()
 {
 	return UPDATE_CONTINUE;
