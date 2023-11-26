@@ -14,6 +14,7 @@ class ModuleInput;
 class ModuleRenderExercise;
 class ModuleRenderTransformation;
 class ModuleCamera;
+class ModuleTexture;
 
 class Application
 {
@@ -35,6 +36,7 @@ public:
     ModuleRenderTransformation* render_transformation = nullptr;
     ModuleEditor* editor = nullptr;
     ModuleCamera* camera = nullptr;
+    ModuleTexture* texture = nullptr;
     
 
 private:

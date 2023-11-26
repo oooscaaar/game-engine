@@ -163,6 +163,7 @@
     <ClCompile Include="MathGeoLib\Tests\SystemInfo.cpp">
       <Filter>MathGeoLib\Tests</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -438,13 +439,11 @@
     <ClInclude Include="MathGeoLib\Tests\SystemInfo.h">
       <Filter>MathGeoLib\Tests</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleTexture.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
       <UniqueIdentifier>{2f3e47cd-ca47-4351-b568-1d169d628ad2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="shaders">
-      <UniqueIdentifier>{a3dc98e0-5fef-4c75-9a5c-cd8f03819f34}</UniqueIdentifier>
     </Filter>
     <Filter Include="MathGeoLib">
       <UniqueIdentifier>{be024fc6-0205-4cc5-8e3b-1598bd8fcd2a}</UniqueIdentifier>
@@ -470,16 +469,19 @@
     <Filter Include="MathGeoLib\Tests">
       <UniqueIdentifier>{68f136b3-ae70-4b53-8cdd-1fbce54e3eb0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{a3dc98e0-5fef-4c75-9a5c-cd8f03819f34}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\hello_world.vert">
-      <Filter>shaders</Filter>
+      <Filter>Shaders</Filter>
     </None>
     <None Include="shaders\hello_world.frag">
-      <Filter>shaders</Filter>
+      <Filter>Shaders</Filter>
     </None>
     <None Include="transformation.vert">
-      <Filter>shaders</Filter>
+      <Filter>Shaders</Filter>
     </None>
     <None Include="MathGeoLib\emscripten\library_system.js">
       <Filter>MathGeoLib\emscripten</Filter>
