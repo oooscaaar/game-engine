@@ -12,7 +12,6 @@ ModuleEditor::ModuleEditor()
     
 }
 
-// Destructor
 ModuleEditor::~ModuleEditor()
 {}
 
@@ -41,7 +40,7 @@ bool ModuleEditor::Init()
     }
 
     // Setup Platform/Renderer backends
-    ImGui_ImplSDL2_InitForOpenGL(App->GetWindow()->window, App->GetOpenGL()->GetContext());
+    ImGui_ImplSDL2_InitForOpenGL(App->window->GetWindow(), App->render->GetContext());
     ImGui_ImplOpenGL3_Init("#version 460");
 
     return ret;
@@ -50,18 +49,17 @@ bool ModuleEditor::Init()
 update_status ModuleEditor::PreUpdate()
 {
 	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplSDL2_NewFrame(App->GetWindow()->window);
+	ImGui_ImplSDL2_NewFrame(App->window->GetWindow());
     ImGui::NewFrame();
    
 	return UPDATE_CONTINUE;
 }
 
-// Called every draw update
 update_status ModuleEditor::Update()
 {
-   //TODO: Add ImGui Update
-    bool show_demo_window = true;
-    ImGui::ShowDemoWindow(&show_demo_window);
+    //Disable demo window
+    //bool show_demo_window = true;
+    //ImGui::ShowDemoWindow(&show_demo_window);
 
     ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
     ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
@@ -76,7 +74,7 @@ update_status ModuleEditor::Update()
 update_status ModuleEditor::PostUpdate() {
         ImGui::UpdatePlatformWindows();
         ImGui::RenderPlatformWindowsDefault();
-        SDL_GL_MakeCurrent(App->GetWindow()->window, App->GetOpenGL()->GetContext());
+        SDL_GL_MakeCurrent(App->window->GetWindow(), App->render->GetContext());
         return UPDATE_CONTINUE;
 }
 
@@ -90,3 +88,4 @@ bool ModuleEditor::CleanUp()
 
     return true;
 }
+

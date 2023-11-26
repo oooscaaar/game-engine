@@ -3,7 +3,6 @@
 
 #define DEBUG_DRAW_IMPLEMENTATION
 #include "DebugDraw.h"     // Debug Draw API. Notice that we need the DEBUG_DRAW_IMPLEMENTATION macro here!
-
 #include "glew.h"
 
 class DDRenderInterfaceCoreGL final
@@ -615,21 +614,6 @@ update_status  ModuleDebugDraw::Update()
 
 void ModuleDebugDraw::Draw(const float4x4& view, const float4x4& proj, unsigned width, unsigned height)
 {
-
-
-    //const ddVec3 boxColor = { 0.0f, 0.8f, 0.8f };
-    //const ddVec3 boxCenter = { 0.0f, 0.0f, -1.0f };
-
-    //dd::box(boxCenter, boxColor, 0.5f, 0.5f, -0.5f);
-    //dd::cross(boxCenter, 0.5f);
-    const ddMat4x4 transform = { // The identity matrix
-        1.0f, 0.0f, 0.0f, 0.0f,
-        0.0f, 1.0f, 0.0f, 0.0f,
-        0.0f, 0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 0.0f, 1.0f
-    };
-    dd::axisTriad(transform, 0.5f, 1.0f);
-
 
     implementation->width     = width;
     implementation->height    = height;

@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "MathGeoLib.h"
 
+
 typedef unsigned __int8 Uint8;
 
 
@@ -21,8 +22,8 @@ public:
 private:
 	unsigned vbo;
 	unsigned program;
-	float4x4 proj;
-	float4x4 model;
-	float4x4 view;
-	Frustum frustum;
+
+	float4x4 proj = float4x4::identity;;
+	float4x4 model = float4x4::identity;
+	float4x4 view = float4x4::identity;
 };

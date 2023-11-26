@@ -18,7 +18,6 @@ bool ModuleProgram::Init()
     LOG("Initialize Module Program");
     bool ret = true;
 
-    // TODO: Check initialization and return false if errors
     if (false)
     {
         ret = false;
@@ -30,7 +29,6 @@ bool ModuleProgram::Init()
 bool ModuleProgram::CleanUp()
 {
     LOG("Quitting Module Program");
-    //TODO: Free all resources
     return true;
 }
 

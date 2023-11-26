@@ -672,7 +672,7 @@ size_t strlcat(char* dst, const char* src, size_t size);
 #define SDL_wcsncmp wcsncmp
 #define SDL_strcasecmp strcasecmp
 #define SDL_strncasecmp strncasecmp
-#define SDL_sscanf sscanf
+#define SDL_sscanf sscanf_s
 #define SDL_vsscanf vsscanf
 #define SDL_snprintf snprintf
 #define SDL_vsnprintf vsnprintf

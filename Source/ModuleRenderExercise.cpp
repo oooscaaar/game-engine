@@ -3,6 +3,7 @@
 #include "ModuleProgram.h"
 #include "glew.h"
 
+
 ModuleRenderExercise::ModuleRenderExercise()
 {}
 
@@ -11,7 +12,7 @@ ModuleRenderExercise::~ModuleRenderExercise()
 
 bool ModuleRenderExercise::Init()
 {
-	//CreateTriangleVBO
+	// Create VBO
 	float vtx_data[] = { -1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo); // set vbo active
@@ -20,18 +21,17 @@ bool ModuleRenderExercise::Init()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // size = 3 float per vertex | stride = 0 is equivalent to stride = sizeof(float)*3 
 
 	// Create program
-	unsigned vtx_shader = App->GetProgram()->CompileShader(GL_VERTEX_SHADER, App->GetProgram()->ReadShader("../Source/shaders/hello_world.vert"));
-	unsigned frg_shader = App->GetProgram()->CompileShader(GL_FRAGMENT_SHADER, App->GetProgram()->ReadShader("../Source/shaders/hello_world.frag"));
-	program = App->GetProgram()->CreateProgram(vtx_shader, frg_shader);
-	glUseProgram(program);
+	unsigned vtx_shader = App->program->CompileShader(GL_VERTEX_SHADER, App->program->ReadShader("../Source/shaders/hello_world.vert"));
+	unsigned frg_shader = App->program->CompileShader(GL_FRAGMENT_SHADER, App->program->ReadShader("../Source/shaders/hello_world.frag"));
+	program = App->program->CreateProgram(vtx_shader, frg_shader);
 
 	return true;
 }
 
 update_status ModuleRenderExercise::PreUpdate()
 {
-	// Draw triangle
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glUseProgram(program);
+
 	return UPDATE_CONTINUE;
 }
 
