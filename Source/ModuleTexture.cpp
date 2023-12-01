@@ -59,16 +59,17 @@ bool ModuleTexture::Init()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, imageMetadata.mipLevels - 1);
 
-	
+
+	const DirectX::Image* mip = image->GetImage(0, 0, 0);
+	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, mip->width, mip->height, 0, format, type, mip->pixels);
+	glGenerateMipmap(GL_TEXTURE_2D);
+
 	//for (size_t i = 0; i < imageMetadata.mipLevels; ++i)
 	//{
 	//	const DirectX::Image* mip = image->GetImage(i, 0, 0);
 	//	glTexImage2D(GL_TEXTURE_2D, i, internalFormat, mip->width, mip->height, 0, format, type, mip->pixels);
 	//}
 
-	//if (imageMetadata.mipLevels == 0) {
-	//	glGenerateMipmap(GL_TEXTURE_2D);
-	//}
 
 	return ret;
 
@@ -83,4 +84,9 @@ bool ModuleTexture::CleanUp()
 {
 	glDeleteTextures(1, &texture);
 	return true;
+}
+
+unsigned int const ModuleTexture::GetTexture() const
+{
+	return texture;
 }

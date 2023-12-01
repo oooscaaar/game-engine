@@ -5,6 +5,7 @@
 #include "glew.h"
 #include "MathGeoLib.h"
 #include "SDL.h"
+#include "ModuleTexture.h"
 
 
 ModuleRenderQuad::ModuleRenderQuad()
@@ -18,12 +19,12 @@ bool ModuleRenderQuad::Init()
 
 	float buffer_data[] =
 	{
-		-1.0f, -1.0f, 0.0f, // ← v0 pos
-		1.0f, -1.0f, 0.0f, // ← v1 pos
-		0.0f, 1.0f, 0.0f, // ← v2 pos
-		0.0f, 1.0f, // ← v0 texcoord
-		1.0f, 1.0f, // ← v1 texcoord
-		0.5f, 0.0f // ← v2 texcoord
+		-1.0f, -1.0f, 0.0f, // ← Vertex 0
+		1.0f, -1.0f, 0.0f, // ← Vertex 1
+		0.0f, 1.0f, 0.0f, // ← Vertex 2
+		0.0f, 1.0f, // ← Vertex 0 Texture coordinates
+		1.0f, 1.0f, // ← Vertex 1 Texture coordinates
+		0.5f, 0.0f // ← Vertex 2 Texture coordinates
 	};
 
 	glGenBuffers(1, &vbo);
@@ -31,12 +32,13 @@ bool ModuleRenderQuad::Init()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(buffer_data), buffer_data, GL_STATIC_DRAW);
 
 	// Position Attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+
 
 	// Color Attribute
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)(sizeof(float) * 9));
 	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)(sizeof(float) * 9));
 
 	// Create program
 	unsigned vtx_shader = App->program->CompileShader(GL_VERTEX_SHADER, App->program->ReadShader("../Source/Shaders/texture.vert"));
@@ -67,14 +69,15 @@ update_status ModuleRenderQuad::PreUpdate()
 	glUniformMatrix4fv(vertexProjLocation, 1, GL_TRUE, &proj[0][0]);
 	
 	// Update color 
-	GLint vertexColorLocation = glGetUniformLocation(program, "fragColor");
-	float timeValue = SDL_GetTicks();
-	float greenValue = sin(timeValue) / 2.0f + 0.5f;
-	glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+	//GLint vertexColorLocation = glGetUniformLocation(program, "fragColor");
+	//float timeValue = SDL_GetTicks()/100;
+	//float greenValue = sin(timeValue) / 2.0f + 0.5f;
+	//glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+
+	// Bind texture
+	glActiveTexture(GL_TEXTURE5);
+	glBindTexture(GL_TEXTURE_2D, App->texture->GetTexture());
 	
-
-
-
 	// Draw triangle
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 
