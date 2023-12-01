@@ -388,8 +388,10 @@
     <None Include="MathGeoLib\Math\Matrix.inl" />
     <None Include="shaders\hello_world.frag" />
     <None Include="shaders\hello_world.vert" />
-    <None Include="texture.frag" />
-    <None Include="transformation.vert" />
+    <None Include="Shaders\texture_bk.frag" />
+    <None Include="Shaders\texture.vert" />
+    <None Include="Shaders\transformation.vert" />
+    <None Include="Shaders\texture.frag" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

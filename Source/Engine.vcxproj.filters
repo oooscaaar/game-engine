@@ -482,9 +482,6 @@
     <None Include="shaders\hello_world.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="transformation.vert">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="MathGeoLib\emscripten\library_system.js">
       <Filter>MathGeoLib\emscripten</Filter>
     </None>
@@ -509,7 +506,16 @@
     <None Include="MathGeoLib\Math\float2.inl">
       <Filter>MathGeoLib\Math</Filter>
     </None>
-    <None Include="texture.frag">
+    <None Include="Shaders\texture_bk.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\texture.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\transformation.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\texture.frag">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

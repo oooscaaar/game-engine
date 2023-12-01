@@ -60,23 +60,15 @@ bool ModuleTexture::Init()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, imageMetadata.mipLevels - 1);
 
 	
-	for (size_t i = 0; i < imageMetadata.mipLevels; ++i)
-	{
-		const DirectX::Image* mip = image->GetImage(i, 0, 0);
-		glTexImage2D(GL_TEXTURE_2D, i, internalFormat, mip->width, mip->height, 0, format, type, mip->pixels);
-	}
+	//for (size_t i = 0; i < imageMetadata.mipLevels; ++i)
+	//{
+	//	const DirectX::Image* mip = image->GetImage(i, 0, 0);
+	//	glTexImage2D(GL_TEXTURE_2D, i, internalFormat, mip->width, mip->height, 0, format, type, mip->pixels);
+	//}
 
-	if (imageMetadata.mipLevels == 0) {
-		glGenerateMipmap(GL_TEXTURE_2D);
-	}
-
-
-	// TO DELETE
-	//const DirectX::Image* mip = image->GetImage(0, 0, 0);
-	//glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, mip->width, mip->height, 0, format, type, mip->pixels);
-	//glGenerateMipmap(GL_TEXTURE_2D);
-
-
+	//if (imageMetadata.mipLevels == 0) {
+	//	glGenerateMipmap(GL_TEXTURE_2D);
+	//}
 
 	return ret;
 

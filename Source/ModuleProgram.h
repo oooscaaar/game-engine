@@ -18,4 +18,8 @@ public:
 	unsigned CompileShader(unsigned shaderType, const char* source);
 	unsigned CreateProgram(unsigned vertexShaderFilename, unsigned fragmentShaderFilename);
 
+
+	private:
+		unsigned int program_id = 0;
+
 };

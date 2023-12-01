@@ -29,6 +29,8 @@ bool ModuleProgram::Init()
 bool ModuleProgram::CleanUp()
 {
     LOG("Quitting Module Program");
+    if(program_id != 0)
+        glDeleteProgram(program_id);
     return true;
 }
 
