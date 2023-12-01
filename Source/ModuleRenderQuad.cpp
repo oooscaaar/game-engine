@@ -1,20 +1,21 @@
+#include "ModuleRenderQuad.h"
 #include "Application.h"
 #include "ModuleProgram.h"
-#include "ModuleRenderTransformation.h"
 #include "ModuleCamera.h"
 #include "glew.h"
 #include "MathGeoLib.h"
 
 
-ModuleRenderTransformation::ModuleRenderTransformation()
+ModuleRenderQuad::ModuleRenderQuad()
+{}
+ModuleRenderQuad::~ModuleRenderQuad()
 {}
 
-ModuleRenderTransformation::~ModuleRenderTransformation()
-{}
-
-bool ModuleRenderTransformation::Init()
+bool ModuleRenderQuad::Init()
 {
-	
+
+
+
 	//CreateTriangleVBO
 	float vtx_data[] = { -1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
 	glGenBuffers(1, &vbo);
@@ -31,7 +32,7 @@ bool ModuleRenderTransformation::Init()
 	return true;
 }
 
-update_status ModuleRenderTransformation::PreUpdate()
+update_status ModuleRenderQuad::PreUpdate()
 {
 	proj = App->camera->GetProjectionMatrix();
 	model = float4x4::FromTRS(float3(0.0f, 0.0f, -0.5f), float3x3::RotateZ(0), float3(1.0f, 1.0f, 1.0f)); // 1. Translation, 2. Rotation, 3. Scale
@@ -46,20 +47,21 @@ update_status ModuleRenderTransformation::PreUpdate()
 
 	// Draw triangle
 	glDrawArrays(GL_TRIANGLES, 0, 3);
-	
+
 	return UPDATE_CONTINUE;
 }
 
-update_status ModuleRenderTransformation::Update()
+update_status ModuleRenderQuad::Update()
 {
 
 
 	return UPDATE_CONTINUE;
 }
 
-bool ModuleRenderTransformation::CleanUp()
+bool ModuleRenderQuad::CleanUp()
 {
 	// Delete VBO
 	glDeleteBuffers(1, &vbo);
 	return true;
 }
+

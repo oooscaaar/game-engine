@@ -164,6 +164,7 @@
       <Filter>MathGeoLib\Tests</Filter>
     </ClCompile>
     <ClCompile Include="ModuleTexture.cpp" />
+    <ClCompile Include="ModuleRenderQuad.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -440,6 +441,7 @@
       <Filter>MathGeoLib\Tests</Filter>
     </ClInclude>
     <ClInclude Include="ModuleTexture.h" />
+    <ClInclude Include="ModuleRenderQuad.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
@@ -506,6 +508,9 @@
     </None>
     <None Include="MathGeoLib\Math\float2.inl">
       <Filter>MathGeoLib\Math</Filter>
+    </None>
+    <None Include="texture.frag">
+      <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

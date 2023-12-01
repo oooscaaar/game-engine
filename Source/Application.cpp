@@ -10,6 +10,7 @@
 #include "ModuleEditor.h"
 #include "ModuleCamera.h"
 #include "ModuleTexture.h"
+#include "ModuleRenderQuad.h"
 
 using namespace std;
 
@@ -22,10 +23,13 @@ Application::Application()
 	modules.push_back(camera = new ModuleCamera());
 	modules.push_back(program = new ModuleProgram());
 	modules.push_back(debugDraw = new ModuleDebugDraw());
-	modules.push_back(render_transformation = new ModuleRenderTransformation());
 	modules.push_back(texture = new ModuleTexture());
-	//modules.push_back(render_exercise = new ModuleRenderExercise());
 
+	//Add exercise module
+	//
+	//modules.push_back(render_exercise = new ModuleRenderExercise()); -- First rendering exercise
+	//modules.push_back(render_transformation = new ModuleRenderTransformation()); -- Second rendering exercise
+	modules.push_back(render_quad = new ModuleRenderQuad());
 }
 
 Application::~Application()
