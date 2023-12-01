@@ -14,8 +14,6 @@ ModuleRenderQuad::~ModuleRenderQuad()
 bool ModuleRenderQuad::Init()
 {
 
-
-
 	//CreateTriangleVBO
 	float vtx_data[] = { -1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
 	glGenBuffers(1, &vbo);

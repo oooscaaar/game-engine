@@ -14,6 +14,6 @@ class ModuleTexture :
 	bool CleanUp();
 
 	private:
-	unsigned int textureId = 0;
+	unsigned int texture;
 };
 
