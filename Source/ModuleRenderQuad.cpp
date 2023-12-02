@@ -16,16 +16,34 @@ ModuleRenderQuad::~ModuleRenderQuad()
 bool ModuleRenderQuad::Init()
 {
 
-
 	float buffer_data[] =
 	{
 		-1.0f, -1.0f, 0.0f, // ← Vertex 0
 		1.0f, 1.0f, 0.0f, // ← Vertex 1
 		-1.0f, 1.0f, 0.0f, // ← Vertex 2
+		-1.0f, -1.0f, 0.0f, // ← Vertex 3
+		1.0f, -1.0f, 0.0f, // ← Vertex 4
+		1.0f, 1.0f, 0.0f, // ← Vertex 5
+
 		0.0f, 1.0f, // ← Vertex 0 Texture coordinates
 		1.0f, 0.0f, // ← Vertex 1 Texture coordinates
-		0.0f, 0.0f // ← Vertex 2 Texture coordinates
+		0.0f, 0.0f, // ← Vertex 2 Texture coordinates
+
+		0.0f, 1.0f, // ← Vertex 0 Texture coordinates
+		1.0f, 1.0f, // ← Vertex 1 Texture coordinates
+		1.0f, 0.0f // ← Vertex 2 Texture coordinates
 	};
+
+
+	//float buffer_data[] =
+	//{
+	//	-1.0f, -1.0f, 0.0f, // ← Vertex 0
+	//	1.0f, 1.0f, 0.0f, // ← Vertex 1
+	//	-1.0f, 1.0f, 0.0f, // ← Vertex 2
+	//	0.0f, 1.0f, // ← Vertex 0 Texture coordinates
+	//	1.0f, 0.0f, // ← Vertex 1 Texture coordinates
+	//	0.0f, 0.0f // ← Vertex 2 Texture coordinates
+	//};
 
 
 	//float buffer_data[] =
@@ -50,7 +68,7 @@ bool ModuleRenderQuad::Init()
 
 	// Color Attribute
 
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0,(void*)(sizeof(float)*9));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0,(void*)(sizeof(float)*18));
 	glEnableVertexAttribArray(1);
 
 
@@ -96,7 +114,7 @@ update_status ModuleRenderQuad::PreUpdate()
 	glBindTexture(GL_TEXTURE_2D, App->texture->GetTexture());
 
 	// Draw triangle
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	return UPDATE_CONTINUE;
 }
