@@ -57,14 +57,69 @@ update_status ModuleEditor::PreUpdate()
 
 update_status ModuleEditor::Update()
 {
-    //Disable demo window
-    //bool show_demo_window = true;
-    //ImGui::ShowDemoWindow(&show_demo_window);
+    bool show_demo_window = true;
+    ImGui::ShowDemoWindow(&show_demo_window);
 
-    ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
-    ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-    ImGui::End();
+    bool show_about_window = false;
 
+    
+    if (ImGui::BeginMainMenuBar())
+    {
+        
+        if (ImGui::BeginMenu("File"))
+        { 
+            if (ImGui::MenuItem("Exit", "Alt+F4")) {
+                return UPDATE_STOP;
+            }
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Help"))
+        {
+            if (ImGui::MenuItem("About")) {
+                LOG("About window opened");
+                show_about_window = true; 
+            }
+            ImGui::EndMenu();
+        }
+
+        ImGui::EndMainMenuBar();
+    }
+
+
+    if (show_about_window) {
+        //TODO: Fix rendering outside of the window. Nonetheless, it sets the windows position relative to the top left corner of the entire screen.
+        // ImVec2 windowPos = { App->window->GetWidth() / 2.f,  App->window->GetHeight() / 2.f };
+
+
+        ImGui::OpenPopup("About");
+    }
+
+    // LOG("Window Position: [ x = %f ] [ y = %f]\n", ImGui::GetWindowPos().x, ImGui::GetWindowPos().y);
+    //LOG("Window Size: [ x = %f ] [ y = %f]\n", ImGui::GetWindowSize().x, ImGui::GetWindowSize().y);
+
+    ImGui::SetNextWindowSize({ 400, 200 });
+
+    if (ImGui::BeginPopupModal("About"))
+    {
+        
+        // LOG("Window Position INSIDE POPUP: [ x = %f ] [ y = %f]\n", ImGui::GetWindowPos().x, ImGui::GetWindowPos().y);
+
+        //
+        //ImGui::SetNextWindowPos({ ImGui::GetWindowSize().x / 2.f, ImGui::GetWindowSize().y / 2.f });
+
+        ImGui::TextWrapped("I'll add some information about the project, the licenses, and Me :)");
+        ImGui::Separator();
+        static float slider_value = 0.0f;
+        ImGui::SliderFloat("Slider", &slider_value, 0.0f, 100.0f);
+        ImGui::Separator();
+        LOG("Test Slider: %f", slider_value);
+        if (ImGui::Button("Ok")) ImGui::CloseCurrentPopup();
+        ImGui::EndPopup();
+    }
+
+
+
+    
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
@@ -78,7 +133,6 @@ update_status ModuleEditor::PostUpdate() {
         return UPDATE_CONTINUE;
 }
 
-// Called before quitting
 bool ModuleEditor::CleanUp()
 {
     LOG("Quitting ImGUI");
