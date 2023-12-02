@@ -13,7 +13,6 @@ class ModuleRenderQuad :
 
 		bool Init();
 		update_status PreUpdate();
-		update_status Update();
 		bool CleanUp();
 
 	private:
