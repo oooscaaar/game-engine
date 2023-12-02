@@ -24,12 +24,13 @@ Application::Application()
 	modules.push_back(program = new ModuleProgram());
 	modules.push_back(debugDraw = new ModuleDebugDraw());
 	modules.push_back(texture = new ModuleTexture());
+	modules.push_back(render_quad = new ModuleRenderQuad());
 
 	//Add exercise module
 	//
 	//modules.push_back(render_exercise = new ModuleRenderExercise()); -- First rendering exercise
 	//modules.push_back(render_transformation = new ModuleRenderTransformation()); -- Second rendering exercise
-	modules.push_back(render_quad = new ModuleRenderQuad());
+
 }
 
 Application::~Application()
