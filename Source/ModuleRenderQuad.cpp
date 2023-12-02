@@ -20,11 +20,11 @@ bool ModuleRenderQuad::Init()
 	float buffer_data[] =
 	{
 		-1.0f, -1.0f, 0.0f, // ← Vertex 0
-		1.0f, -1.0f, 0.0f, // ← Vertex 1
-		0.0f, 1.0f, 0.0f, // ← Vertex 2
+		1.0f, 1.0f, 0.0f, // ← Vertex 1
+		-1.0f, 1.0f, 0.0f, // ← Vertex 2
 		0.0f, 1.0f, // ← Vertex 0 Texture coordinates
-		1.0f, 1.0f, // ← Vertex 1 Texture coordinates
-		0.5f, 0.0f // ← Vertex 2 Texture coordinates
+		1.0f, 0.0f, // ← Vertex 1 Texture coordinates
+		0.0f, 0.0f // ← Vertex 2 Texture coordinates
 	};
 
 
