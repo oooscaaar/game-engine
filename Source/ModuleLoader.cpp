@@ -22,7 +22,8 @@ bool ModuleLoader::Init()
 	tinygltf::TinyGLTF gltfContext;
 	tinygltf::Model model;
 	std::string error, warning, filePath;
-	filePath = "../Game/Models/BakerHouse/BakerHouse.gltf";
+	filePath = "../Game/Models/Duck/Duck.gltf";
+	LOG("Loading Model...\n");
 	bool loadOk = gltfContext.LoadASCIIFromFile(&model, &error, &warning, filePath);
 	if (!loadOk)
 	{
@@ -30,7 +31,7 @@ bool ModuleLoader::Init()
 		return false;
 	}
 
-	LOG("Model LOADED correctly. %s\n", filePath);
+	LOG("Model %s LOADED.\n", filePath.c_str());
 	return true;
 }
 
