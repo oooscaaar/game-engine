@@ -17,7 +17,20 @@ ModuleLoader::~ModuleLoader()
 
 bool ModuleLoader::Init()
 {
-	LOG("Init ModuleLoader");
+	LOG("Init ModuleLoader\n");
+
+	tinygltf::TinyGLTF gltfContext;
+	tinygltf::Model model;
+	std::string error, warning, filePath;
+	filePath = "../Game/Models/BakerHouse/BakerHouse.gltf";
+	bool loadOk = gltfContext.LoadASCIIFromFile(&model, &error, &warning, filePath);
+	if (!loadOk)
+	{
+		LOG("Error loading Model. %s\n", filePath, error.c_str());
+		return false;
+	}
+
+	LOG("Model LOADED correctly. %s\n", filePath);
 	return true;
 }
 
