@@ -5,11 +5,12 @@
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
 #include "imgui_impl_opengl3.h"
+#include "ModuleTexture.h"
 
 
 ModuleEditor::ModuleEditor()
 {
-    
+     
 }
 
 ModuleEditor::~ModuleEditor()
@@ -62,7 +63,7 @@ update_status ModuleEditor::Update()
 
     bool show_about_window = false;
 
-    
+    //--> START TOP MENU BAR
     if (ImGui::BeginMainMenuBar())
     {
         
@@ -84,24 +85,86 @@ update_status ModuleEditor::Update()
 
         ImGui::EndMainMenuBar();
     }
+    // <--- END TOP MENU BAR
+
+
+    //--> START COMPONENTS WINDOW
+    if (ImGui::Begin("Components"))   
+    {
+        if (ImGui::CollapsingHeader("Texture"))
+        {
+            ImGui::Text("Format: %s", App->texture->GetFormat());
+            ImGui::Text("Width: %i px", App->texture->GetWidth());
+            ImGui::Text("Height: %i px", App->texture->GetHeight());
+            ImGui::Text("Mip levels: %i", App->texture->GetMipLevels());
+
+            static const char* minificationFilters[]{ "Nearest", "Linear", "Nearest MipMap Nearest","Linear MipMap Nearest", "Nearest MipMap Linear", "Linear MipMap Linear"};
+            static int SelectedMin = 5;
+            if (ImGui::Combo("MIN Filter", &SelectedMin, minificationFilters, IM_ARRAYSIZE(minificationFilters)))
+            {
+                switch (SelectedMin)
+                {
+					case 0:
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+						break;
+					case 1:
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+                        break;
+                    case 2:
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+						break;
+                    case 3:
+						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+                        break;
+					case 4:
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+						break;
+                    case 5:
+						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+						break;
+				}
+            }
+
+            static const char* magnificationFilters[]{ "Nearest","Linear" };
+            static int SelectedMag = 1;
+            if (ImGui::Combo("MAG filter", &SelectedMag, magnificationFilters, IM_ARRAYSIZE(magnificationFilters)))
+            {
+                switch (SelectedMag)
+                {
+                case 0:
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+                    break;
+                case 1:
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+                    break;
+                }
+            }
+        }
+
+        if (ImGui::CollapsingHeader("System Information")) {
+            //TODO: Add more data to the system information
+            ImGui::Text("FPS: %.1f", (ImGui::GetIO().Framerate));
+            ImGui::Text("Frame rendering time: %.3f ms/frame (avg.)",(1000/ImGui::GetIO().Framerate));
+        }
+
+        ImGui::End();  
+    }
+    //<--- END MAIN TOOLS WINDOW
 
 
     if (show_about_window) {
         //TODO: Fix rendering outside of the window. Nonetheless, it sets the windows position relative to the top left corner of the entire screen.
         // ImVec2 windowPos = { App->window->GetWidth() / 2.f,  App->window->GetHeight() / 2.f };
-
-
         ImGui::OpenPopup("About");
     }
 
     // LOG("Window Position: [ x = %f ] [ y = %f]\n", ImGui::GetWindowPos().x, ImGui::GetWindowPos().y);
     //LOG("Window Size: [ x = %f ] [ y = %f]\n", ImGui::GetWindowSize().x, ImGui::GetWindowSize().y);
-
     ImGui::SetNextWindowSize({ 400, 200 });
 
     if (ImGui::BeginPopupModal("About"))
     {
-        
+
         // LOG("Window Position INSIDE POPUP: [ x = %f ] [ y = %f]\n", ImGui::GetWindowPos().x, ImGui::GetWindowPos().y);
 
         //
@@ -116,6 +179,8 @@ update_status ModuleEditor::Update()
         if (ImGui::Button("Ok")) ImGui::CloseCurrentPopup();
         ImGui::EndPopup();
     }
+
+
 
 
 

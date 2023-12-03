@@ -20,7 +20,8 @@ public:
 	bool CleanUp();
 
 private:
-	//TODO: Add private variables
+	bool a = true;
+
 };
 
 #endif

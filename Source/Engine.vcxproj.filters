@@ -442,6 +442,7 @@
     </ClInclude>
     <ClInclude Include="ModuleTexture.h" />
     <ClInclude Include="ModuleRenderQuad.h" />
+    <ClInclude Include="magic_enum.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
