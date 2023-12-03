@@ -165,6 +165,7 @@
     </ClCompile>
     <ClCompile Include="ModuleTexture.cpp" />
     <ClCompile Include="ModuleRenderQuad.cpp" />
+    <ClCompile Include="ModuleLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -442,7 +443,8 @@
     </ClInclude>
     <ClInclude Include="ModuleTexture.h" />
     <ClInclude Include="ModuleRenderQuad.h" />
-    <ClInclude Include="magic_enum.hpp" />
+    <ClInclude Include="tiny_gltf.h" />
+    <ClInclude Include="ModuleLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">

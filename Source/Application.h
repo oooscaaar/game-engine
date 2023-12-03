@@ -16,6 +16,7 @@ class ModuleTexture;
 class ModuleRenderExercise;
 class ModuleRenderTransformation;
 class ModuleRenderQuad;
+class ModuleLoader;
 
 class Application
 {
@@ -36,6 +37,7 @@ public:
     ModuleEditor* editor = nullptr;
     ModuleCamera* camera = nullptr;
     ModuleTexture* texture = nullptr;
+    ModuleLoader* loader = nullptr;
     //Exercise modules
     ModuleRenderExercise* render_exercise = nullptr;
     ModuleRenderTransformation* render_transformation = nullptr;

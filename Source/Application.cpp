@@ -9,6 +9,7 @@
 #include "ModuleInput.h"
 #include "ModuleEditor.h"
 #include "ModuleCamera.h"
+#include "ModuleLoader.h"
 #include "ModuleTexture.h"
 #include "ModuleRenderQuad.h"
 
@@ -24,6 +25,7 @@ Application::Application()
 	modules.push_back(program = new ModuleProgram());
 	modules.push_back(debugDraw = new ModuleDebugDraw());
 	modules.push_back(texture = new ModuleTexture());
+	modules.push_back(loader = new ModuleLoader());
 	modules.push_back(render_quad = new ModuleRenderQuad());
 }
 
