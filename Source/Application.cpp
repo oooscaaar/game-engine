@@ -26,7 +26,7 @@ Application::Application()
 	modules.push_back(debugDraw = new ModuleDebugDraw());
 	modules.push_back(texture = new ModuleTexture());
 	modules.push_back(loader = new ModuleLoader());
-	modules.push_back(render_quad = new ModuleRenderQuad());
+	//modules.push_back(render_quad = new ModuleRenderQuad());
 }
 
 Application::~Application()

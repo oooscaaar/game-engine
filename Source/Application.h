@@ -17,6 +17,7 @@ class ModuleRenderExercise;
 class ModuleRenderTransformation;
 class ModuleRenderQuad;
 class ModuleLoader;
+class Mesh;
 
 class Application
 {

@@ -1,5 +1,6 @@
 #include "ModuleLoader.h"
 #include "Application.h"
+#include "Mesh.h"
 
 #define TINYGLTF_NO_STB_IMAGE_WRITE
 #define TINYGLTF_NO_STB_IMAGE
@@ -19,19 +20,9 @@ bool ModuleLoader::Init()
 {
 	LOG("Init ModuleLoader\n");
 
-	tinygltf::TinyGLTF gltfContext;
-	tinygltf::Model model;
-	std::string error, warning, filePath;
-	filePath = "../Game/Models/Duck/Duck.gltf";
-	LOG("Loading Model...\n");
-	bool loadOk = gltfContext.LoadASCIIFromFile(&model, &error, &warning, filePath);
-	if (!loadOk)
-	{
-		LOG("Error loading Model. %s\n", filePath, error.c_str());
-		return false;
-	}
+	Mesh* mesh = new Mesh;
+	mesh->Load("../Game/Models/BakerHouse/BakerHouse.gltf");
 
-	LOG("Model %s LOADED.\n", filePath.c_str());
 	return true;
 }
 
@@ -42,6 +33,8 @@ update_status ModuleLoader::PreUpdate()
 
 update_status ModuleLoader::Update()
 {
+	//Load Model
+
 	return UPDATE_CONTINUE;
 }
 

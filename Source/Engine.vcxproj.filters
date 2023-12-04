@@ -166,6 +166,7 @@
     <ClCompile Include="ModuleTexture.cpp" />
     <ClCompile Include="ModuleRenderQuad.cpp" />
     <ClCompile Include="ModuleLoader.cpp" />
+    <ClCompile Include="Mesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -445,6 +446,7 @@
     <ClInclude Include="ModuleRenderQuad.h" />
     <ClInclude Include="tiny_gltf.h" />
     <ClInclude Include="ModuleLoader.h" />
+    <ClInclude Include="Mesh.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
