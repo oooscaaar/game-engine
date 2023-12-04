@@ -61,6 +61,7 @@ void Mesh::Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const 
 		const tinygltf::Buffer& posBuffer = model.buffers[posView.buffer];
 		const unsigned char* bufferPos = &(posBuffer.data[posAcc.byteOffset + posView.byteOffset]);
 		glGenBuffers(1, &vbo);
+		CreateVAO(posAcc.count);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * posAcc.count, nullptr, GL_STATIC_DRAW);
 		float3* ptr = reinterpret_cast<float3*>(glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
 		for (size_t i = 0; i < posAcc.count; ++i)
@@ -72,7 +73,7 @@ void Mesh::Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const 
 	}
 }
 
-void const Mesh::CreateVAO()
+void const Mesh::CreateVAO(unsigned const int numberOfVertices)
 {
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
@@ -81,9 +82,8 @@ void const Mesh::CreateVAO()
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 	glEnableVertexAttribArray(1);
-	//TODO: Use the real number of vertices
-	const int numVertices = 6;
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)(sizeof(float) * 3 * numVertices));
+	//TODO:
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)(sizeof(float) * 3 * numberOfVertices));
 
 	glBindVertexArray(0);
 }

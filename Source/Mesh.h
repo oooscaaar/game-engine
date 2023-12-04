@@ -21,7 +21,7 @@ private:
 	unsigned ebo = 0;
 	unsigned program = 0;
 
-	void const CreateVAO();
+	void const CreateVAO(unsigned const int numberOfVertices);
 	void const Draw();
 
 };
