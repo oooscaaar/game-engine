@@ -14,15 +14,16 @@ public:
 
 	void Load(const char* path);
 	void Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
+	void const Draw();
+	void setProgram(unsigned program);
 
 private:
-	unsigned vbo = 0;
-	unsigned vao = 0;
-	unsigned ebo = 0;
-	unsigned program = 0;
-
+	unsigned vbo;
+	unsigned vao;
+	unsigned ebo;
+	unsigned program;
 	void const CreateVAO(unsigned const int numberOfVertices);
-	void const Draw();
+
 
 };
 

@@ -167,6 +167,7 @@
     <ClCompile Include="ModuleRenderQuad.cpp" />
     <ClCompile Include="ModuleLoader.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="ModuleModel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -447,6 +448,7 @@
     <ClInclude Include="tiny_gltf.h" />
     <ClInclude Include="ModuleLoader.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="ModuleModel.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
@@ -521,6 +523,12 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\texture.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\assignment.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\assignment.vert">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

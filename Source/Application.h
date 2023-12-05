@@ -17,7 +17,7 @@ class ModuleRenderExercise;
 class ModuleRenderTransformation;
 class ModuleRenderQuad;
 class ModuleLoader;
-class Mesh;
+class ModuleModel;
 
 class Application
 {
@@ -39,6 +39,7 @@ public:
     ModuleCamera* camera = nullptr;
     ModuleTexture* texture = nullptr;
     ModuleLoader* loader = nullptr;
+    ModuleModel* model = nullptr;
     //Exercise modules
     ModuleRenderExercise* render_exercise = nullptr;
     ModuleRenderTransformation* render_transformation = nullptr;

@@ -20,8 +20,9 @@ bool ModuleLoader::Init()
 {
 	LOG("Init ModuleLoader\n");
 
-	Mesh* mesh = new Mesh;
-	mesh->Load("../Game/Models/BakerHouse/BakerHouse.gltf");
+	//Mesh* mesh = new Mesh;
+	//mesh->Load("../Game/Models/BakerHouse/BakerHouse.gltf");
+	//mesh->Draw();
 
 	return true;
 }

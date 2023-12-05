@@ -2,6 +2,8 @@
 #include "SDL.h"
 #include "glew.h"
 #include "Math/float3.h"
+#include "ModuleProgram.h"
+#include "ModuleCamera.h"
 
 
 Mesh::Mesh()
@@ -36,6 +38,9 @@ void Mesh::Load(const char* filePath)
 			mesh->Load(model, srcMesh, primitive);
 		}
 	}
+
+
+
 }
 
 void Mesh::Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive){
@@ -44,25 +49,17 @@ void Mesh::Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const 
 
 	if (itPos != primitive.attributes.end())
 	{
-		//const tinygltf::Accessor& posAcc = model.accessors[itPos->second];
-		//SDL_assert(posAcc.type == TINYGLTF_TYPE_VEC3);
-		//SDL_assert(posAcc.componentType == GL_FLOAT);
-		//const tinygltf::BufferView& posView = model.bufferViews[posAcc.bufferView];
-		//const tinygltf::Buffer& posBuffer = model.buffers[posView.buffer];
-		//const unsigned char* bufferPos = &(posBuffer.data[posAcc.byteOffset + posView.byteOffset]);
-
-		//glGenBuffers(1, &vbo);
-		//glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * posAcc.count, bufferPos, GL_STATIC_DRAW);
-
 		const tinygltf::Accessor& posAcc = model.accessors[itPos->second];
 		SDL_assert(posAcc.type == TINYGLTF_TYPE_VEC3);
 		SDL_assert(posAcc.componentType == GL_FLOAT);
 		const tinygltf::BufferView& posView = model.bufferViews[posAcc.bufferView];
 		const tinygltf::Buffer& posBuffer = model.buffers[posView.buffer];
 		const unsigned char* bufferPos = &(posBuffer.data[posAcc.byteOffset + posView.byteOffset]);
+		
 		glGenBuffers(1, &vbo);
-		CreateVAO(posAcc.count);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * posAcc.count, nullptr, GL_STATIC_DRAW);
+
+
 		float3* ptr = reinterpret_cast<float3*>(glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
 		for (size_t i = 0; i < posAcc.count; ++i)
 		{
@@ -70,7 +67,16 @@ void Mesh::Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const 
 			bufferPos += posView.byteStride;
 		}
 		glUnmapBuffer(GL_ARRAY_BUFFER);
+
+		glUseProgram(program);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3 + sizeof(float) * 2, (void*)0);
+		glDrawArrays(GL_TRIANGLES, 0, posAcc.count);
 	}
+
+
+
 }
 
 void const Mesh::CreateVAO(unsigned const int numberOfVertices)
@@ -91,9 +97,37 @@ void const Mesh::CreateVAO(unsigned const int numberOfVertices)
 void const Mesh::Draw()
 {
 	//TODO: use the real number of indices
-	const int numIndices = 6;
+	//const int numIndices = 6;
+
+	//glUseProgram(program);
+	//glBindVertexArray(vao);
+	//glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, nullptr);
+
+	float vtx_data[] = { -1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo); // set vbo active
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vtx_data), vtx_data, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+
+	// Create program
+	unsigned vtx_shader = App->program->CompileShader(GL_VERTEX_SHADER, App->program->ReadShader("../Source/Shaders/transformation.vert"));
+	unsigned frg_shader = App->program->CompileShader(GL_FRAGMENT_SHADER, App->program->ReadShader("../Source/Shaders/hello_world.frag"));
+	program = App->program->CreateProgram(vtx_shader, frg_shader);
 
 	glUseProgram(program);
-	glBindVertexArray(vao);
-	glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, nullptr);
+
+	glUniformMatrix4fv(0, 1, GL_TRUE, &(float4x4::FromTRS(float3(0.0f, 0.0f, -0.5f), float3x3::RotateZ(0), float3(1.0f, 1.0f, 1.0f)))[0][0]);
+	glUniformMatrix4fv(1, 1, GL_TRUE, &(App->camera->GetViewMatrix())[0][0]);
+	glUniformMatrix4fv(2, 1, GL_TRUE, &(App->camera->GetProjectionMatrix())[0][0]);
+
+	// Draw triangle
+	glDrawArrays(GL_TRIANGLES, 0, 3);
+
+
+}
+
+void Mesh::setProgram(unsigned program)
+{
+	this->program = program;
 }
