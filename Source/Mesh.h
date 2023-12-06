@@ -11,19 +11,22 @@ class Mesh
 public:
 	Mesh();
 	~Mesh();
+	void const Draw(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive, const std::vector<unsigned>& textures);
 
-	void Load(const char* path);
-	void Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
-	void const Draw();
-	void setProgram(unsigned program);
 
 private:
 	unsigned vbo;
 	unsigned vao;
 	unsigned ebo;
 	unsigned program;
-	void const CreateVAO(unsigned const int numberOfVertices);
 
+	void const Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
+	void const LoadEBO(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
+	void const CreateVAO();
+	void const render();
+	void SetNumberOfVertices(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
+
+	short numberOfVertices;
 
 };
 

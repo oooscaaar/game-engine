@@ -13,11 +13,15 @@ class ModuleTextures;
 class ModuleInput;
 class ModuleCamera;
 class ModuleTexture;
+//class ModuleLoader;
+//class ModuleModel;
+
 class ModuleRenderExercise;
 class ModuleRenderTransformation;
 class ModuleRenderQuad;
-class ModuleLoader;
-class ModuleModel;
+class ModuleRenderAssignment;
+
+
 
 class Application
 {
@@ -38,12 +42,13 @@ public:
     ModuleEditor* editor = nullptr;
     ModuleCamera* camera = nullptr;
     ModuleTexture* texture = nullptr;
-    ModuleLoader* loader = nullptr;
-    ModuleModel* model = nullptr;
-    //Exercise modules
+    //ModuleLoader* loader = nullptr;
+    //ModuleModel* model = nullptr;
+
     ModuleRenderExercise* render_exercise = nullptr;
     ModuleRenderTransformation* render_transformation = nullptr;
     ModuleRenderQuad* render_quad = nullptr;
+    ModuleRenderAssignment* render_assignment = nullptr;
     
 
 private:

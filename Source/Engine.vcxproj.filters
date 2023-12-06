@@ -168,6 +168,8 @@
     <ClCompile Include="ModuleLoader.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ModuleModel.cpp" />
+    <ClCompile Include="ModuleRenderAssignment.cpp" />
+    <ClCompile Include="Model.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -449,6 +451,8 @@
     <ClInclude Include="ModuleLoader.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="ModuleModel.h" />
+    <ClInclude Include="ModuleRenderAssignment.h" />
+    <ClInclude Include="Model.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
