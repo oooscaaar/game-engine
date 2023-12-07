@@ -15,10 +15,10 @@ public:
 
 
 private:
-	unsigned vbo;
-	unsigned vao;
-	unsigned ebo;
-	unsigned program;
+	unsigned vbo = 0;
+	unsigned vao = 0;
+	unsigned ebo = 0;
+	unsigned program = 0;
 
 	void const Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
 	void const LoadEBO(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);

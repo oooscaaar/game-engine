@@ -21,13 +21,20 @@ void const Mesh::Draw(const tinygltf::Model& model, const tinygltf::Mesh& mesh, 
 
 	LoadEBO(model, mesh, primitive);
 	SetNumberOfVertices(model, mesh, primitive);
+
 	CreateVAO();
+
+	//TODO: Add render logic
+
+	glDeleteVertexArrays(1, &vao);
+	glDeleteBuffers(1, &ebo);
+	glDeleteBuffers(1, &vbo);
 
 }
 
 void const Mesh::LoadEBO(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive) {
 
-	if (primitive.indices >= 0)
+	if (primitive.indices >= 0 and ebo == 0)
 	{
 		const tinygltf::Accessor& indAcc = model.accessors[primitive.indices];
 		const tinygltf::BufferView& indView = model.bufferViews[indAcc.bufferView];
@@ -105,7 +112,9 @@ void const Mesh::Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, 
 
 void const Mesh::CreateVAO()
 {
-	glGenVertexArrays(1, &vao);
+	if (vao == 0) {
+		glGenVertexArrays(1, &vao);
+	}
 
 	glBindVertexArray(vao);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -113,6 +122,7 @@ void const Mesh::CreateVAO()
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)(sizeof(float) * 3 * numberOfVertices));
 

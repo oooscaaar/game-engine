@@ -10,7 +10,7 @@ ModuleRenderAssignment::~ModuleRenderAssignment()
 
 bool ModuleRenderAssignment::Init()
 {
-	
+	model = new Model();
 	return true;
 }
 

@@ -20,6 +20,7 @@ class ModuleRenderExercise;
 class ModuleRenderTransformation;
 class ModuleRenderQuad;
 class ModuleRenderAssignment;
+class Model;
 
 
 

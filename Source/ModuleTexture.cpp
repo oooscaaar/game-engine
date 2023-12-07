@@ -110,8 +110,13 @@ unsigned int ModuleTexture::Load(const std::string& filePath) {
 		glTexImage2D(GL_TEXTURE_2D, i, internalFormat, mip->width, mip->height, 0, format, type, mip->pixels);
 	}
 
+
 	return texture;
 
+}
+
+void ModuleTexture::Delete(unsigned int& texture) {
+	glDeleteTextures(1, &texture);
 }
 
 unsigned int const ModuleTexture::GetTexture() const

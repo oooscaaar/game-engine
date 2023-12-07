@@ -7,13 +7,14 @@
 class Model
 {
 	public:
-	Model();
-	~Model();
-	void Draw(const char* filePath);
+
+		Model();
+		~Model();
+		void Draw(const char* filePath);
 
 
-private:
-	std::list<Mesh*> meshes;
-	//std::vector<unsigned> textures;
+	private:
+		std::vector<Mesh*> meshes;
+		std::vector<unsigned int> textures;
 };
 

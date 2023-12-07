@@ -39,6 +39,7 @@ class ModuleTexture :
 	const char* GetFilterType() const;
 	const char* GetFilterSubtype() const;
 	unsigned int Load(const std::string& filePath);
+	void Delete(unsigned int& texture);
 
 
 
