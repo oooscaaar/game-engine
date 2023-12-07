@@ -532,6 +532,8 @@
     <None Include="Shaders\assignment.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Shaders\assignment.frag" />
+    <None Include="Shaders\assignment.frag">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
