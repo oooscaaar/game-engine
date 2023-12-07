@@ -59,5 +59,4 @@ void Model::Draw(const char* filePath)
 		for (auto texture : textures)
 			App->texture->Delete(texture);
 			textures.clear();
-			LOG("HEY!");
 }

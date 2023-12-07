@@ -397,6 +397,7 @@
     <None Include="MathGeoLib\Geometry\TriangleMesh_IntersectRay_SSE.inl" />
     <None Include="MathGeoLib\Math\float2.inl" />
     <None Include="MathGeoLib\Math\Matrix.inl" />
+    <None Include="Shaders\assignment.frag" />
     <None Include="Shaders\assignment.vert" />
     <None Include="shaders\hello_world.frag" />
     <None Include="shaders\hello_world.vert" />
