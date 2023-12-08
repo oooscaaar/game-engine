@@ -15,17 +15,8 @@ Model::~Model()
 }
 
 
-void Model::Draw(const char* filePath)
+void Model::Draw()
 {
-		tinygltf::TinyGLTF gltfContext;
-		tinygltf::Model model;
-		std::string error, warning;
-		bool loadOk = gltfContext.LoadASCIIFromFile(&model, &error, &warning, filePath);
-		if (!loadOk)
-		{
-			LOG("Error loading Model. %s\n", filePath, error.c_str());
-		}
-
 		//Load Materials
 		if (textures.empty()) {
 			for (const auto& srcMaterial : model.materials) {
@@ -58,4 +49,14 @@ void Model::Draw(const char* filePath)
 		for (auto texture : textures)
 			App->texture->Delete(texture);
 			textures.clear();
+}
+
+const void Model::Load(const char* filePath)
+{
+	std::string error, warning;
+	bool loadOk = gltfContext.LoadASCIIFromFile(&model, &error, &warning, filePath);
+	if (!loadOk)
+	{
+		LOG("Error loading Model. %s\n", filePath, error.c_str());
+	}
 }

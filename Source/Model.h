@@ -10,11 +10,14 @@ class Model
 
 		Model();
 		~Model();
-		void Draw(const char* filePath);
+		void Draw();
+		const void Load(const char* filePath);
 
 
 	private:
 		std::vector<Mesh*> meshes;
 		std::vector<unsigned int> textures;
+		tinygltf::TinyGLTF gltfContext;
+		tinygltf::Model model;
 };
 
