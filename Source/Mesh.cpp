@@ -19,6 +19,8 @@ void const Mesh::Draw(const tinygltf::Model& model, const tinygltf::Mesh& mesh, 
 
 	LoadPositions(model, mesh, primitive);
 
+	LoadTextureCoordinates(model, mesh, primitive);
+
 	LoadEBO(model, mesh, primitive);
 	
 	CreateProgram();
@@ -69,6 +71,9 @@ void const Mesh::LoadPositions(const tinygltf::Model& model, const tinygltf::Mes
 		}
 		glUnmapBuffer(GL_ARRAY_BUFFER);
 	}
+}
+
+void const Mesh::LoadTextureCoordinates(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive) {
 
 	const auto& itCoord = primitive.attributes.find("TEXCOORD_0");
 	if (itCoord != primitive.attributes.end())
@@ -180,62 +185,10 @@ void const Mesh::Render(const std::vector<unsigned>& textures)
 	//TODO: Get the texture from the material -> meshes.primitives[n].material
 	glBindTexture(GL_TEXTURE_2D, textures[0]);
 
-	glUniformMatrix4fv(0, 1, GL_TRUE, &(float4x4::FromTRS(float3(0.0f, 0.0f, -0.5f), float3x3::RotateZ(0), float3(50.0f, 50.0f, 50.0f))[0][0]));
+	glUniformMatrix4fv(0, 1, GL_TRUE, &(float4x4::FromTRS(float3(0.0f, 0.0f, 0.0f), float3x3::RotateZ(0), float3(50.0f, 50.0f, 50.0f))[0][0]));
 	glUniformMatrix4fv(1, 1, GL_TRUE, &(App->camera->GetViewMatrix())[0][0]);
 	glUniformMatrix4fv(2, 1, GL_TRUE, &(App->camera->GetProjectionMatrix())[0][0]);
 	glUniform1i(glGetUniformLocation(program, "diffuse"), 0);
 
-
 	glDrawElements(GL_TRIANGLES, numberOfIndices, GL_UNSIGNED_INT, nullptr);
-
 }
-
-
-void const Mesh::RenderVAO(const std::vector<unsigned>& textures)
-{
-	glUseProgram(program);
-
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, textures[0]);
-
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBindVertexArray(vao);
-	glUniform1i(glGetUniformLocation(program, "diffuse"), 1);
-
-
-	glUniformMatrix4fv(0, 1, GL_TRUE, &(float4x4::FromTRS(float3(0.0f, -20.0f, -50.0f), float3x3::RotateZ(0), float3(.5f, .5f, .5f))[0][0]));
-	glUniformMatrix4fv(1, 1, GL_TRUE, &(App->camera->GetViewMatrix())[0][0]);
-	glUniformMatrix4fv(2, 1, GL_TRUE, &(App->camera->GetProjectionMatrix())[0][0]);
-
-
-	glDrawArrays(GL_TRIANGLES, 0, numberOfVertices);
-}
-
-
-
-
-
-
-
-// THIS IS A WORKING TRIANGLE
-
-//float vtx_data[] = { -1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
-//glGenBuffers(1, &vbo);
-//glBindBuffer(GL_ARRAY_BUFFER, vbo); // set vbo active
-//glBufferData(GL_ARRAY_BUFFER, sizeof(vtx_data), vtx_data, GL_STATIC_DRAW);
-//glEnableVertexAttribArray(0);
-//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-//
-//// Create program
-//unsigned vtx_shader = App->program->CompileShader(GL_VERTEX_SHADER, App->program->ReadShader("../Source/Shaders/assignment.vert"));
-//unsigned frg_shader = App->program->CompileShader(GL_FRAGMENT_SHADER, App->program->ReadShader("../Source/Shaders/assignment.frag"));
-//program = App->program->CreateProgram(vtx_shader, frg_shader);
-//
-//glUseProgram(program);
-//
-//glUniformMatrix4fv(0, 1, GL_TRUE, &(float4x4::FromTRS(float3(0.0f, 0.0f, -0.5f), float3x3::RotateZ(0), float3(1.0f, 1.0f, 1.0f)))[0][0]);
-//glUniformMatrix4fv(1, 1, GL_TRUE, &(App->camera->GetViewMatrix())[0][0]);
-//glUniformMatrix4fv(2, 1, GL_TRUE, &(App->camera->GetProjectionMatrix())[0][0]);
-//
-//// Draw triangle
-//glDrawArrays(GL_TRIANGLES, 0, 3);
