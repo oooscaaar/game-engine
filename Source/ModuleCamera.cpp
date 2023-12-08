@@ -22,9 +22,9 @@ bool ModuleCamera::Init()
 {
 	frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
 	frustum.SetViewPlaneDistances(0.1f, 100.0f);
-	frustum.SetHorizontalFovAndAspectRatio(pi/180 * 90.0f, (float)(App->window->GetWidth() / App->window->GetHeight()));
- 	frustum.SetPos(float3(0.f, 1.5f, 2.5f));
-	frustum.SetFront(float3(0.0f, 0.0f, -2.0f));
+	frustum.SetHorizontalFovAndAspectRatio(pi/180 * 90.0f, 4/3.f);
+ 	frustum.SetPos(float3(0.f, 1.f, 0.f));
+	frustum.SetFront(-float3::unitZ);
 	frustum.SetUp(float3::unitY);
 
 	return true;
@@ -33,7 +33,6 @@ bool ModuleCamera::Init()
 update_status ModuleCamera::PreUpdate() {
 
 	const float speed = 0.001f;
-
 
 	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT) {
 
@@ -49,7 +48,6 @@ update_status ModuleCamera::PreUpdate() {
 		frustum.SetPos(float3(frustum.Pos().x, frustum.Pos().y, frustum.Pos().z + speed));
 	}
 	
-
 	return UPDATE_CONTINUE;
 }
 
