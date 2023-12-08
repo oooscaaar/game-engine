@@ -17,7 +17,6 @@ bool ModuleRenderAssignment::Init()
 
 update_status ModuleRenderAssignment::PreUpdate()
 {
-	//model->Draw("../Game/Models/BakerHouse/BakerHouse.gltf");
 	model->Draw();
 	return update_status::UPDATE_CONTINUE;
 }

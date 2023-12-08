@@ -11,7 +11,8 @@ class Mesh
 public:
 	Mesh();
 	~Mesh();
-	void const Draw(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive, const std::vector<unsigned>& textures);
+	void const Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
+	void const Draw(const std::vector<unsigned>& textures, const unsigned &program);
 
 
 private:
@@ -23,10 +24,8 @@ private:
 	void const LoadPositions(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
 	void const LoadTextureCoordinates(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
 	void const LoadEBO(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
-	void const CreateVBO();
 	void const CreateVAO();
-	void const CreateProgram();
-	void const Render(const std::vector<unsigned>& textures);
+	void const Render(const std::vector<unsigned>& textures, const unsigned &program);
 
 	unsigned int numberOfVertices;
 	unsigned int numberOfIndices;

@@ -15,30 +15,20 @@ Mesh::~Mesh()
 {
 }
 
-void const Mesh::Draw(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive, const std::vector<unsigned>& textures) {
+void const Mesh::Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive) {
 
 	LoadPositions(model, mesh, primitive);
 
 	LoadTextureCoordinates(model, mesh, primitive);
 
 	LoadEBO(model, mesh, primitive);
-	
-	CreateProgram();
-	
+		
 	CreateVAO();
-	
-	Render(textures);
 
-	glDeleteVertexArrays(1, &vao);
-	glDeleteBuffers(1, &ebo);
-	glDeleteBuffers(1, &vbo);
-	glUseProgram(0);
-	glDeleteProgram(program);
 }
 
-void const Mesh::CreateVBO() {
-
-
+void const Mesh::Draw(const std::vector<unsigned>& textures, const unsigned& program) {
+	Render(textures, program);
 }
 
 void const Mesh::LoadPositions(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive) {
@@ -144,8 +134,6 @@ void const Mesh::LoadEBO(const tinygltf::Model& model, const tinygltf::Mesh& mes
 }
 
 
-
-
 void const Mesh::CreateVAO()
 {
 	glGenVertexArrays(1, &vao);
@@ -163,17 +151,9 @@ void const Mesh::CreateVAO()
 	glBindVertexArray(0);
 }
 
-void const Mesh::CreateProgram() {
-
-	if (program == 0) {
-		unsigned vtx_shader = App->program->CompileShader(GL_VERTEX_SHADER, App->program->ReadShader("../Source/Shaders/assignment.vert"));
-		unsigned frg_shader = App->program->CompileShader(GL_FRAGMENT_SHADER, App->program->ReadShader("../Source/Shaders/assignment.frag"));
-		program = App->program->CreateProgram(vtx_shader, frg_shader);
-	}
-}
 
 
-void const Mesh::Render(const std::vector<unsigned>& textures)
+void const Mesh::Render(const std::vector<unsigned>& textures, const unsigned &program)
 {
 	glUseProgram(program);
 	
@@ -191,4 +171,6 @@ void const Mesh::Render(const std::vector<unsigned>& textures)
 	glUniform1i(glGetUniformLocation(program, "diffuse"), 0);
 
 	glDrawElements(GL_TRIANGLES, numberOfIndices, GL_UNSIGNED_INT, nullptr);
+
+	glBindVertexArray(0);
 }

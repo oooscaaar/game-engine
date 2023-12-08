@@ -19,5 +19,6 @@ class Model
 		std::vector<unsigned int> textures;
 		tinygltf::TinyGLTF gltfContext;
 		tinygltf::Model model;
+		unsigned program = 0;
 };
 
