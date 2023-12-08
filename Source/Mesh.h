@@ -20,17 +20,16 @@ private:
 	unsigned ebo = 0;
 	unsigned program = 0;
 
-	void const Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
-	void const LoadBasic(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
+	void const LoadPositions(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
 	void const LoadEBO(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
+	void const CreateVBO();
 	void const CreateVAO();
 	void const CreateProgram();
 	void const Render(const std::vector<unsigned>& textures);
-	void const RenderEBO();
 	void const RenderVAO(const std::vector<unsigned>& textures);
-	void SetNumberOfVertices(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
 
-	short numberOfVertices;
+	unsigned int numberOfVertices;
+	unsigned int numberOfIndices;
 
 };
 

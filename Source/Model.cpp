@@ -49,7 +49,6 @@ void Model::Draw(const char* filePath)
 			}
 		}
 
-
 		//TODO Delete meshes
 		for (auto mesh : meshes)
 			delete(mesh);
