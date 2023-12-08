@@ -63,7 +63,12 @@ void const Mesh::LoadPositions(const tinygltf::Model& model, const tinygltf::Mes
 		for (size_t i = 0; i < posAcc.count; ++i)
 		{
 			ptr[i] = *reinterpret_cast<const float3*>(bufferPos);
-			bufferPos += posView.byteStride;
+			if (posView.byteStride == 0) {
+				bufferPos += sizeof(float)*3;
+			}
+			else {
+				bufferPos += posView.byteStride;
+			}
 		}
 		glUnmapBuffer(GL_ARRAY_BUFFER);
 	}
@@ -93,14 +98,14 @@ void const Mesh::LoadEBO(const tinygltf::Model& model, const tinygltf::Mesh& mes
 
 		if (indAcc.componentType == TINYGLTF_PARAMETER_TYPE_UNSIGNED_SHORT) {
 			const uint16_t* bufferInd = reinterpret_cast<const uint16_t*>(buffer);
-			for (uint32_t i = 0; i < numberOfIndices; ++i) {
+			for (uint16_t i = 0; i < numberOfIndices; ++i) {
 				ptr[i] = bufferInd[i];
 			}
 		}
 
 		if (indAcc.componentType == TINYGLTF_PARAMETER_TYPE_UNSIGNED_BYTE) {
 			const uint8_t* bufferInd = reinterpret_cast<const uint8_t*>(buffer);
-			for (uint32_t i = 0; i < numberOfIndices; ++i) {
+			for (uint8_t i = 0; i < numberOfIndices; ++i) {
 				ptr[i] = bufferInd[i];
 			}
 		}
@@ -149,9 +154,10 @@ void const Mesh::Render(const std::vector<unsigned>& textures)
 	glBindVertexArray(vao);
 
 	glActiveTexture(GL_TEXTURE0);
+	//TODO: Get the texture from the material -> meshes.primitives[n].material
 	glBindTexture(GL_TEXTURE_2D, textures[0]);
 
-	glUniformMatrix4fv(0, 1, GL_TRUE, &(float4x4::FromTRS(float3(0.0f, -10.0f, -15.0f), float3x3::RotateZ(0), float3(.05f, .05f, .05f))[0][0]));
+	glUniformMatrix4fv(0, 1, GL_TRUE, &(float4x4::FromTRS(float3(0.0f, 0.0f, -0.5f), float3x3::RotateZ(0), float3(50.0f, 50.0f, 50.0f))[0][0]));
 	glUniformMatrix4fv(1, 1, GL_TRUE, &(App->camera->GetViewMatrix())[0][0]);
 	glUniformMatrix4fv(2, 1, GL_TRUE, &(App->camera->GetProjectionMatrix())[0][0]);
 	glUniform1i(glGetUniformLocation(program, "diffuse"), 0);
