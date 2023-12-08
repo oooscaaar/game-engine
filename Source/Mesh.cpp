@@ -82,11 +82,10 @@ void const Mesh::LoadPositions(const tinygltf::Model& model, const tinygltf::Mes
 
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-		float3* ptr = reinterpret_cast<float3*>(glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
-		float2* coordPtr = reinterpret_cast<float2*>(ptr += sizeof(float3)* numberOfVertices);
+		float2* ptr = reinterpret_cast<float2*>(reinterpret_cast<char*>(glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY)) + sizeof(float) * 3 * numberOfVertices);
 		for (size_t i = 0; i < posAcc.count; ++i)
 		{
-			coordPtr[i] = *reinterpret_cast<const float2*>(bufferPos);
+			ptr[i] = *reinterpret_cast<const float2*>(bufferPos);
 			if (posView.byteStride == 0) {
 				bufferPos += sizeof(float) * 2;
 			}
