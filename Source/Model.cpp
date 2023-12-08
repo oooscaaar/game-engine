@@ -9,7 +9,6 @@
 
 Model::Model()
 {
-
 }
 
 Model::~Model()
@@ -46,7 +45,6 @@ const void Model::Load(const char* filePath)
 		}
 	}
 
-
 	//Load Mesh
 	for (const auto& srcMesh : model.meshes) {
 		for (const auto& primitive : srcMesh.primitives) {
@@ -56,13 +54,10 @@ const void Model::Load(const char* filePath)
 		}
 	}
 
-
 	//Create Program
-		if (program == 0) {
-			unsigned vtx_shader = App->program->CompileShader(GL_VERTEX_SHADER, App->program->ReadShader("../Source/Shaders/assignment.vert"));
-			unsigned frg_shader = App->program->CompileShader(GL_FRAGMENT_SHADER, App->program->ReadShader("../Source/Shaders/assignment.frag"));
-			program = App->program->CreateProgram(vtx_shader, frg_shader);
-		}
+	unsigned vtx_shader = App->program->CompileShader(GL_VERTEX_SHADER, App->program->ReadShader("../Source/Shaders/assignment.vert"));
+	unsigned frg_shader = App->program->CompileShader(GL_FRAGMENT_SHADER, App->program->ReadShader("../Source/Shaders/assignment.frag"));
+	program = App->program->CreateProgram(vtx_shader, frg_shader);
 }
 
 //TODO Delete meshes

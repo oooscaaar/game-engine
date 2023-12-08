@@ -17,6 +17,7 @@ bool ModuleRenderAssignment::Init()
 
 update_status ModuleRenderAssignment::PreUpdate()
 {
+	//TODO: Add drop action to Load new model.
 	model->Draw();
 	return update_status::UPDATE_CONTINUE;
 }
@@ -26,8 +27,3 @@ bool ModuleRenderAssignment::CleanUp()
 
 	return true;
 }
-
-//void ModuleRenderAssignment::Draw()
-//{
-//	model->Draw("../Game/Models/BakerHouse/BakerHouse.gltf");
-//}

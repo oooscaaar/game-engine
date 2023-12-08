@@ -14,7 +14,6 @@ public:
 	void const Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
 	void const Draw(const std::vector<unsigned>& textures, const unsigned &program);
 
-
 private:
 	unsigned vbo = 0;
 	unsigned vao = 0;
