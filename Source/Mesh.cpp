@@ -25,8 +25,6 @@ void const Mesh::Draw(const tinygltf::Model& model, const tinygltf::Mesh& mesh, 
 	
 	CreateVAO();
 	
-	//RenderVAO(textures);
-	//RenderEBO(textures);
 	Render(textures);
 
 	glDeleteVertexArrays(1, &vao);
@@ -44,7 +42,6 @@ void const Mesh::CreateVBO() {
 void const Mesh::LoadPositions(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive) {
 
 	const auto& itPos = primitive.attributes.find("POSITION");
-
 	if (itPos != primitive.attributes.end())
 	{
 		const tinygltf::Accessor& posAcc = model.accessors[itPos->second];
@@ -56,7 +53,7 @@ void const Mesh::LoadPositions(const tinygltf::Model& model, const tinygltf::Mes
 
 		glGenBuffers(1, &vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * posAcc.count, nullptr, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, (sizeof(float3) + sizeof(float2)) * posAcc.count, nullptr, GL_STATIC_DRAW);
 
 		numberOfVertices = posAcc.count;
 		float3* ptr = reinterpret_cast<float3*>(glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
@@ -65,6 +62,33 @@ void const Mesh::LoadPositions(const tinygltf::Model& model, const tinygltf::Mes
 			ptr[i] = *reinterpret_cast<const float3*>(bufferPos);
 			if (posView.byteStride == 0) {
 				bufferPos += sizeof(float)*3;
+			}
+			else {
+				bufferPos += posView.byteStride;
+			}
+		}
+		glUnmapBuffer(GL_ARRAY_BUFFER);
+	}
+
+	const auto& itCoord = primitive.attributes.find("TEXCOORD_0");
+	if (itCoord != primitive.attributes.end())
+	{
+		const tinygltf::Accessor& posAcc = model.accessors[itCoord->second];
+		SDL_assert(posAcc.type == TINYGLTF_TYPE_VEC2);
+		SDL_assert(posAcc.componentType == GL_FLOAT);
+		const tinygltf::BufferView& posView = model.bufferViews[posAcc.bufferView];
+		const tinygltf::Buffer& posBuffer = model.buffers[posView.buffer];
+		const unsigned char* bufferPos = &(posBuffer.data[posAcc.byteOffset + posView.byteOffset]);
+
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+
+		float3* ptr = reinterpret_cast<float3*>(glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
+		float2* coordPtr = reinterpret_cast<float2*>(ptr += sizeof(float3)* numberOfVertices);
+		for (size_t i = 0; i < posAcc.count; ++i)
+		{
+			coordPtr[i] = *reinterpret_cast<const float2*>(bufferPos);
+			if (posView.byteStride == 0) {
+				bufferPos += sizeof(float) * 2;
 			}
 			else {
 				bufferPos += posView.byteStride;
@@ -130,7 +154,7 @@ void const Mesh::CreateVAO()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)0);
 
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 3 + sizeof(float) * 2, (void*)(sizeof(float) * 3));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, (void*)(sizeof(float) * 3 * numberOfVertices));
 
 	glBindVertexArray(0);
 }
