@@ -13,8 +13,6 @@ class ModuleTextures;
 class ModuleInput;
 class ModuleCamera;
 class ModuleTexture;
-//class ModuleLoader;
-//class ModuleModel;
 
 class ModuleRenderExercise;
 class ModuleRenderTransformation;
@@ -43,8 +41,6 @@ public:
     ModuleEditor* editor = nullptr;
     ModuleCamera* camera = nullptr;
     ModuleTexture* texture = nullptr;
-    //ModuleLoader* loader = nullptr;
-    //ModuleModel* model = nullptr;
 
     ModuleRenderExercise* render_exercise = nullptr;
     ModuleRenderTransformation* render_transformation = nullptr;
