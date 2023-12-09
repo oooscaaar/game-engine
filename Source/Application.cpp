@@ -1,5 +1,6 @@
 #pragma once
 #include "Application.h"
+#include "ModuleTimer.h"
 #include "ModuleWindow.h"
 #include "ModuleProgram.h"
 #include "ModuleOpenGL.h"
@@ -9,7 +10,6 @@
 #include "ModuleInput.h"
 #include "ModuleEditor.h"
 #include "ModuleCamera.h"
-#include "ModuleLoader.h"
 #include "ModuleTexture.h"
 #include "ModuleRenderQuad.h"
 #include "ModuleRenderAssignment.h"
@@ -18,6 +18,7 @@ using namespace std;
 
 Application::Application()
 {
+	modules.push_back(timer = new ModuleTimer());
 	modules.push_back(window = new ModuleWindow());
 	modules.push_back(render = new ModuleOpenGL());
 	modules.push_back(editor = new ModuleEditor());
@@ -26,8 +27,7 @@ Application::Application()
 	modules.push_back(program = new ModuleProgram());
 	modules.push_back(debugDraw = new ModuleDebugDraw());
 	modules.push_back(texture = new ModuleTexture());
-	//modules.push_back(loader = new ModuleLoader());
-	//modules.push_back(model = new ModuleModel());
+
 	//modules.push_back(render_quad = new ModuleRenderQuad());
 	//modules.push_back(render_transformation = new ModuleRenderTransformation());
 	modules.push_back(render_assignment= new ModuleRenderAssignment());

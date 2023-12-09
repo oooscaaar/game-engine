@@ -266,8 +266,6 @@
     <ClCompile Include="ModuleDebugDraw.cpp" />
     <ClCompile Include="ModuleEditor.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
-    <ClCompile Include="ModuleLoader.cpp" />
-    <ClCompile Include="ModuleModel.cpp" />
     <ClCompile Include="ModuleOpenGL.cpp" />
     <ClCompile Include="ModuleProgram.cpp" />
     <ClCompile Include="ModuleRenderAssignment.cpp" />
@@ -275,6 +273,7 @@
     <ClCompile Include="ModuleRenderQuad.cpp" />
     <ClCompile Include="ModuleRenderTransformation.cpp" />
     <ClCompile Include="ModuleTexture.cpp" />
+    <ClCompile Include="ModuleTimer.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -376,8 +375,6 @@
     <ClInclude Include="ModuleDebugDraw.h" />
     <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="ModuleInput.h" />
-    <ClInclude Include="ModuleLoader.h" />
-    <ClInclude Include="ModuleModel.h" />
     <ClInclude Include="ModuleOpenGL.h" />
     <ClInclude Include="ModuleProgram.h" />
     <ClInclude Include="ModuleRenderAssignment.h" />
@@ -385,6 +382,7 @@
     <ClInclude Include="ModuleRenderQuad.h" />
     <ClInclude Include="ModuleRenderTransformation.h" />
     <ClInclude Include="ModuleTexture.h" />
+    <ClInclude Include="ModuleTimer.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="tiny_gltf.h" />
   </ItemGroup>

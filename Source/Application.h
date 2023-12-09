@@ -4,6 +4,7 @@
 #include "Globals.h"
 #include "Module.h"
 
+class ModuleTimer;
 class ModuleOpenGL;
 class ModuleDebugDraw;
 class ModuleWindow;
@@ -13,8 +14,6 @@ class ModuleTextures;
 class ModuleInput;
 class ModuleCamera;
 class ModuleTexture;
-//class ModuleLoader;
-//class ModuleModel;
 
 class ModuleRenderExercise;
 class ModuleRenderTransformation;
@@ -34,7 +33,8 @@ public:
 	bool Init();
 	update_status Update();
 	bool CleanUp();
-
+    
+    ModuleTimer* timer = nullptr;
     ModuleOpenGL* render = nullptr;
     ModuleDebugDraw* debugDraw = nullptr;
     ModuleWindow* window = nullptr;
@@ -43,8 +43,6 @@ public:
     ModuleEditor* editor = nullptr;
     ModuleCamera* camera = nullptr;
     ModuleTexture* texture = nullptr;
-    //ModuleLoader* loader = nullptr;
-    //ModuleModel* model = nullptr;
 
     ModuleRenderExercise* render_exercise = nullptr;
     ModuleRenderTransformation* render_transformation = nullptr;

@@ -165,11 +165,10 @@
     </ClCompile>
     <ClCompile Include="ModuleTexture.cpp" />
     <ClCompile Include="ModuleRenderQuad.cpp" />
-    <ClCompile Include="ModuleLoader.cpp" />
     <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="ModuleModel.cpp" />
     <ClCompile Include="ModuleRenderAssignment.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModuleTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -448,11 +447,10 @@
     <ClInclude Include="ModuleTexture.h" />
     <ClInclude Include="ModuleRenderQuad.h" />
     <ClInclude Include="tiny_gltf.h" />
-    <ClInclude Include="ModuleLoader.h" />
     <ClInclude Include="Mesh.h" />
-    <ClInclude Include="ModuleModel.h" />
     <ClInclude Include="ModuleRenderAssignment.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="ModuleTimer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
