@@ -125,8 +125,21 @@ update_status ModuleInput::PreUpdate() {
 			mouse.y = sdlEvent.motion.y;
 			break;
 
+		case (SDL_DROPFILE):
+			char* fileDirectory = sdlEvent.drop.file;
+			SDL_ShowSimpleMessageBox(
+				SDL_MESSAGEBOX_INFORMATION,
+				"File Dropped: ",
+				fileDirectory,
+				App->window->GetWindow()
+			);
+			//DropModelFile(dropped_filedir);
+			SDL_free(fileDirectory);
+			break;
+
 		}
-		
+
+
 
 	}
 

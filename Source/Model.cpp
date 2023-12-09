@@ -40,7 +40,7 @@ const void Model::Load(const char* filePath)
 			if (srcMaterial.pbrMetallicRoughness.baseColorTexture.index >= 0) {
 				const tinygltf::Texture& texture = model.textures[srcMaterial.pbrMetallicRoughness.baseColorTexture.index];
 				const tinygltf::Image& image = model.images[texture.source];
-				textureId = (App->texture->Load(image.uri));
+				textureId = (App->texture->Load(image.uri, filePath));
 			}
 			textures.push_back(textureId);
 		}
