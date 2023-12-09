@@ -27,5 +27,6 @@ class ModuleCamera :
 		float4x4 proj;
 		float4x4 model;
 		float4x4 view;
+		float speed = 3.f;
 };
 

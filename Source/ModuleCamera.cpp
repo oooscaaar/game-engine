@@ -27,17 +27,26 @@ bool ModuleCamera::Init()
 }
 
 update_status ModuleCamera::PreUpdate() {
-
-	const float speed = 3.f;
+	
+	speed = 3.f;
 	const float rotationSpeed = 100.f;
 	const float deltaTime = App->timer->GetDeltaTime();
 	const float2& mouseMotion = App->input->GetMouseMotion();
 	const unsigned int& mouseWheel = App->input->GetMouseWheel();
 
-	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_LCTRL) == KeyState::KEY_REPEAT) {
+	//if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_LCTRL) == KeyState::KEY_REPEAT) {
+	//	Rotate(float3x3::RotateAxisAngle(frustum.WorldRight().Normalized(), -mouseMotion.y * rotationSpeed * pi / 180 * deltaTime));
+	//	Rotate(float3x3::RotateY(-mouseMotion.x * rotationSpeed * pi / 180 * deltaTime));
+	//}
+	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KeyState::KEY_REPEAT)
+	{
+		speed *= 2;
+	}
+
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KeyState::KEY_REPEAT) {
 		Rotate(float3x3::RotateAxisAngle(frustum.WorldRight().Normalized(), -mouseMotion.y * rotationSpeed * pi / 180 * deltaTime));
 		Rotate(float3x3::RotateY(-mouseMotion.x * rotationSpeed * pi / 180 * deltaTime));
-	} 
+	}
 
 	if (App->input->GetKey(SDL_SCANCODE_W) == KeyState::KEY_REPEAT)
 	{
@@ -69,7 +78,7 @@ update_status ModuleCamera::PreUpdate() {
 	}
 
 	if (mouseWheel == -1) {
-		//frustum.SetPos(frustum.Pos() + (frustum.Front().Normalized() * -speed * deltaTime));
+		frustum.SetPos(frustum.Pos() + (frustum.Front().Normalized() * -speed * deltaTime));
 	}
 	
 	//Reset camera
