@@ -16,13 +16,61 @@ bool ModuleTexture::Init()
 	
 	LOG("Intitialize Module Texture\n");
 		
+	image = new DirectX::ScratchImage();
+
+	return ret;
+
+}
+
+update_status ModuleTexture::PreUpdate()
+{
+	return UPDATE_CONTINUE;
+}
+
+bool ModuleTexture::CleanUp()
+{
+	glDeleteTextures(1, &texture);
+	return true;
+}
+
+unsigned int ModuleTexture::Load(const std::string& filePath) {
+
+	std::string fileExtension = filePath.substr(filePath.find_last_of(".") + 1);
+
+	//Convert filePath to wchar_t*
+	std::wstring wideFilePath = L"../Game/Textures/";
+	for (int i = 0; i < filePath.length(); ++i)
+		wideFilePath += wchar_t(filePath[i]);
+	const wchar_t* wCharFilePath = wideFilePath.c_str();
+
+	HRESULT hr = 0;
+
+	if (fileExtension == "dds") {
+		hr = LoadFromDDSFile(wCharFilePath,
+			DirectX::DDS_FLAGS_NONE, &imageMetadata, *image);
+
+	}
+	else if(fileExtension == "tga") {
+		//TODO: Implement tga loader
+	}
 	
-	DirectX::ScratchImage* image = new DirectX::ScratchImage();
-	HRESULT hr = LoadFromDDSFile(L"../Game/Textures/Test-image-Baboon.dds",
-	DirectX::DDS_FLAGS_NONE, &imageMetadata, *image);
+	else if (fileExtension == "png") {
+		hr = LoadFromWICFile(wCharFilePath,
+						DirectX::WIC_FLAGS_NONE, &imageMetadata, *image);
+	}
+	else if (fileExtension == "jpg") {
+		hr = LoadFromWICFile(wCharFilePath,
+			DirectX::WIC_FLAGS_NONE, &imageMetadata, *image);
+
+	} 
+	else {
+		LOG("Error loading texture file.\n");
+		return false;
+	}
+
 	if (FAILED(hr)) {
 		LOG("Error loading texture file.\n");
-		ret = false;
+		return false;
 	}
 
 	switch (imageMetadata.format)
@@ -62,19 +110,13 @@ bool ModuleTexture::Init()
 		glTexImage2D(GL_TEXTURE_2D, i, internalFormat, mip->width, mip->height, 0, format, type, mip->pixels);
 	}
 
-	return ret;
+
+	return texture;
 
 }
 
-update_status ModuleTexture::PreUpdate()
-{
-	return UPDATE_CONTINUE;
-}
-
-bool ModuleTexture::CleanUp()
-{
+void ModuleTexture::Delete(unsigned int& texture) {
 	glDeleteTextures(1, &texture);
-	return true;
 }
 
 unsigned int const ModuleTexture::GetTexture() const
@@ -152,3 +194,4 @@ const char* ModuleTexture::GetFilterType() const
 		return "Unknown texture filter type.";
 	}
 }
+
