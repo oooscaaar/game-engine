@@ -20,13 +20,15 @@ Model::~Model()
 void Model::Draw()
 {
 	for (const auto& mesh : meshes) {
-		mesh->Draw(textures, program);
+		mesh->Draw(textures, program, matrix);
 	}
 }
 
-const void Model::Load(const char* filePath)
+void Model::Load(const char* filePath)
 {
 	std::string error, warning;
+	tinygltf::TinyGLTF gltfContext;
+	tinygltf::Model model;
 	bool loadOk = gltfContext.LoadASCIIFromFile(&model, &error, &warning, filePath);
 	if (!loadOk)
 	{
@@ -61,13 +63,15 @@ const void Model::Load(const char* filePath)
 	program = App->program->CreateProgram(vtx_shader, frg_shader);
 }
 
-//TODO Delete meshes
-//for (auto mesh : meshes)
-//delete(mesh);
-//meshes.clear();
+void Model::Clear()
+{
+	for (auto mesh : meshes)
+		delete(mesh);
+	meshes.clear();
+	
+	for (auto texture : textures)
+		App->texture->Delete(texture);
+	textures.clear();
 
+}
 
-//TODO Delete textures
-//for (auto texture : textures)
-//App->texture->Delete(texture);
-//textures.clear();

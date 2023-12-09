@@ -71,7 +71,8 @@ update_status ModuleCamera::PreUpdate() {
 	if (mouseWheel == -1) {
 		//frustum.SetPos(frustum.Pos() + (frustum.Front().Normalized() * -speed * deltaTime));
 	}
-
+	
+	//Reset camera
 	if (App->input->GetKey(SDL_SCANCODE_R) == KeyState::KEY_REPEAT) {
 		InitFrustum();
 	}

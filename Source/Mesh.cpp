@@ -27,8 +27,8 @@ void const Mesh::Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, 
 
 }
 
-void const Mesh::Draw(const std::vector<unsigned>& textures, const unsigned& program) {
-	Render(textures, program);
+void const Mesh::Draw(const std::vector<unsigned>& textures, const unsigned& program, const float4x4& modelMatrix) {
+	Render(textures, program, modelMatrix);
 }
 
 void const Mesh::LoadPositions(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive) {
@@ -153,7 +153,7 @@ void const Mesh::CreateVAO()
 
 
 
-void const Mesh::Render(const std::vector<unsigned>& textures, const unsigned &program)
+void const Mesh::Render(const std::vector<unsigned>& textures, const unsigned &program, const float4x4& modelMatrix)
 {
 	glUseProgram(program);
 	
@@ -164,7 +164,8 @@ void const Mesh::Render(const std::vector<unsigned>& textures, const unsigned &p
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, textures[0]);
 
-	glUniformMatrix4fv(0, 1, GL_TRUE, &(float4x4::FromTRS(float3(0.0f, 0.0f, 0.f), float3x3::RotateZ(0), float3(50.0f, 50.0f, 50.0f))[0][0]));
+	glUniformMatrix4fv(0, 1, GL_TRUE, (const float*)&modelMatrix);
+
 	glUniformMatrix4fv(1, 1, GL_TRUE, &(App->camera->GetViewMatrix())[0][0]);
 	glUniformMatrix4fv(2, 1, GL_TRUE, &(App->camera->GetProjectionMatrix())[0][0]);
 	glUniform1i(glGetUniformLocation(program, "diffuse"), 0);

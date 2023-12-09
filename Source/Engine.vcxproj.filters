@@ -169,6 +169,7 @@
     <ClCompile Include="ModuleRenderAssignment.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModuleTimer.cpp" />
+    <ClCompile Include="ModuleLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -451,6 +452,7 @@
     <ClInclude Include="ModuleRenderAssignment.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModuleTimer.h" />
+    <ClInclude Include="ModuleLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">

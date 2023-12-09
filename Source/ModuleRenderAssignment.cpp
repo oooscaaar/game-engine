@@ -1,4 +1,5 @@
 #include "ModuleRenderAssignment.h"
+#include "ModuleLoader.h"
 
 ModuleRenderAssignment::ModuleRenderAssignment()
 {
@@ -10,15 +11,12 @@ ModuleRenderAssignment::~ModuleRenderAssignment()
 
 bool ModuleRenderAssignment::Init()
 {
-	model = new Model();
-	model->Load("../Game/Models/BakerHouse/BakerHouse.gltf");
 	return true;
 }
 
 update_status ModuleRenderAssignment::PreUpdate()
 {
-	//TODO: Add drop action to Load new model.
-	model->Draw();
+	App->moduleLoader->GetModel()->Draw();
 	return update_status::UPDATE_CONTINUE;
 }
 

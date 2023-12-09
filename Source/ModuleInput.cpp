@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleInput.h"
 #include "ModuleWindow.h"
+#include "ModuleLoader.h"
 #include "SDL.h"
 #include "imgui_impl_sdl2.h"
 
@@ -129,11 +130,13 @@ update_status ModuleInput::PreUpdate() {
 			char* fileDirectory = sdlEvent.drop.file;
 			SDL_ShowSimpleMessageBox(
 				SDL_MESSAGEBOX_INFORMATION,
-				"File Dropped: ",
+				"File Dropped",
 				fileDirectory,
 				App->window->GetWindow()
 			);
-			//DropModelFile(dropped_filedir);
+
+			App->moduleLoader->LoadModel(fileDirectory);
+
 			SDL_free(fileDirectory);
 			break;
 
