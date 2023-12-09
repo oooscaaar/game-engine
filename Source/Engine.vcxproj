@@ -273,6 +273,7 @@
     <ClCompile Include="ModuleRenderQuad.cpp" />
     <ClCompile Include="ModuleRenderTransformation.cpp" />
     <ClCompile Include="ModuleTexture.cpp" />
+    <ClCompile Include="ModuleTimer.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +382,7 @@
     <ClInclude Include="ModuleRenderQuad.h" />
     <ClInclude Include="ModuleRenderTransformation.h" />
     <ClInclude Include="ModuleTexture.h" />
+    <ClInclude Include="ModuleTimer.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="tiny_gltf.h" />
   </ItemGroup>

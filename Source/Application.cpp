@@ -1,5 +1,6 @@
 #pragma once
 #include "Application.h"
+#include "ModuleTimer.h"
 #include "ModuleWindow.h"
 #include "ModuleProgram.h"
 #include "ModuleOpenGL.h"
@@ -17,6 +18,7 @@ using namespace std;
 
 Application::Application()
 {
+	modules.push_back(timer = new ModuleTimer());
 	modules.push_back(window = new ModuleWindow());
 	modules.push_back(render = new ModuleOpenGL());
 	modules.push_back(editor = new ModuleEditor());

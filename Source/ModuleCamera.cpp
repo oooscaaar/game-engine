@@ -4,6 +4,7 @@
 #include "ModuleDebugDraw.h"
 #include "ModuleCamera.h"
 #include "ModuleInput.h"
+#include "ModuleTimer.h"
 #include "glew.h"
 #include "SDL.h"
 #include "debugdraw.h"
@@ -32,20 +33,21 @@ bool ModuleCamera::Init()
 
 update_status ModuleCamera::PreUpdate() {
 
-	const float speed = 0.001f;
+	const float speed = 2.f;
+	const float deltaTime = App->timer->GetDeltaTime();
 
 	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT) {
 
-		frustum.SetPos(float3(frustum.Pos().x + speed, frustum.Pos().y, frustum.Pos().z));
+		frustum.SetPos(float3(frustum.Pos().x + speed*deltaTime, frustum.Pos().y, frustum.Pos().z));
 	}
 	else if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT) {
-		frustum.SetPos(float3(frustum.Pos().x - speed, frustum.Pos().y, frustum.Pos().z));
+		frustum.SetPos(float3(frustum.Pos().x - speed*deltaTime, frustum.Pos().y, frustum.Pos().z));
 	}
 	else if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT) {
-		frustum.SetPos(float3(frustum.Pos().x, frustum.Pos().y, frustum.Pos().z - speed));
+		frustum.SetPos(float3(frustum.Pos().x, frustum.Pos().y, frustum.Pos().z - speed*deltaTime));
 	}
 	else if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT) {
-		frustum.SetPos(float3(frustum.Pos().x, frustum.Pos().y, frustum.Pos().z + speed));
+		frustum.SetPos(float3(frustum.Pos().x, frustum.Pos().y, frustum.Pos().z + speed*deltaTime));
 	}
 	
 	return UPDATE_CONTINUE;

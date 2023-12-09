@@ -4,6 +4,7 @@
 #include "Globals.h"
 #include "Module.h"
 
+class ModuleTimer;
 class ModuleOpenGL;
 class ModuleDebugDraw;
 class ModuleWindow;
@@ -32,7 +33,8 @@ public:
 	bool Init();
 	update_status Update();
 	bool CleanUp();
-
+    
+    ModuleTimer* timer = nullptr;
     ModuleOpenGL* render = nullptr;
     ModuleDebugDraw* debugDraw = nullptr;
     ModuleWindow* window = nullptr;
