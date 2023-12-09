@@ -15,9 +15,12 @@ class ModuleCamera :
 		bool Init();
 		update_status PreUpdate();
 		bool CleanUp();
+		const void InitFrustum();
 
+		void const Rotate(float3x3 rotationMatrix);
 		float4x4 GetProjectionMatrix();
 		float4x4 GetViewMatrix();
+
 
 	private:
 		Frustum frustum;
