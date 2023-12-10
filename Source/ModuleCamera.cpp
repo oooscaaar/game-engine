@@ -83,12 +83,11 @@ update_status ModuleCamera::PreUpdate() {
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_LALT) == KeyState::KEY_REPEAT && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT) {
-		//const float3 focus = frustum.Pos() + (frustum.Front()*10.f); 
-		//Rotate(float3x3::RotateAxisAngle(frustum.WorldRight().Normalized(), -mouseMotion.y * rotationSpeed * pi/180 * deltaTime));
-		frustum.SetPos(float3(0.f, 0.5f, 0.f));
+		const float3 focus = frustum.Pos() + frustum.Front(); 
+		Rotate(float3x3::RotateAxisAngle(frustum.WorldRight().Normalized(), -mouseMotion.y * rotationSpeed * pi/180 * deltaTime));
 		Rotate(float3x3::RotateY(-mouseMotion.x * rotationSpeed * pi/180 * deltaTime));
-		//const float3 newFocus = frustum.Pos() + (frustum.Front() * 10.f);
-		//frustum.SetPos((focus - newFocus) + frustum.Pos());
+		const float3 newFocus = frustum.Pos() + frustum.Front();
+		frustum.SetPos((focus - newFocus) + frustum.Pos());
 	}
 
 	return UPDATE_CONTINUE;

@@ -12,7 +12,6 @@ bool ModuleLoader::Init()
 {
 	model = new Model();
 	LoadModel("Models/BakerHouse/BakerHouse.gltf");
-	//LoadModel("../Game/Models/Duck/Duck.gltf");
 	return true;
 }
 
