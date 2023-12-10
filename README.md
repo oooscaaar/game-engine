@@ -20,11 +20,11 @@ D -> Move BACK</br>
 Q -> Move UP</br>
 E -> Move DOWN</br>
 
-Hold Right Click -> Add free look (Can be combined with movement)</br>
-Mouse Wheel -> ZoomIn / ZoomOut</br>
-Alt + Left click Orbit the object</br>
 F -> Focus the camera around the geometry</br>
-SHIFT(Holding) -> Duplicates movement speed</br>
+Mouse Wheel -> ZoomIn / ZoomOut</br>
+Right Click (Hold) -> Add free look (Can be combined with movement)</br>
+SHIFT (Hold) -> Duplicates movement speed</br>
+Alt + Left click Orbit the object</br>
 
 ## Libraries used (Until today)
 
