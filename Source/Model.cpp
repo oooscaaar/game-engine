@@ -79,3 +79,9 @@ void Model::Clear()
 
 }
 
+void Model::Scale(const float& scaleFactor)
+{
+	this->scaleFactor = scaleFactor;
+	matrix = float4x4::FromTRS(float3::zero, float4x4::identity, float3(scaleFactor, scaleFactor, scaleFactor));
+}
+

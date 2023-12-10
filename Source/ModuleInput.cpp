@@ -139,7 +139,6 @@ update_status ModuleInput::PreUpdate() {
 
 			SDL_free(fileDirectory);
 			break;
-
 		}
 
 

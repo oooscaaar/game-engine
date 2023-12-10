@@ -104,54 +104,16 @@ update_status ModuleEditor::Update()
             unsigned int numIndices = 0;
             for (const auto& srcmesh : meshes) {
                 numVertices += srcmesh->GetNumberOfVertices();
-				numIndices += srcmesh->GetNumberOfIndices();
+                numIndices += srcmesh->GetNumberOfIndices();
             }
 
             ImGui::Text("Meshes: %d", meshes.size());
             ImGui::Text("Vertices: %d", numVertices);
             ImGui::Text("Indices: %d", numIndices);
 
-            static const char* minificationFilters[]{ "Nearest", "Linear", "Nearest MipMap Nearest","Linear MipMap Nearest", "Nearest MipMap Linear", "Linear MipMap Linear" };
-            static int SelectedMin = 5;
-            if (ImGui::Combo("MIN Filter", &SelectedMin, minificationFilters, IM_ARRAYSIZE(minificationFilters)))
-            {
-                switch (SelectedMin)
-                {
-                case 0:
-                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-                    break;
-                case 1:
-                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-                    break;
-                case 2:
-                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-                    break;
-                case 3:
-                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
-                    break;
-                case 4:
-                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
-                    break;
-                case 5:
-                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-                    break;
-                }
-            }
-
-            static const char* magnificationFilters[]{ "Nearest","Linear" };
-            static int SelectedMag = 1;
-            if (ImGui::Combo("MAG filter", &SelectedMag, magnificationFilters, IM_ARRAYSIZE(magnificationFilters)))
-            {
-                switch (SelectedMag)
-                {
-                case 0:
-                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-                    break;
-                case 1:
-                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-                    break;
-                }
-            }
+            float f0 = model->GetScaleFactor();
+            ImGui::InputFloat("Model Scale Factor", &f0, 0.f, 0.f, "%.3f");
+            model->Scale(f0);
         }
 
         if (ImGui::CollapsingHeader("Texture"))
@@ -223,6 +185,7 @@ update_status ModuleEditor::Update()
             ImGui::Text("OpenGL: %s", glGetString(GL_VERSION));
             ImGui::Text("GLSL: %s", glGetString(GL_SHADING_LANGUAGE_VERSION));
             ImGui::Text("SDL: %d.%d.%d", SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
+            ImGui::Text("ImGui: %s", ImGui::GetVersion());
 
             ImGui::Separator();
         }
@@ -238,7 +201,7 @@ update_status ModuleEditor::Update()
 
     // Set popup size and calcula middle of the window
     const float newWindowWidth = App->window->GetWidth() / 2.f;
-    const float newWindowHeight = App->window->GetHeight() / 2.f;
+    const float newWindowHeight = App->window->GetHeight() / 1.5f;
     ImGui::SetNextWindowSize({ newWindowWidth, newWindowHeight});
     ImGui::SetNextWindowPos({ App->window->GetWidth() - (newWindowWidth/2.f), App->window->GetHeight() - (newWindowHeight / 2.f) });
 
