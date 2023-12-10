@@ -79,6 +79,9 @@ update_status ModuleEditor::Update()
             if (ImGui::MenuItem("About")) {
                 show_about_window = true; 
             }
+            if (ImGui::MenuItem("Go to GitHub Repo")) {
+                ShellExecuteA(NULL, "open", GITHUB_URL, NULL, NULL, SW_SHOWNORMAL);
+            }
             ImGui::EndMenu();
         }
 
@@ -90,6 +93,56 @@ update_status ModuleEditor::Update()
     //--> START COMPONENTS WINDOW
     if (ImGui::Begin("Components"))   
     {
+        if (ImGui::CollapsingHeader("Geometry"))
+        {
+            ImGui::Text("Format: %s", App->texture->GetFormat());
+            ImGui::Text("Width: %i px", App->texture->GetWidth());
+            ImGui::Text("Height: %i px", App->texture->GetHeight());
+            ImGui::Text("Mip levels: %i", App->texture->GetMipLevels());
+
+            static const char* minificationFilters[]{ "Nearest", "Linear", "Nearest MipMap Nearest","Linear MipMap Nearest", "Nearest MipMap Linear", "Linear MipMap Linear" };
+            static int SelectedMin = 5;
+            if (ImGui::Combo("MIN Filter", &SelectedMin, minificationFilters, IM_ARRAYSIZE(minificationFilters)))
+            {
+                switch (SelectedMin)
+                {
+                case 0:
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+                    break;
+                case 1:
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+                    break;
+                case 2:
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+                    break;
+                case 3:
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+                    break;
+                case 4:
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+                    break;
+                case 5:
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+                    break;
+                }
+            }
+
+            static const char* magnificationFilters[]{ "Nearest","Linear" };
+            static int SelectedMag = 1;
+            if (ImGui::Combo("MAG filter", &SelectedMag, magnificationFilters, IM_ARRAYSIZE(magnificationFilters)))
+            {
+                switch (SelectedMag)
+                {
+                case 0:
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+                    break;
+                case 1:
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+                    break;
+                }
+            }
+        }
+
         if (ImGui::CollapsingHeader("Texture"))
         {
             ImGui::Text("Format: %s", App->texture->GetFormat());
@@ -172,25 +225,38 @@ update_status ModuleEditor::Update()
         ImGui::OpenPopup("About");
     }
 
-    ImGui::SetNextWindowSize({ 400, 200 });
+    ImGui::SetNextWindowSize({ App->window->GetWidth()/3.f, App->window->GetHeight()/2.f});
+
 
     if (ImGui::BeginPopupModal("About"))
     {
 
-        ImGui::TextWrapped("I'll add some information about the project, the licenses, and Me :)");
+        ImGui::TextWrapped("OxEngine - 3D Game Engine written in C++");
+		ImGui::Separator();
+        ImGui::TextWrapped("Developed for the Master's Degree in Advanced Programming for AAA Video Games");
         ImGui::Separator();
-        static float slider_value = 0.0f;
-        ImGui::SliderFloat("Slider", &slider_value, 0.0f, 100.0f);
+        ImGui::TextWrapped("HOW TO USE");
+        ImGui::TextWrapped("Drag the model.gLTF file to the engine window");
+        ImGui::TextWrapped("Camera controls");
+        ImGui::TextWrapped("W->Move FRONT");
+        ImGui::TextWrapped("A->Move LEFT");
+        ImGui::TextWrapped("S->Move RIGHT");
+        ImGui::TextWrapped("D->Move BACK");
+        ImGui::TextWrapped("Q->Move UP");
+        ImGui::TextWrapped("E->Move DOWN");
+        ImGui::TextWrapped("F->Focus the camera around the geometry");
+        ImGui::TextWrapped("Mouse Wheel->ZoomIn / ZoomOut");
+        ImGui::TextWrapped("Right Click(Hold)->Add free look(Can be combined with movement)");
+        ImGui::TextWrapped("SHIFT(Hold)->Duplicates movement speed");
+        ImGui::TextWrapped("Alt + Left click Orbit the object");
         ImGui::Separator();
-        LOG("Test Slider: %f", slider_value);
+        ImGui::TextWrapped("LICENSE");
+        ImGui::TextWrapped("MIT");
+        ImGui::Separator();
+
         if (ImGui::Button("Ok")) ImGui::CloseCurrentPopup();
         ImGui::EndPopup();
     }
-
-
-
-
-
     
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

@@ -20,3 +20,4 @@ enum update_status
 #define FULLSCREEN false
 #define VSYNC true
 #define TITLE "OX Engine"
+#define GITHUB_URL "https://github.com/oooscaaar/game-engine"
