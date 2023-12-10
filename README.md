@@ -1,8 +1,12 @@
 <h1 align="center">
   OxEngine - 3D Game Engine written in C++
 </h1>
+Developed for the [Master's Degree in Advanced Programming for AAA Video Games](https://www.talent.upc.edu/ing/estudis/formacio/curs/201200/advanced-programming-aaa-video-games/)</br></br>
 
-Developed for the [Master's Degree in Advanced Programming for AAA Video Games](https://www.talent.upc.edu/ing/estudis/formacio/curs/201200/advanced-programming-aaa-video-games/)</br>
+
+https://github.com/oooscaaar/game-engine/assets/16454493/ff9d2299-9419-462a-836c-033387be8bab
+
+</br>
 The game engine is under development. It features:
 - Loading geometry
 - Inspecting geometry
