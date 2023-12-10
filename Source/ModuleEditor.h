@@ -18,10 +18,6 @@ public:
 	update_status Update();
 	update_status PostUpdate();
 	bool CleanUp();
-
-private:
-	bool a = true;
-
 };
 
 #endif

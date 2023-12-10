@@ -280,7 +280,6 @@
     <ClInclude Include="..\..\..\iCloudDrive\Master Videogames\Cpp\D13 02-11-23\debug_draw\debugdraw.h" />
     <ClInclude Include="..\..\..\iCloudDrive\Master Videogames\Cpp\D13 02-11-23\debug_draw\debug_draw.hpp" />
     <ClInclude Include="Application.h" />
-    <ClInclude Include="Dummy.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="ImGui\imconfig.h" />
     <ClInclude Include="ImGui\imgui.h" />

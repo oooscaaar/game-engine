@@ -22,7 +22,6 @@ ModuleCamera::~ModuleCamera()
 bool ModuleCamera::Init()
 {
 	InitFrustum();
-
 	return true;
 }
 
@@ -77,7 +76,6 @@ update_status ModuleCamera::PreUpdate() {
 		frustum.SetPos(frustum.Pos() + (frustum.Front().Normalized() * -speed * deltaTime));
 	}
 	
-	//Reset camera
 	if (App->input->GetKey(SDL_SCANCODE_R) == KeyState::KEY_REPEAT) {
 		InitFrustum();
 	}
