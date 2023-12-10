@@ -27,17 +27,21 @@ bool ModuleWindow::Init()
 		if (SDL_GetDesktopDisplayMode(0, &displayMode) != 0)
 		{
 			SDL_Log("SDL_GetDesktopDisplayMode failed: %s", SDL_GetError());
-			return 1;
 		}
 
 		int initialWidth = SCREEN_WIDTH;
 		int initialHeight = SCREEN_HEIGHT;
+
+
 
 		// Init in windowed mode with the default window size as half the desktop resolution
 		if (displayMode.w > 0 && displayMode.h > 0) {
 			initialWidth = displayMode.w / 2;
 			initialHeight = displayMode.h / 2;
 		}
+
+		LOG("Initial window width: %d\n", initialWidth);
+		LOG("Initial window height: %d\n", initialHeight);
 
 		Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
 
@@ -57,6 +61,7 @@ bool ModuleWindow::Init()
 		else
 		{
 			screen_surface = SDL_GetWindowSurface(window);
+			LOG("CREATED WINDOW!");
 		}
 	}
 
