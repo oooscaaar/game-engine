@@ -16,9 +16,6 @@ class ModuleCamera;
 class ModuleTexture;
 class ModuleLoader;
 
-class ModuleRenderExercise;
-class ModuleRenderTransformation;
-class ModuleRenderQuad;
 class ModuleRenderAssignment;
 
 class Model;
@@ -47,9 +44,6 @@ public:
     ModuleTexture* texture = nullptr;
     ModuleLoader* moduleLoader = nullptr;
 
-    ModuleRenderExercise* render_exercise = nullptr;
-    ModuleRenderTransformation* render_transformation = nullptr;
-    ModuleRenderQuad* render_quad = nullptr;
     ModuleRenderAssignment* renderAssignment = nullptr;
     
 

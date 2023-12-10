@@ -6,13 +6,10 @@
 #include "ModuleOpenGL.h"
 #include "ModuleDebugDraw.h"
 #include "ModuleLoader.h"
-#include "ModuleRenderExercise.h"
-#include "ModuleRenderTransformation.h"
 #include "ModuleInput.h"
 #include "ModuleEditor.h"
 #include "ModuleCamera.h"
 #include "ModuleTexture.h"
-#include "ModuleRenderQuad.h"
 #include "ModuleRenderAssignment.h"
 
 using namespace std;
