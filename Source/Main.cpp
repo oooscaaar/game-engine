@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include "Application.h"
-#include "ModuleOpenGL.h"
 #include "Globals.h"
 
 #include "SDL/include/SDL.h"

@@ -30,8 +30,6 @@
     </ClCompile>
     <ClCompile Include="ModuleEditor.cpp" />
     <ClCompile Include="ModuleProgram.cpp" />
-    <ClCompile Include="ModuleRenderExercise.cpp" />
-    <ClCompile Include="ModuleRenderTransformation.cpp" />
     <ClCompile Include="ModuleDebugDraw.cpp" />
     <ClCompile Include="ModuleCamera.cpp" />
     <ClCompile Include="MathGeoLib\Algorithm\GJK.cpp">
@@ -164,7 +162,6 @@
       <Filter>MathGeoLib\Tests</Filter>
     </ClCompile>
     <ClCompile Include="ModuleTexture.cpp" />
-    <ClCompile Include="ModuleRenderQuad.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ModuleRenderAssignment.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -208,8 +205,6 @@
     </ClInclude>
     <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="ModuleProgram.h" />
-    <ClInclude Include="ModuleRenderExercise.h" />
-    <ClInclude Include="ModuleRenderTransformation.h" />
     <ClInclude Include="ModuleDebugDraw.h" />
     <ClInclude Include="..\..\..\iCloudDrive\Master Videogames\Cpp\D13 02-11-23\debug_draw\debugdraw.h" />
     <ClInclude Include="..\..\..\iCloudDrive\Master Videogames\Cpp\D13 02-11-23\debug_draw\debug_draw.hpp" />
@@ -446,7 +441,6 @@
       <Filter>MathGeoLib\Tests</Filter>
     </ClInclude>
     <ClInclude Include="ModuleTexture.h" />
-    <ClInclude Include="ModuleRenderQuad.h" />
     <ClInclude Include="tiny_gltf.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="ModuleRenderAssignment.h" />
