@@ -26,6 +26,11 @@ Right Click (Hold) -> Add free look (Can be combined with movement)</br>
 SHIFT (Hold) -> Duplicates movement speed</br>
 Alt + Left click Orbit the object</br>
 
+### Extra features
+- Adjust texture filtering mode (MAG/MIN filters)
+- 
+
+
 ## Libraries used (Until today)
 
 - [SDL 2](https://www.libsdl.org/download-2.0.php)
