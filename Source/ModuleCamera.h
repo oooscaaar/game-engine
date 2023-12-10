@@ -17,9 +17,9 @@ class ModuleCamera :
 		bool CleanUp();
 		const void InitFrustum();
 
-		void const Rotate(float3x3 rotationMatrix);
 		float4x4 GetProjectionMatrix();
 		float4x4 GetViewMatrix();
+		void SetAspectRatio(int& width, int& height);
 
 
 	private:
@@ -28,5 +28,7 @@ class ModuleCamera :
 		float4x4 model = float4x4::zero;
 		float4x4 view = float4x4::zero;
 		float speed = 3.f;
+
+		void const Rotate(float3x3 rotationMatrix);
 };
 

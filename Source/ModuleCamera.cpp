@@ -116,9 +116,17 @@ float4x4 ModuleCamera::GetViewMatrix()
 const void ModuleCamera::InitFrustum() {
 	frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
 	frustum.SetViewPlaneDistances(0.1f, 100.0f);
-	frustum.SetHorizontalFovAndAspectRatio(pi / 180 * 90.0f, 4 / 3.f);
+	frustum.SetHorizontalFovAndAspectRatio(pi / 180 * 90.0f, ((App->window->GetWidth())*1.f/App->window->GetHeight()));
 	frustum.SetPos(float3(0.f, 0.5f, 1.5f));
 	frustum.SetFront(-float3::unitZ);
 	frustum.SetUp(float3::unitY);
+}
+
+void ModuleCamera::SetAspectRatio(int& width, int& height)
+{
+	if (height > 0 && width > 0) {
+		frustum.SetHorizontalFovAndAspectRatio(frustum.HorizontalFov(), width * 1.f / height);
+	}
+
 }
 
