@@ -1,6 +1,7 @@
 #pragma once
 #include "Application.h"
 #include "Mesh.h"
+#include "Math/float4x4.h"
 
 
 
@@ -11,14 +12,15 @@ class Model
 		Model();
 		~Model();
 		void Draw();
-		const void Load(const char* filePath);
+		bool Load(const char* filePath);
+		void Clear();
+		const std::vector<Mesh*>& GetMeshes() const { return meshes; }
 
 
 	private:
 		std::vector<Mesh*> meshes;
 		std::vector<unsigned int> textures;
-		tinygltf::TinyGLTF gltfContext;
-		tinygltf::Model model;
 		unsigned program = 0;
+		float4x4 matrix = float4x4::identity;
 };
 

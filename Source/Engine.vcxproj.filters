@@ -169,6 +169,7 @@
     <ClCompile Include="ModuleRenderAssignment.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModuleTimer.cpp" />
+    <ClCompile Include="ModuleLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -451,6 +452,7 @@
     <ClInclude Include="ModuleRenderAssignment.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModuleTimer.h" />
+    <ClInclude Include="ModuleLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
@@ -531,6 +533,12 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\assignment.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="assignment.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="assignment.vert">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

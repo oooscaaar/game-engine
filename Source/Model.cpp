@@ -20,17 +20,20 @@ Model::~Model()
 void Model::Draw()
 {
 	for (const auto& mesh : meshes) {
-		mesh->Draw(textures, program);
+		mesh->Draw(textures, program, matrix);
 	}
 }
 
-const void Model::Load(const char* filePath)
+bool Model::Load(const char* filePath)
 {
 	std::string error, warning;
+	tinygltf::TinyGLTF gltfContext;
+	tinygltf::Model model;
 	bool loadOk = gltfContext.LoadASCIIFromFile(&model, &error, &warning, filePath);
 	if (!loadOk)
 	{
 		LOG("Error loading Model. %s\n", filePath, error.c_str());
+		return false;
 	}
 
 	//Load Materials
@@ -40,13 +43,13 @@ const void Model::Load(const char* filePath)
 			if (srcMaterial.pbrMetallicRoughness.baseColorTexture.index >= 0) {
 				const tinygltf::Texture& texture = model.textures[srcMaterial.pbrMetallicRoughness.baseColorTexture.index];
 				const tinygltf::Image& image = model.images[texture.source];
-				textureId = (App->texture->Load(image.uri));
+				textureId = (App->texture->Load(image.uri, filePath));
 			}
 			textures.push_back(textureId);
 		}
 	}
 
-	//Load Mesh
+	//Load Meshes
 	for (const auto& srcMesh : model.meshes) {
 		for (const auto& primitive : srcMesh.primitives) {
 			Mesh* mesh = new Mesh;
@@ -55,19 +58,24 @@ const void Model::Load(const char* filePath)
 		}
 	}
 
-	//Create Program
-	unsigned vtx_shader = App->program->CompileShader(GL_VERTEX_SHADER, App->program->ReadShader("../Source/Shaders/assignment.vert"));
-	unsigned frg_shader = App->program->CompileShader(GL_FRAGMENT_SHADER, App->program->ReadShader("../Source/Shaders/assignment.frag"));
+	//Create shader program
+	unsigned vtx_shader = App->program->CompileShader(GL_VERTEX_SHADER, App->program->ReadShader("./Shaders/assignment.vert"));
+	unsigned frg_shader = App->program->CompileShader(GL_FRAGMENT_SHADER, App->program->ReadShader("./Shaders/assignment.frag"));
 	program = App->program->CreateProgram(vtx_shader, frg_shader);
+
+	return true;
 }
 
-//TODO Delete meshes
-//for (auto mesh : meshes)
-//delete(mesh);
-//meshes.clear();
+//Cleanup meshes and textures STL containers
+void Model::Clear()
+{
+	for (auto mesh : meshes)
+		delete(mesh);
+	meshes.clear();
+	
+	for (auto texture : textures)
+		App->texture->Delete(texture);
+	textures.clear();
 
+}
 
-//TODO Delete textures
-//for (auto texture : textures)
-//App->texture->Delete(texture);
-//textures.clear();

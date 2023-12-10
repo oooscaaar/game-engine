@@ -24,8 +24,9 @@ class ModuleCamera :
 
 	private:
 		Frustum frustum;
-		float4x4 proj;
-		float4x4 model;
-		float4x4 view;
+		float4x4 proj = float4x4::zero;
+		float4x4 model = float4x4::zero;
+		float4x4 view = float4x4::zero;
+		float speed = 3.f;
 };
 

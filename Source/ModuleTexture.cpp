@@ -1,5 +1,7 @@
 #include "ModuleTexture.h"
 #include "glew.h"
+#include <string>
+#include <filesystem>
 
 
 ModuleTexture::ModuleTexture()
@@ -33,14 +35,30 @@ bool ModuleTexture::CleanUp()
 	return true;
 }
 
-unsigned int ModuleTexture::Load(const std::string& filePath) {
+unsigned int ModuleTexture::Load(const std::string& resourceName, const std::string& filePath) {
 
-	std::string fileExtension = filePath.substr(filePath.find_last_of(".") + 1);
+	std::string fileExtension = resourceName.substr(resourceName.find_last_of(".") + 1);
+
+	//Get file directory
+	
+
+	//const std::string fileDirectory = GetDirFromFilePath(filePath);
+	auto pathEnd = filePath.find_last_of("/\\");
+	std::string fileDirectory = pathEnd == std::string::npos ? filePath : filePath.substr(0, pathEnd);
 
 	//Convert filePath to wchar_t*
-	std::wstring wideFilePath = L"../Game/Textures/";
-	for (int i = 0; i < filePath.length(); ++i)
-		wideFilePath += wchar_t(filePath[i]);
+	std::wstring wideFilePath = L"";
+
+	for (int i = 0; i < fileDirectory.length(); ++i) {
+		wideFilePath += wchar_t(fileDirectory[i]);
+		if (i == fileDirectory.length() - 1) {
+			wideFilePath += wchar_t(47);
+		}
+
+	}
+
+	for (int i = 0; i < resourceName.length(); ++i)
+		wideFilePath += wchar_t(resourceName[i]);
 	const wchar_t* wCharFilePath = wideFilePath.c_str();
 
 	HRESULT hr = 0;
@@ -195,3 +213,9 @@ const char* ModuleTexture::GetFilterType() const
 	}
 }
 
+const std::string& ModuleTexture::GetDirFromFilePath(const std::string& filePath)
+{
+	auto pathEnd = filePath.find_last_of("/\\");
+	std::string pathName = pathEnd == std::string::npos ? filePath : filePath.substr(0, pathEnd);
+	return pathName;
+}

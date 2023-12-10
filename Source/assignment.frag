@@ -1,7 +1,8 @@
 #version 460
-layout(location=0) in vec3 my_vertex_position;
+layout (location = 5) uniform sampler2D Texture;
+in vec2 TexCoord;
+out vec4 color;
 void main()
 {
- gl_Position = vec4(my_vertex_position, 1.0);
+ color = texture(Texture, TexCoord);
 }
-}
