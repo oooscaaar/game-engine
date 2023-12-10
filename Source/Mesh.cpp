@@ -1,9 +1,9 @@
 #include "Mesh.h"
+#include "ModuleProgram.h"
+#include "ModuleCamera.h"
 #include "SDL.h"
 #include "glew.h"
 #include "Math/float3.h"
-#include "ModuleProgram.h"
-#include "ModuleCamera.h"
 #include "Math/float4x4.h"
 
 
