@@ -17,6 +17,9 @@ W -> Move FRONT</br>
 A -> Move LEFT</br>
 S -> Move RIGHT</br>
 D -> Move BACK</br>
+E -> Move BACK</br>
+Q -> Move BACK</br>
+
 Hold Right Click -> Add free look (Can be combined with movement)</br>
 Mouse Wheel -> ZoomIn / ZoomOut</br>
 Alt + Left click Orbit the object</br>
