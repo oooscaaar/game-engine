@@ -8,5 +8,5 @@ out vec2 TexCoord;
 void main()
 {
 	TexCoord = aTexCoord;
-	gl_Position = proj*view*model*vec4(pos,1.0);
+	gl_Position = proj*view*model*vec4(pos*1.0,1.0);
 }

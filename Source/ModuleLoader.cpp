@@ -11,7 +11,7 @@ ModuleLoader::~ModuleLoader()
 bool ModuleLoader::Init()
 {
 	model = new Model();
-	LoadModel("../Game/Models/BakerHouse/BakerHouse.gltf");
+	LoadModel("Models/BakerHouse/BakerHouse.gltf");
 	//LoadModel("../Game/Models/Duck/Duck.gltf");
 	return true;
 }
@@ -23,6 +23,7 @@ update_status ModuleLoader::PreUpdate()
 
 bool ModuleLoader::CleanUp()
 {
+	delete model;
 	return true;
 }
 

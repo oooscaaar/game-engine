@@ -24,7 +24,7 @@ void Model::Draw()
 	}
 }
 
-void Model::Load(const char* filePath)
+bool Model::Load(const char* filePath)
 {
 	std::string error, warning;
 	tinygltf::TinyGLTF gltfContext;
@@ -33,6 +33,7 @@ void Model::Load(const char* filePath)
 	if (!loadOk)
 	{
 		LOG("Error loading Model. %s\n", filePath, error.c_str());
+		return false;
 	}
 
 	//Load Materials
@@ -48,7 +49,7 @@ void Model::Load(const char* filePath)
 		}
 	}
 
-	//Load Mesh
+	//Load Meshes
 	for (const auto& srcMesh : model.meshes) {
 		for (const auto& primitive : srcMesh.primitives) {
 			Mesh* mesh = new Mesh;
@@ -57,12 +58,15 @@ void Model::Load(const char* filePath)
 		}
 	}
 
-	//Create Program
+	//Create shader program
 	unsigned vtx_shader = App->program->CompileShader(GL_VERTEX_SHADER, App->program->ReadShader("../Source/Shaders/assignment.vert"));
 	unsigned frg_shader = App->program->CompileShader(GL_FRAGMENT_SHADER, App->program->ReadShader("../Source/Shaders/assignment.frag"));
 	program = App->program->CreateProgram(vtx_shader, frg_shader);
+
+	return true;
 }
 
+//Cleanup meshes and textures STL containers
 void Model::Clear()
 {
 	for (auto mesh : meshes)

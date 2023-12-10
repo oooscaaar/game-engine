@@ -12,8 +12,9 @@ class Model
 		Model();
 		~Model();
 		void Draw();
-		void Load(const char* filePath);
+		bool Load(const char* filePath);
 		void Clear();
+		const std::vector<Mesh*>& GetMeshes() const { return meshes; }
 
 
 	private:
