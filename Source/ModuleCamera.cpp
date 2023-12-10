@@ -31,7 +31,6 @@ update_status ModuleCamera::PreUpdate() {
 	const float rotationSpeed = 100.f;
 	const float deltaTime = App->timer->GetDeltaTime();
 	const float2& mouseMotion = App->input->GetMouseMotion();
-	const unsigned int& mouseWheel = App->input->GetMouseWheel();
 
 	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KeyState::KEY_REPEAT)
 	{
@@ -66,14 +65,6 @@ update_status ModuleCamera::PreUpdate() {
 	if (App->input->GetKey(SDL_SCANCODE_Q) == KeyState::KEY_REPEAT)
 	{
 		frustum.SetPos(frustum.Pos() + (frustum.Up().Normalized() * speed * deltaTime));
-	}
-
-	if (mouseWheel == 1) {
-		frustum.SetPos(frustum.Pos() + (frustum.Front().Normalized() * speed * deltaTime));
-	}
-
-	if (mouseWheel == -1) {
-		frustum.SetPos(frustum.Pos() + (frustum.Front().Normalized() * -speed * deltaTime));
 	}
 	
 	if (App->input->GetKey(SDL_SCANCODE_R) == KeyState::KEY_REPEAT) {
@@ -130,5 +121,14 @@ void ModuleCamera::SetAspectRatio(int& width, int& height)
 		LOG("Error: Width or height are 0 or less");
 	}
 
+}
+
+void ModuleCamera::Zoom(int& direction) {
+	if (direction == 1) {
+		frustum.SetPos(frustum.Pos() + (frustum.Front().Normalized() * speed * App->timer->GetDeltaTime()));
+	}
+	else if (direction == -1) {
+		frustum.SetPos(frustum.Pos() + (frustum.Front().Normalized() * -speed * App->timer->GetDeltaTime()));
+	}
 }
 

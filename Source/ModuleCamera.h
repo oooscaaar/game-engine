@@ -20,6 +20,7 @@ class ModuleCamera :
 		float4x4 GetProjectionMatrix();
 		float4x4 GetViewMatrix();
 		void SetAspectRatio(int& width, int& height);
+		void Zoom(int& direction);
 
 
 	private:

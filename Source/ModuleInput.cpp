@@ -73,8 +73,6 @@ update_status ModuleInput::PreUpdate() {
 	{
 		ImGui_ImplSDL2_ProcessEvent(&sdlEvent);
 
-		mouseWheel = 0;
-
 		switch (sdlEvent.type)
 		{
 		case SDL_QUIT:
@@ -110,7 +108,7 @@ update_status ModuleInput::PreUpdate() {
 			break;
 
 		case SDL_MOUSEWHEEL:
-			mouseWheel = int(sdlEvent.wheel.y);
+			App->camera->Zoom(sdlEvent.wheel.y);
 			break;
 
 		case SDL_MOUSEBUTTONDOWN:
@@ -168,9 +166,4 @@ const float2& ModuleInput::GetMousePosition() const
 const float2& ModuleInput::GetMouseMotion() const
 {
 	return mouse_motion;
-}
-
-const signed short& ModuleInput::GetMouseWheel()
-{
-	return mouseWheel;
 }
