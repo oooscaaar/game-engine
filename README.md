@@ -1,8 +1,27 @@
 <h1 align="center">
-  3D Game Engine written in C++
+  OxEngine - 3D Game Engine written in C++
 </h1>
 
-Developed for the [Master's Degree in Advanced Programming for AAA Video Games](https://www.talent.upc.edu/ing/estudis/formacio/curs/201200/advanced-programming-aaa-video-games/)
+Developed for the [Master's Degree in Advanced Programming for AAA Video Games](https://www.talent.upc.edu/ing/estudis/formacio/curs/201200/advanced-programming-aaa-video-games/)</br>
+The game engine is under development. Until today, it features:
+- Loading geometry
+- Inspecting geometry
+- Tweaking some engine and geometry attributes
+
+## How to use the engine
+Run the engine executable file. It will load automatically the model of a house.
+### Load Models
+Drag the model.gLTF file to the engine window
+### Camera controls
+W -> Move FRONT</br>
+A -> Move LEFT</br>
+S -> Move RIGHT</br>
+D -> Move BACK</br>
+Hold Right Click -> Add free look (Can be combined with movement)</br>
+Mouse Wheel -> ZoomIn / ZoomOut</br>
+Alt + Left click Orbit the object</br>
+F -> Focus the camera around the geometry</br>
+SHIFT(Holding) -> Duplicates movement speed</br>
 
 ## Libraries used (Until today)
 
@@ -14,3 +33,6 @@ Developed for the [Master's Degree in Advanced Programming for AAA Video Games](
 
 ## License
 [MIT](./LICENSE)
+
+## Repository
+[OxEngine Github Repository](https://github.com/oooscaaar/game-engine/)
