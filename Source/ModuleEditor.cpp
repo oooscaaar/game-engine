@@ -3,6 +3,8 @@
 #include "ModuleOpenGL.h"
 #include "ModuleWindow.h"
 #include "ModuleTexture.h"
+#include "ModuleLoader.h"
+#include <vector>
 
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
@@ -58,8 +60,8 @@ update_status ModuleEditor::PreUpdate()
 
 update_status ModuleEditor::Update()
 {
-    bool show_demo_window = true;
-    ImGui::ShowDemoWindow(&show_demo_window);
+    //bool show_demo_window = false;
+    //ImGui::ShowDemoWindow(&show_demo_window);
 
     bool show_about_window = false;
 
@@ -95,10 +97,19 @@ update_status ModuleEditor::Update()
     {
         if (ImGui::CollapsingHeader("Geometry"))
         {
-            ImGui::Text("Format: %s", App->texture->GetFormat());
-            ImGui::Text("Width: %i px", App->texture->GetWidth());
-            ImGui::Text("Height: %i px", App->texture->GetHeight());
-            ImGui::Text("Mip levels: %i", App->texture->GetMipLevels());
+
+            Model* model = App->moduleLoader->GetModel();
+            std::vector<Mesh*> meshes = App->moduleLoader->GetModel()->GetMeshes();
+            unsigned int numVertices = 0;
+            unsigned int numIndices = 0;
+            for (const auto& srcmesh : meshes) {
+                numVertices += srcmesh->GetNumberOfVertices();
+				numIndices += srcmesh->GetNumberOfIndices();
+            }
+
+            ImGui::Text("Meshes: %d", meshes.size());
+            ImGui::Text("Vertices: %d", numVertices);
+            ImGui::Text("Indices: %d", numIndices);
 
             static const char* minificationFilters[]{ "Nearest", "Linear", "Nearest MipMap Nearest","Linear MipMap Nearest", "Nearest MipMap Linear", "Linear MipMap Linear" };
             static int SelectedMin = 5;

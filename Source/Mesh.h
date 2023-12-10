@@ -15,6 +15,9 @@ public:
 	void const Load(const tinygltf::Model& model, const tinygltf::Mesh& mesh, const tinygltf::Primitive& primitive);
 	void const Draw(const std::vector<unsigned>& textures, const unsigned &program, const float4x4& modelMatrix);
 
+	const unsigned int GetNumberOfVertices() const { return numberOfVertices; }
+	const unsigned int GetNumberOfIndices() const { return numberOfIndices; }
+
 private:
 	unsigned vbo = 0;
 	unsigned vao = 0;
