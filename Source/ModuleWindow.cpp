@@ -61,7 +61,6 @@ bool ModuleWindow::Init()
 		else
 		{
 			screen_surface = SDL_GetWindowSurface(window);
-			LOG("CREATED WINDOW!");
 		}
 	}
 
@@ -91,14 +90,14 @@ SDL_Window* ModuleWindow::GetWindow() const
 	return window;
 }
 
-int ModuleWindow::GetWidth() const
+const int ModuleWindow::GetWidth() const
 {
 	int width;
 	SDL_GetWindowSize(window, &width, nullptr);
 	return width;
 }
 
-int ModuleWindow::GetHeight() const
+const int ModuleWindow::GetHeight() const
 {
 	int height;
 	SDL_GetWindowSize(window, nullptr, &height);

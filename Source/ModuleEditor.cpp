@@ -41,7 +41,6 @@ bool ModuleEditor::Init()
         style.Colors[ImGuiCol_WindowBg].w = 1.0f;
     }
 
-    // Setup Platform/Renderer backends
     ImGui_ImplSDL2_InitForOpenGL(App->window->GetWindow(), App->render->GetContext());
     ImGui_ImplOpenGL3_Init("#version 460");
 
@@ -78,7 +77,6 @@ update_status ModuleEditor::Update()
         if (ImGui::BeginMenu("Help"))
         {
             if (ImGui::MenuItem("About")) {
-                LOG("About window opened");
                 show_about_window = true; 
             }
             ImGui::EndMenu();
@@ -143,9 +141,26 @@ update_status ModuleEditor::Update()
         }
 
         if (ImGui::CollapsingHeader("System Information")) {
+
             //TODO: Add more data to the system information
             ImGui::Text("FPS: %.1f", (ImGui::GetIO().Framerate));
             ImGui::Text("Frame rendering time: %.3f ms/frame (avg.)",(1000/ImGui::GetIO().Framerate));
+            ImGui::Text("Window Size: %d x %d", App->window->GetWidth(), App->window->GetHeight());
+
+            ImGui::Separator();
+
+            ImGui::TextWrapped("HARDWARE");
+            ImGui::Text("Vendor: %s", glGetString(GL_VENDOR));
+            ImGui::Text("Graphic Card: %s", glGetString(GL_RENDERER));
+            
+            ImGui::Separator();
+
+            ImGui::TextWrapped("SOFTWARE");
+            ImGui::Text("OpenGL: %s", glGetString(GL_VERSION));
+            ImGui::Text("GLSL: %s", glGetString(GL_SHADING_LANGUAGE_VERSION));
+            ImGui::Text("SDL: %d.%d.%d", SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
+
+            ImGui::Separator();
         }
 
         ImGui::End();  
@@ -154,22 +169,13 @@ update_status ModuleEditor::Update()
 
 
     if (show_about_window) {
-        //TODO: Fix rendering outside of the window. Nonetheless, it sets the windows position relative to the top left corner of the entire screen.
-        // ImVec2 windowPos = { App->window->GetWidth() / 2.f,  App->window->GetHeight() / 2.f };
         ImGui::OpenPopup("About");
     }
 
-    // LOG("Window Position: [ x = %f ] [ y = %f]\n", ImGui::GetWindowPos().x, ImGui::GetWindowPos().y);
-    //LOG("Window Size: [ x = %f ] [ y = %f]\n", ImGui::GetWindowSize().x, ImGui::GetWindowSize().y);
     ImGui::SetNextWindowSize({ 400, 200 });
 
     if (ImGui::BeginPopupModal("About"))
     {
-
-        // LOG("Window Position INSIDE POPUP: [ x = %f ] [ y = %f]\n", ImGui::GetWindowPos().x, ImGui::GetWindowPos().y);
-
-        //
-        //ImGui::SetNextWindowPos({ ImGui::GetWindowSize().x / 2.f, ImGui::GetWindowSize().y / 2.f });
 
         ImGui::TextWrapped("I'll add some information about the project, the licenses, and Me :)");
         ImGui::Separator();

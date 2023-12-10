@@ -20,6 +20,7 @@ update_status ModuleTimer::PreUpdate() {
 }
 
 bool ModuleTimer::CleanUp() {
+	LOG("Quitting SDL Timer subsystem");
 	return true;
 }
 
