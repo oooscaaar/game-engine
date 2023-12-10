@@ -25,6 +25,6 @@ update_status ModuleRenderAssignment::PreUpdate()
 
 bool ModuleRenderAssignment::CleanUp()
 {
-
+	delete model;
 	return true;
 }

@@ -39,10 +39,6 @@ unsigned int ModuleTexture::Load(const std::string& resourceName, const std::str
 
 	std::string fileExtension = resourceName.substr(resourceName.find_last_of(".") + 1);
 
-	//Get file directory
-	
-
-	//const std::string fileDirectory = GetDirFromFilePath(filePath);
 	auto pathEnd = filePath.find_last_of("/\\");
 	std::string fileDirectory = pathEnd == std::string::npos ? filePath : filePath.substr(0, pathEnd);
 
@@ -69,7 +65,7 @@ unsigned int ModuleTexture::Load(const std::string& resourceName, const std::str
 
 	}
 	else if(fileExtension == "tga") {
-		//TODO: Implement tga loader
+		hr = LoadFromTGAFile(wCharFilePath, DirectX::TGA_FLAGS_NONE, &imageMetadata, *image);
 	}
 	
 	else if (fileExtension == "png") {

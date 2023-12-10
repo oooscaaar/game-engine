@@ -16,14 +16,7 @@ ModuleProgram::~ModuleProgram()
 bool ModuleProgram::Init()
 {
     LOG("Initialize Module Program");
-    bool ret = true;
-
-    if (false)
-    {
-        ret = false;
-    }
-
-    return ret;
+    return true;
 }
 
 bool ModuleProgram::CleanUp()
