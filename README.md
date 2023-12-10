@@ -3,7 +3,7 @@
 </h1>
 
 Developed for the [Master's Degree in Advanced Programming for AAA Video Games](https://www.talent.upc.edu/ing/estudis/formacio/curs/201200/advanced-programming-aaa-video-games/)</br>
-The game engine is under development. Until today, it features:
+The game engine is under development. It features:
 - Loading geometry
 - Inspecting geometry
 - Tweaking some engine and geometry attributes
