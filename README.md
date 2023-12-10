@@ -7,6 +7,7 @@ The game engine is under development. It features:
 - Loading geometry
 - Inspecting geometry
 - Tweaking some engine and geometry attributes
+- Scaling models
 
 ## How to use the engine
 Run the engine executable file. It will load automatically the model of a house.
@@ -28,11 +29,8 @@ Alt + Left click Orbit the object</br>
 
 ### Extra features
 - Adjust texture filtering mode (MAG/MIN filters)
-- 
-
 
 ## Libraries used (Until today)
-
 - [SDL 2](https://www.libsdl.org/download-2.0.php)
 - [Glew](https://github.com/nigels-com/glew)
 - [MatGeoLib](https://github.com/juj/MathGeoLib)
