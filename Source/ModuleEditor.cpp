@@ -225,8 +225,11 @@ update_status ModuleEditor::Update()
         ImGui::OpenPopup("About");
     }
 
-    ImGui::SetNextWindowSize({ App->window->GetWidth()/3.f, App->window->GetHeight()/2.f});
-
+    // Set popup size and calcula middle of the window
+    const float newWindowWidth = App->window->GetWidth() / 2.f;
+    const float newWindowHeight = App->window->GetHeight() / 2.f;
+    ImGui::SetNextWindowSize({ newWindowWidth, newWindowHeight});
+    ImGui::SetNextWindowPos({ App->window->GetWidth() - (newWindowWidth/2.f), App->window->GetHeight() - (newWindowHeight / 2.f) });
 
     if (ImGui::BeginPopupModal("About"))
     {
