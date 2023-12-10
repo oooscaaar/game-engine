@@ -59,8 +59,8 @@ bool Model::Load(const char* filePath)
 	}
 
 	//Create shader program
-	unsigned vtx_shader = App->program->CompileShader(GL_VERTEX_SHADER, App->program->ReadShader("../Source/Shaders/assignment.vert"));
-	unsigned frg_shader = App->program->CompileShader(GL_FRAGMENT_SHADER, App->program->ReadShader("../Source/Shaders/assignment.frag"));
+	unsigned vtx_shader = App->program->CompileShader(GL_VERTEX_SHADER, App->program->ReadShader("./Shaders/assignment.vert"));
+	unsigned frg_shader = App->program->CompileShader(GL_FRAGMENT_SHADER, App->program->ReadShader("./Shaders/assignment.frag"));
 	program = App->program->CreateProgram(vtx_shader, frg_shader);
 
 	return true;
