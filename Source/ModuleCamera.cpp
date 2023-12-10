@@ -95,6 +95,7 @@ update_status ModuleCamera::PreUpdate() {
 
 bool ModuleCamera::CleanUp()
 {
+	LOG("Destroying camera");
 	return true;
 }
 
@@ -126,6 +127,9 @@ void ModuleCamera::SetAspectRatio(int& width, int& height)
 {
 	if (height > 0 && width > 0) {
 		frustum.SetHorizontalFovAndAspectRatio(frustum.HorizontalFov(), width * 1.f / height);
+	}
+	else {
+		LOG("Error: Width or height are 0 or less");
 	}
 
 }
