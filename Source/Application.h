@@ -8,17 +8,12 @@ class ModuleTimer;
 class ModuleOpenGL;
 class ModuleDebugDraw;
 class ModuleWindow;
-class ModuleProgram;
-class ModuleEditor;
-class ModuleTextures;
 class ModuleInput;
+class ModuleProgram;
 class ModuleCamera;
-class ModuleTexture;
-class ModuleLoader;
 
-class ModuleRenderAssignment;
+class ModuleRenderSkybox;
 
-class Model;
 
 
 
@@ -38,13 +33,9 @@ public:
     ModuleDebugDraw* debugDraw = nullptr;
     ModuleWindow* window = nullptr;
     ModuleProgram* program = nullptr;
-    ModuleInput* input = nullptr;
-    ModuleEditor* editor = nullptr;
     ModuleCamera* camera = nullptr;
-    ModuleTexture* texture = nullptr;
-    ModuleLoader* moduleLoader = nullptr;
-
-    ModuleRenderAssignment* renderAssignment = nullptr;
+	ModuleInput* input = nullptr;
+    ModuleRenderSkybox* renderSkybox = nullptr;
     
 
 private:

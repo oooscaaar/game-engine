@@ -4,7 +4,6 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleOpenGL.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="ImGui\imgui.cpp">
@@ -28,7 +27,6 @@
     <ClCompile Include="ImGui\imgui_widgets.cpp">
       <Filter>ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleEditor.cpp" />
     <ClCompile Include="ModuleProgram.cpp" />
     <ClCompile Include="ModuleDebugDraw.cpp" />
     <ClCompile Include="ModuleCamera.cpp" />
@@ -161,18 +159,14 @@
     <ClCompile Include="MathGeoLib\Tests\SystemInfo.cpp">
       <Filter>MathGeoLib\Tests</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleTexture.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="ModuleRenderAssignment.cpp" />
-    <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModuleTimer.cpp" />
-    <ClCompile Include="ModuleLoader.cpp" />
+    <ClCompile Include="ModuleRenderSkybox.cpp" />
+    <ClCompile Include="ModuleInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Module.h" />
-    <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleOpenGL.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="ImGui\imconfig.h">
@@ -202,7 +196,6 @@
     <ClInclude Include="ImGui\imstb_truetype.h">
       <Filter>ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="ModuleProgram.h" />
     <ClInclude Include="ModuleDebugDraw.h" />
     <ClInclude Include="..\..\..\iCloudDrive\Master Videogames\Cpp\D13 02-11-23\debug_draw\debugdraw.h" />
@@ -439,13 +432,10 @@
     <ClInclude Include="MathGeoLib\Tests\SystemInfo.h">
       <Filter>MathGeoLib\Tests</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleTexture.h" />
     <ClInclude Include="tiny_gltf.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="ModuleRenderAssignment.h" />
-    <ClInclude Include="Model.h" />
     <ClInclude Include="ModuleTimer.h" />
-    <ClInclude Include="ModuleLoader.h" />
+    <ClInclude Include="ModuleRenderSkybox.h" />
+    <ClInclude Include="ModuleInput.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">

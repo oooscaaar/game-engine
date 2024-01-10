@@ -16,9 +16,9 @@ bool ModuleRenderAssignment::Init()
 
 update_status ModuleRenderAssignment::PreUpdate()
 {
-	if (!App->moduleLoader->GetModel()->GetMeshes().empty()) {
-		App->moduleLoader->GetModel()->Draw();
-	}
+	//if (!App->moduleLoader->GetModel()->GetMeshes().empty()) {
+	//	App->moduleLoader->GetModel()->Draw();
+	//}
 
 	return update_status::UPDATE_CONTINUE;
 }

@@ -71,7 +71,7 @@ update_status ModuleInput::PreUpdate() {
 
 	while (SDL_PollEvent(&sdlEvent) != 0)
 	{
-		ImGui_ImplSDL2_ProcessEvent(&sdlEvent);
+		//ImGui_ImplSDL2_ProcessEvent(&sdlEvent);
 
 		switch (sdlEvent.type)
 		{
@@ -135,7 +135,7 @@ update_status ModuleInput::PreUpdate() {
 				App->window->GetWindow()
 			);
 
-			App->moduleLoader->LoadModel(fileDirectory);
+			//App->moduleLoader->LoadModel(fileDirectory);
 
 			SDL_free(fileDirectory);
 			break;

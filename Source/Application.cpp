@@ -4,13 +4,10 @@
 #include "ModuleWindow.h"
 #include "ModuleProgram.h"
 #include "ModuleOpenGL.h"
-#include "ModuleDebugDraw.h"
-#include "ModuleLoader.h"
-#include "ModuleInput.h"
-#include "ModuleEditor.h"
 #include "ModuleCamera.h"
-#include "ModuleTexture.h"
-#include "ModuleRenderAssignment.h"
+#include "ModuleInput.h"
+#include "ModuleRenderSkybox.h"
+#include "ModuleDebugDraw.h"
 
 using namespace std;
 
@@ -18,15 +15,12 @@ Application::Application()
 {
 	modules.push_back(timer = new ModuleTimer());
 	modules.push_back(window = new ModuleWindow());
-	modules.push_back(render = new ModuleOpenGL());
-	modules.push_back(editor = new ModuleEditor());
 	modules.push_back(input = new ModuleInput());
+	modules.push_back(render = new ModuleOpenGL());
 	modules.push_back(camera = new ModuleCamera());
 	modules.push_back(program = new ModuleProgram());
 	modules.push_back(debugDraw = new ModuleDebugDraw());
-	modules.push_back(texture = new ModuleTexture());
-	modules.push_back(moduleLoader = new ModuleLoader());
-	modules.push_back(renderAssignment= new ModuleRenderAssignment());
+	modules.push_back(renderSkybox = new ModuleRenderSkybox());
 }
 
 Application::~Application()
