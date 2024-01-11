@@ -1,4 +1,5 @@
 #pragma once
+#include "Application.h"
 #include "Module.h"
 #include "DirectXTex/DirectXTex.h"
 
@@ -14,6 +15,9 @@ class ModuleRenderSkybox :
 	bool CleanUp();
 
 	unsigned LoadCubeMap();
-	unsigned texture;
+	unsigned int texture = 0;
+	unsigned int skyboxVAO = 0;
+	unsigned int skyboxVBO = 0;
+	unsigned int program = 0;
 };
 
