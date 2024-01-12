@@ -1,0 +1,1 @@
+C:\Users\user\Developer\game-engine\Source\DirectXTex\DirectXTex\Bin\Desktop_2019_Win10\x64\Release\DirectXTex.lib
