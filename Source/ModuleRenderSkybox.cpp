@@ -1,5 +1,6 @@
 #include "ModuleRenderSkybox.h"
 #include "ModuleProgram.h"
+#include "ModuleCamera.h"
 #include "glew.h"
 #include <string>
 #include <filesystem>
@@ -78,11 +79,15 @@ bool ModuleRenderSkybox::Init()
     unsigned frg_shader = App->program->CompileShader(GL_FRAGMENT_SHADER, App->program->ReadShader("./Shaders/skybox.frag"));
     program = App->program->CreateProgram(vtx_shader, frg_shader);
 
+
+
     // skybox cube
     
 
     //glActiveTexture(GL_TEXTURE0);
     //glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+
+    
 
 
     return true;
@@ -91,9 +96,51 @@ bool ModuleRenderSkybox::Init()
 update_status ModuleRenderSkybox::PreUpdate()
 {
     glUseProgram(program);
+    glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
     glBindVertexArray(skyboxVAO);
+
+    //glUniformMatrix4fv(0, 1, GL_TRUE, (const float*)&model);
+    //glUniformMatrix4fv(1, 1, GL_TRUE, &(App->camera->GetViewMatrix())[0][0]);
+    //glUniformMatrix4fv(2, 1, GL_TRUE, &(App->camera->GetProjectionMatrix())[0][0]);
+
+    proj = App->camera->GetProjectionMatrix();
+    model = float4x4::FromTRS(float3(0.0f, 0.0f, -0.5f), float3x3::RotateZ(0), float3(1.0f, 1.0f, 1.0f));
+    view = App->camera->GetViewMatrix();
+
+    glUseProgram(program);
+
+    glUniformMatrix4fv(0, 1, GL_TRUE, &model[0][0]);
+    glUniformMatrix4fv(1, 1, GL_TRUE, &view[0][0]);
+    glUniformMatrix4fv(2, 1, GL_TRUE, &proj[0][0]);
+
     glDrawArrays(GL_TRIANGLES, 0, 36);
+
     glBindVertexArray(0);
+
+
+
+    //glUseProgram(program);
+
+    //glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
+    //glBindVertexArray(skyboxVAO);
+
+
+
+    //glActiveTexture(GL_TEXTURE0);
+    //glBindTexture(GL_TEXTURE_2D, texture);
+
+    //glUniformMatrix4fv(0, 1, GL_TRUE, (const float*)&modelMatrix);
+
+    //glUniformMatrix4fv(1, 1, GL_TRUE, &(App->camera->GetViewMatrix())[0][0]);
+    //glUniformMatrix4fv(2, 1, GL_TRUE, &(App->camera->GetProjectionMatrix())[0][0]);
+    //glUniform1i(glGetUniformLocation(program, "diffuse"), 0);
+
+    //glDrawElements(GL_TRIANGLES, numberOfIndices, GL_UNSIGNED_INT, nullptr);
+
+    //glBindVertexArray(0);
+
+
+
     //glDepthFunc(GL_LESS);
 	return update_status::UPDATE_CONTINUE;
 }
