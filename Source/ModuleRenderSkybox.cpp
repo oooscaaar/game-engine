@@ -81,8 +81,8 @@ bool ModuleRenderSkybox::Init()
     // skybox cube
     
 
-    //glActiveTexture(GL_TEXTURE0);
-    //glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, texture);
 
     
 

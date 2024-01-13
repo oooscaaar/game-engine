@@ -1,6 +1,8 @@
 #version 460
+in vec3 texcoords;
 out vec4 color;
+uniform samplerCube cube;
 void main()
 {
- color = vec4(0.0, 0.8, 0.2, 1.0);
-}
+ color = texture(cube, texcoords);
+ }
