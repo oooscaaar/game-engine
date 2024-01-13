@@ -524,10 +524,10 @@
     <None Include="assignment.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="skybox.frag">
+    <None Include="..\Game\Shaders\skybox.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="skybox.vert">
+    <None Include="..\Game\Shaders\skybox.vert">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
