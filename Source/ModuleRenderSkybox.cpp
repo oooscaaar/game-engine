@@ -99,9 +99,9 @@ update_status ModuleRenderSkybox::PreUpdate()
 
     glUseProgram(program);
 
-    //glUniformMatrix4fv(0, 1, GL_TRUE, &model[0][0]);
-    //glUniformMatrix4fv(1, 1, GL_TRUE, &view[0][0]);
-    //glUniformMatrix4fv(2, 1, GL_TRUE, &proj[0][0]);
+    glUniformMatrix4fv(0, 1, GL_TRUE, &model[0][0]);
+    glUniformMatrix4fv(1, 1, GL_TRUE, &view[0][0]);
+    glUniformMatrix4fv(2, 1, GL_TRUE, &proj[0][0]);
 
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
