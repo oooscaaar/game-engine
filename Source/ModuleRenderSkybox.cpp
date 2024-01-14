@@ -94,7 +94,9 @@ update_status ModuleRenderSkybox::PreUpdate()
     glUniformMatrix4fv(1, 1, GL_TRUE, &view[0][0]);
     glUniformMatrix4fv(2, 1, GL_TRUE, &proj[0][0]);
 
+    glDepthMask(GL_FALSE);
     glDrawArrays(GL_TRIANGLES, 0, 36);
+    glDepthMask(GL_TRUE);
 
     glBindVertexArray(0);
 
