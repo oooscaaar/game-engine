@@ -34,7 +34,7 @@ Alt + Left click Orbit the object</br>
 ### Extra features
 - Adjust texture filtering mode (MAG/MIN filters)
 
-## Libraries used (Until today)
+## Libraries used
 - [SDL 2](https://www.libsdl.org/download-2.0.php)
 - [Glew](https://github.com/nigels-com/glew)
 - [MatGeoLib](https://github.com/juj/MathGeoLib)
